@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to right bottom, #373781, #27366f, #20335b, #202f47, #232932);
+}
+#home h3{
+    padding: 2rem;
+    font-size: 3rem;
+    color: aliceblue;
+}
+#home button{
+    padding: 15px 40px;
+    border-radius: 30px;
+    border: none;
+    background-color: #053b8d;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+}

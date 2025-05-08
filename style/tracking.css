@@ -1,0 +1,59 @@
+.wrapper{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+.main-head{
+     color: #fff;
+     padding: 10px;
+}
+.display-task-lap{
+    margin-bottom: 30px;
+
+}
+.time-head{
+    color: black;
+}
+.details{
+    border: none;
+}
+.filter-btn{
+    margin: 10px;
+    display: block;
+    background-color: #fff;
+    width: fit-content;
+}
+.filter-btn button{
+    border: none;
+    padding: 10px 7px;
+    font-weight: 500;
+    background: transparent;
+}
+.graph{
+    position: relative;
+     height: 50vh; 
+     width: 100%;
+}
+.display-task-pending{
+    display:block;
+}
+.display-task-completed{
+    display: block;
+}
+
+@media screen and (min-width:1024px) {
+    .wrapper {
+        display:grid;
+        background-color: rgb(69, 92, 92);
+        /* background-image: linear-gradient(to right top, #c4d0e1, #9aa7ba, #718094, #4a5b70, #24394e); */
+        grid-template-columns: 18% 78%;
+        grid-auto-flow: column;
+        gap: 20px;
+    }
+    .display-task-pending{
+        display:none;
+    }
+    .display-task-completed{
+        display: none;
+    }
+}
