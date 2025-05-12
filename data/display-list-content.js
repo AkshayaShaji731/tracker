@@ -18,37 +18,37 @@ export function displayContent(time, name, desc, tag, date, index, enddate, stat
          <tr>
            <td>Start Date </td>
            <td>:</td>
-           <td>${date}</td>
+           <td id="td-value">${date}</td>
          </tr>
            <tr>
            <td>End Date </td>
            <td>:</td>
-           <td>${enddate}</td>
+           <td id="td-value">${enddate}</td>
          </tr>
            <tr>
            <td>Task Name </td>
            <td>:</td>
-           <td>${name}</td>
+           <td id="td-value">${name}</td>
          </tr>
            <tr>
            <td> Description </td>
            <td>:</td>
-           <td>${desc}</td>
+           <td id="td-value">${desc}</td>
          </tr>
            <tr>
            <td>Tag </td>
            <td>:</td>
-           <td>${tag}</td>
+           <td id="td-value">${tag}</td>
          </tr>
            <tr>
            <td>Total Time </td>
            <td>:</td>
-           <td>${time}</td>
+           <td id="td-value">${time}</td>
          </tr>
          <tr>
            <td>Status</td>
            <td>:</td>
-           <td class="status-text">${status}</td>
+           <td class="status-text" id="td-value">${status}</td>
          </tr>
        </table>
        <button class="submit">Finished</button>`
@@ -91,7 +91,7 @@ export function numberOfDays(numDays) {
 }
 export function timer(index) {
     timerCon.innerHTML = `
-    <p>TImer</p>
+    <p id="timer-heading">Timer</p>
    <div class="time-display-con">
      <span class="d-hour">00:</span>
      <span class="d-minute">00:</span>

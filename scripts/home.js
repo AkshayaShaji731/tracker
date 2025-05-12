@@ -12,7 +12,7 @@ const task = document.querySelector('.task-list-item')
 let active = "active"
 
 
-// getDate()
+getDate()
 createNavBar()
 navBarMob()
 let dataArray = JSON.parse(localStorage.getItem('task')) || [];
@@ -40,11 +40,11 @@ export function createTask() {
     if (active == "active") {
         task.innerHTML = `
         <label for="name">Enter your task</label>
-        <input type="text" id="name" placeholder="Enter the task" class="name" required>
+        <input type="text" id="name" placeholder="Enter the task" class="name" required maxlength="20">
         <label for="decription">write Description</label>
-        <textarea id="description" placeholder="Description" class="description"></textarea>
+        <textarea id="description" placeholder="Description" class="description" maxlength="100"></textarea>
         <label for="tag">Give tag</label>
-        <textarea type="text" id="tag" placeholder="tag" class="tag"></textarea>
+        <textarea type="text" id="tag" placeholder="tag" class="tag" maxlength="100"></textarea>
         <button class="task-create-btn" >Create</button>`
         active = "inactive"
 
@@ -87,7 +87,9 @@ export function displayList(dataArray) {
     let date = dataArray[index].date
     let endDate = dataArray[index].endDate
     let status = dataArray[index].status
-    displayContent(time, name, tag, desc, date, index, endDate, status)
+
+    timer(index)
+    displayContent(time, name, desc, tag, date, index, endDate, status)
 
     const day = 24 * 60 * 60 * 1000;
     let today = new Date(endDate)
@@ -99,8 +101,7 @@ export function displayList(dataArray) {
     else {
         numDays = Math.round(Math.abs((today - taskdate) / day))
     }
-    // numberOfDays(numDays)
-    timer(index, timeobj, status)
+    // numberOfDays
     for (let i = 0; i < dataArray.length; i++) {
         let sNum = i + 1
         let getDate = dataArray[i].date

@@ -40,6 +40,9 @@
 .display-task-completed{
     display: block;
 }
+.time-list{
+    display: block;
+}
 
 @media screen and (min-width:1024px) {
     .wrapper {

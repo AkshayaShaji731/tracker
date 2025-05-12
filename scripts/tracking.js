@@ -98,6 +98,7 @@ function pendingTask(sNum, getDate, getName, endDate, getTime, getDescription, g
     taskRow.querySelector(".details").addEventListener("click", () => {
 
         document.querySelector(".display-pending-con").style.display = "block"
+        document.querySelector(".time-list").style.display="block"
         let array=dataArray[sNum-1]
         displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus,displayPendingCon)
         timercloseData(array,timespending)
