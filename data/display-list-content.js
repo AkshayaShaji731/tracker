@@ -99,24 +99,25 @@ export function timer(index) {
    </div>
    <div class="timer-display-btn"> 
      <button id="d-start-btn">Start</button>
-     <button id="d-pause-btn">Pause</button>
      <button id="d-stop-btn">Stop</button>
    </div>`
-
-
 
     let min = 0
     let sec = 0
     let hour = 0
     var interval;
-    let pause = "true"
-    document.querySelector('#d-start-btn').addEventListener("click", () => {
+    let startBtn = document.querySelector('#d-start-btn')
+    startBtn.addEventListener("click", () => {
+        console.log("hiii")
+        timerStart()
+    })
+    function timerStart() {
         clearInterval(interval)
         interval = setInterval(startTime, 1000)
 
         let data = dataArray[index]
 
-        data.status="Pending"
+        data.status = "Pending"
 
         let nowTime = new Date().toLocaleTimeString();
         let currentTime = data.currentTime
@@ -128,18 +129,28 @@ export function timer(index) {
         let currentDate = data.currentDate
         currentDate.push(today)
         localStorage.setItem('task', JSON.stringify(dataArray));
-    })
-    document.querySelector('#d-pause-btn').addEventListener('click', () => {
-        if (pause == "true") {
-            clearInterval(interval)
-            pause = "false"
-        }
-        else {
-            interval = setInterval(startTime, 1000)
-            pause = "true"
-        }
+        startBtn.removeEventListener("click", timerStart)
+        startBtn.id = "d-pause-btn"
+        startBtn.innerHTML="Pause"
+        startBtn.addEventListener("click",timerPause)
+    }
+    function timerPause(){
+        clearInterval(interval)
+        startBtn.removeEventListener("click", timerPause)
+        startBtn.innerHTML="Resume"
+        startBtn.addEventListener("click",timerStart)
+    }
+    // document.querySelector('#d-pause-btn').addEventListener('click', () => {
+    //     if (pause == "true") {
+    //         clearInterval(interval)
+    //         pause = "false"
+    //     }
+    //     else {
+    //         interval = setInterval(startTime, 1000)
+    //         pause = "true"
+    //     }
 
-    })
+    // })
     document.querySelector("#d-stop-btn").addEventListener("click", (e) => {
         listOfTime(index)
         render(dataArray)
@@ -303,7 +314,7 @@ function dailyTask(dataArray, currentDate) {
     let min
     let sec
     let tasktotal = {
-        date:"",
+        date: "",
         hour: 0,
         minute: 0,
         seconds: 0
@@ -359,12 +370,12 @@ export function searchTask() {
                 searchArray.push(dataArray[i])
             }
         }
-        searchInput.value=""
-        if(searchArray.length==0){
+        searchInput.value = ""
+        if (searchArray.length == 0) {
             alert("it not found")
         }
         render(searchArray)
-        searchArray=[]
+        searchArray = []
     })
 }
 
