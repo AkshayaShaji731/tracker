@@ -43,6 +43,38 @@
 .time-list{
     display: block;
 }
+/* .graph{
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-left: 20px;
+    padding-bottom: 10px;
+} */
+
+.col{
+    /* background-color: aqua; */
+    /* border: 1px solid gray; */
+    height: 15px;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+
+}
+.y-axis{
+    /* background-color: aqua; */
+    display: grid;
+    width: 15px;
+    height: 25px;
+    position: absolute;
+    left: -20px;
+}
+.row-graph{
+    background-color:red;
+    background-color: rgb(69, 92, 92);
+    border: 1px solid black;
+    height: 25px;
+    width: 25px;
+    display: grid; 
+    grid-auto-flow: row;
+}
 
 @media screen and (min-width:1024px) {
     .wrapper {

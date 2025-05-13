@@ -1,5 +1,5 @@
 let dataArray = JSON.parse(localStorage.getItem('task')) || [];
-console.log(dataArray)
+// console.log(dataArray)
 const prevWeekBtn = document.querySelector(".prev-week")
 // console.log(prevWeekBtn)
 const currWeekBtn = document.querySelector(".current-week")

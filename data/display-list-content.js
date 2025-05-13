@@ -367,3 +367,45 @@ export function searchTask() {
         searchArray=[]
     })
 }
+
+export function displayContentTrack(index, date, name, enddate, time, desc, tag, status, displayHTML) {
+    displayHTML.innerHTML = ` 
+      <h3>Task details</h3>
+       <table>
+         <tr>
+           <td>Start Date </td>
+           <td>:</td>
+           <td>${date}</td>
+         </tr>
+           <tr>
+           <td>End Date </td>
+           <td>:</td>
+           <td>${enddate}</td>
+         </tr>
+           <tr>
+           <td>Task Name </td>
+           <td>:</td>
+           <td>${name}</td>
+         </tr>
+           <tr>
+           <td> Description </td>
+           <td>:</td>
+           <td>${desc}</td>
+         </tr>
+           <tr>
+           <td>Tag </td>
+           <td>:</td>
+           <td>${tag}</td>
+         </tr>
+           <tr>
+           <td>Total Time </td>
+           <td>:</td>
+           <td>${time}</td>
+         </tr>
+         <tr>
+           <td>Status</td>
+           <td>:</td>
+           <td class="status-text">${status}</td>
+         </tr>
+       </table>`
+}
