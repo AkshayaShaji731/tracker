@@ -48,10 +48,12 @@ body {
 .nav-list {
     display: none;
     position: absolute;
-    top: 24px;
-    left: -10px;
+    top:32px;
+    /* left: -10px; */
+    right: 12px;
     background-color: #fff;
     padding: 20px;
+    border-radius:4px;
 }
 
 .nav-list ul {
@@ -78,6 +80,8 @@ body {
 
 .nav-inner-con {
     position: fixed;
+    left: 10px;
+    top: 0px;
 }
 
 .logo {
@@ -101,6 +105,9 @@ body {
     margin-top: 20px;
     padding: 1rem;
     position: fixed;
+    top:50px;
+    left: 0px;
+    background-color: rgb(39, 39, 49);
 }
 
 .nav-container nav ul {
@@ -178,6 +185,9 @@ body {
     background-color: gray;
     margin-bottom: 5px;
 }
+.space{
+    display:none
+}
 
 .add-btn-con {
     /* width: 100%; */
@@ -204,6 +214,8 @@ body {
     flex-wrap: wrap;
     flex-direction: column;
     margin-bottom: 10px;
+    gap: 5px;
+    padding: 12px;
 }
 
 .task-list-item label {
@@ -212,7 +224,7 @@ body {
 
 .name{
     padding:16px;
-    margin: 5px;
+    /* margin: 5px; */
     outline: none;
 }
 .description,
@@ -220,12 +232,13 @@ body {
     padding: 10px;
     outline: none;
     /* margin-right: 10px; */
-    margin: 5px;
+    /* margin: 5px; */
 }
 
 .task-create-btn {
     padding: 12px 5px;
-    margin: 4px;
+    /* margin: 4px; */
+    margin-top: 12px;
     background-color: rgb(25, 106, 212);
     border: none;
     color: white;
@@ -446,6 +459,7 @@ table td {
         display: flex;
         justify-content: space-between;
         background-color:rgb(17, 16, 16) ;
+        padding: 10px;
     }
     .main-container header h3{
         display: block;
@@ -455,14 +469,22 @@ table td {
     }
 
     .task-list-item {
-        flex-direction: row;
+        /* flex-direction: row; */
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        position: relative;
+        gap: 15px;
     }
-
+    .space{
+        display:grid;
+    }
     .task-list-item label {
         display: flex;
         align-items: center;
     }
-
+    .task-create-btn{
+        margin-top: 0px;
+    }
     .display-content h3 {
         text-align: center;
     }
@@ -483,6 +505,19 @@ table td {
     .add-task-btn{
         width: fit-content;
     }
-
-
+}
+@media screen and (min-width:1450px){
+    .task-list-item {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        justify-content: center;
+    }
+    .task-create-btn{
+        padding: 0px 15px;
+    }
+     .space{
+        display: none;
+     }
+    
 }

@@ -1,100 +1,78 @@
 import { createNavBar, navBarMob } from "../data/navbar.js";
 import { createWeekGraph } from "../data/weekly-graph.js";
-// import { weekly } from "../data/weekly-graph-grid.js";
 createNavBar()
 navBarMob()
 createWeekGraph()
-// weekly()
 
 let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 
-const pendindMobCon = document.querySelector(".display-task-pending")
-const completedMobCon = document.querySelector(".display-task-completed")
+const pendindMobCon=document.querySelector(".display-task-pending")
+const completedMobCon=document.querySelector(".display-task-completed")
 const tablePending = document.querySelector('.task-table-pending')
-const tableCompleted = document.querySelector('.task-table-completed')
+const tableCompleted=document.querySelector('.task-table-completed')
 const displayPendingCon = document.querySelector('.display-pending')
-const displayCompletedCon = document.querySelector('.display-completed')
+const displayCompletedCon=document.querySelector('.display-completed')
 const days = document.querySelector('.days')
 const timerCon = document.querySelector(".display-timer")
 const timespending = document.querySelector(".times-pending")
-const timescompleted = document.querySelector(".times-completed")
+const timescompleted=document.querySelector(".times-completed")
 const prevWeekBtn = document.querySelector(".prev-week")
 const currWeekBtn = document.querySelector(".current-week")
 displayTracking()
-
 function displayTracking() {
-    if (dataArray.length > 0) {
-        document.querySelector(".emptypending").style.display = "none"
-        for (let i = 0; i < dataArray.length; i++) {
-            let sNum = i + 1
-            let getDate = dataArray[i].date
-            let getName = dataArray[i].name
-            let getTime = dataArray[i].totalTaskTime
-            let endDate = dataArray[i].endDate
-            let getDescription = dataArray[i].description
-            let getStatus = dataArray[i].status
-            let getTag = dataArray[i].tag
-            if (endDate == undefined) {
-                endDate = "--"
-            }
-            else {
-                endDate = dataArray[i].endDate
-            }
-            let time
-            if (getTime == '') {
-                time = "00:00:00"
-            }
-            else {
-                time = getTime.hour + ":" + getTime.min + ":" + getTime.sec
-            }
-            document.querySelector(".display-pending-con").style.display = "none"
-            pendingTask(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
-            trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
+    for (let i = 0; i < dataArray.length; i++) {
+        let sNum = i + 1
+        let getDate = dataArray[i].date
+        let getName = dataArray[i].name
+        let getTime = dataArray[i].totalTaskTime
+        let endDate = dataArray[i].endDate
+        let getDescription = dataArray[i].description
+        let getStatus = dataArray[i].status
+        let getTag = dataArray[i].tag
+        if (endDate == undefined) {
+            endDate = "--"
         }
-    }
-    else {
-        document.querySelector(".emptypending").style.display = "block"
-        document.querySelector(".emptypending").style.textAlign = "center"
+        else {
+            endDate = dataArray[i].endDate
+        }
+        let time
+        if (getTime == '') {
+            time = "00:00:00"
+        }
+        else {
+            time = getTime.hour + ":" + getTime.min + ":" + getTime.sec
+        }
         document.querySelector(".display-pending-con").style.display = "none"
-        document.querySelector(".display-task-lap").style.display = "none"
+        pendingTask(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
+        trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
     }
-    if (completedArray.length > 0) {
-
-        document.querySelector(".emptyCompleted").display.display = "none"
-        for (let i = 0; i < completedArray.length; i++) {
-            let sNum = i + 1
-            let getDate = completedArray[i].date
-            let getName = completedArray[i].name
-            let getTime = completedArray[i].totalTaskTime
-            let endDate = completedArray[i].endDate
-            let getDescription = completedArray[i].description
-            let getStatus = completedArray[i].status
-            let getTag = completedArray[i].tag
-            if (endDate == undefined) {
-                endDate = "--"
-            }
-            else {
-                endDate = completedArray[i].endDate
-            }
-            let time
-            if (getTime == '') {
-                time = "00:00:00"
-            }
-            else {
-                time = getTime.hour + ":" + getTime.min + ":" + getTime.sec
-            }
-            document.querySelector(".display-completed-con").style.display = "none"
-            completedTask(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
-            trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
+    for (let i = 0; i < completedArray.length; i++) {
+        let sNum = i + 1
+        let getDate = completedArray[i].date
+        let getName = completedArray[i].name
+        let getTime = completedArray[i].totalTaskTime
+        let endDate = completedArray[i].endDate
+        let getDescription = completedArray[i].description
+        let getStatus = completedArray[i].status
+        let getTag = completedArray[i].tag
+        if (endDate == undefined) {
+            endDate = "--"
         }
-    }
-    else {
-        document.querySelector(".emptyCompleted").style.display= "block"
+        else {
+            endDate = completedArray[i].endDate
+        }
+        let time
+        if (getTime == '') {
+            time = "00:00:00"
+        }
+        else {
+            time = getTime.hour + ":" + getTime.min + ":" + getTime.sec
+        }
         document.querySelector(".display-completed-con").style.display = "none"
-        document.querySelector(".display-task-lap").style.display = "none"
+        completedTask(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
+        trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
     }
-
 }
 
 function pendingTask(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time) {
@@ -120,16 +98,16 @@ function pendingTask(sNum, getDate, getName, endDate, getTime, getDescription, g
     taskRow.querySelector(".details").addEventListener("click", () => {
 
         document.querySelector(".display-pending-con").style.display = "block"
-        document.querySelector(".time-list").style.display = "block"
-        let array = dataArray[sNum - 1]
-        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus, displayPendingCon)
-        timercloseData(array, timespending)
+        document.querySelector(".time-list").style.display="block"
+        let array=dataArray[sNum-1]
+        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus,displayPendingCon)
+        timercloseData(array,timespending)
         getNumDays(array)
     }
     )
 
 }
-function completedTask(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time) {
+function completedTask(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time){
     const taskRow = document.createElement("tr")
     taskRow.innerHTML = `
      <td id="s-no">${sNum}</td>
@@ -152,16 +130,16 @@ function completedTask(sNum, getDate, getName, endDate, getTime, getDescription,
     taskRow.querySelector(".details").addEventListener("click", () => {
 
         document.querySelector(".display-completed-con").style.display = "block"
-        let array = completedArray[sNum - 1]
-        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus, displayCompletedCon)
-        timercloseData(array, timescompleted)
+        let array=completedArray[sNum-1]
+        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus,displayCompletedCon)
+        timercloseData(array,timescompleted)
         getNumDays(array)
     }
     )
 
 }
 
-function displayContentTrack(index, date, name, enddate, time, desc, tag, status, displayHTML) {
+function displayContentTrack(index, date, name, enddate, time, desc, tag, status,displayHTML) {
     displayHTML.innerHTML = ` 
       <h3>Task details</h3>
        <table>
@@ -203,16 +181,16 @@ function displayContentTrack(index, date, name, enddate, time, desc, tag, status
        </table>`
 }
 
-function timercloseData(index, timeslist) {
-    timeslist.innerHTML = ""
-    let time = index.time
-    let today = index.currentDate
-    let nowTime = index.currentTime
+function timercloseData(index,timeslist){
+    timeslist.innerHTML=""
+    let  time=index.time
+    let today=index.currentDate
+    let nowTime=index.currentTime
     if (nowTime.length >= 1) {
         document.getElementById("time-default").style.display = "none"
     }
     for (let i = 0; i < time.length; i++) {
-        let currentDate = today[i]
+        let currentDate=today[i]
         let currentTime = nowTime[i]
         let timeData = time[i].hour + ":" + time[i].min + ":" + time[i].second
         let times = document.createElement("tr")
@@ -223,20 +201,20 @@ function timercloseData(index, timeslist) {
             <td>${timeData}</td>
            </tr>`
 
-        timeslist.appendChild(times)
+        timeslist.appendChild(times)   
     }
 }
-function getNumDays(data) {
-    let num = 0;
+function getNumDays(data){
+    let num=0;
     let count
-    let days = data.currentDate
-    for (let i = 0; i < days.length; i++) {
-        count = 1
-        let day = days[num]
-        if (day == days[i]) {
+    let days=data.currentDate
+    for(let i=0;i<days.length;i++){
+        count=1
+        let day=days[num]
+        if(day==days[i]){
             continue
         }
-        else {
+        else{
             count++
         }
     }
@@ -259,10 +237,10 @@ function numberOfDays(numDays) {
 
 
 // mobile view
-function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time) {
-    const taskDiv = document.createElement("div");
+function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time){
+    const taskDiv=document.createElement("div");
     taskDiv.classList.add('task-div')
-    taskDiv.innerHTML = `
+    taskDiv.innerHTML=`
     <div class="date-name">
       <h3>${sNum}.</h3> 
       <h3> ${getName}</h3>
@@ -274,7 +252,7 @@ function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescrip
      </div>
      <p id="timer"></p>
     </div> `
-
+    
     pendindMobCon.appendChild(taskDiv)
 
     const deleteBtn = taskDiv.querySelector('.details')
@@ -288,17 +266,17 @@ function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescrip
     taskDiv.querySelector(".details").addEventListener("click", () => {
 
         document.querySelector(".display-pending-con").style.display = "block"
-        let array = dataArray[sNum - 1]
-        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus, displayPendingCon)
-        timercloseData(array, timespending)
+        let array=dataArray[sNum-1]
+        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus,displayPendingCon)
+        timercloseData(array,timespending)
         getNumDays(array)
     }
     )
 }
-function trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time) {
-    const taskDiv = document.createElement("div");
+function trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time){
+    const taskDiv=document.createElement("div");
     taskDiv.classList.add('task-div')
-    taskDiv.innerHTML = `
+    taskDiv.innerHTML=`
     <div class="date-name">
       <h3>${sNum}.</h3> 
       <h3> ${getName}</h3>
@@ -310,7 +288,7 @@ function trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescr
      </div>
      <p id="timer"></p>
     </div> `
-
+    
     completedMobCon.appendChild(taskDiv)
 
     const deleteBtn = taskDiv.querySelector('.details')
@@ -324,9 +302,9 @@ function trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescr
     taskDiv.querySelector(".details").addEventListener("click", () => {
 
         document.querySelector(".display-completed-con").style.display = "block"
-        let array = completedArray[sNum - 1]
-        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus, displayCompletedCon)
-        timercloseData(array, timescompleted)
+        let array=completedArray[sNum-1]
+        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus,displayCompletedCon)
+        timercloseData(array,timescompleted)
         getNumDays(array)
     }
     )

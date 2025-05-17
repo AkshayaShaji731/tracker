@@ -40,7 +40,6 @@ export function createlistMob(getDate, getDescription, getName, sNum, i, getTime
     }
 
     deleteBtn.addEventListener("click", (e) => {
-        x
         taskDiv.remove()
 
         let dataArray = JSON.parse(localStorage.getItem('task')) || [];
@@ -56,13 +55,15 @@ export function createlistMob(getDate, getDescription, getName, sNum, i, getTime
 
         let nameEl = data.name
         let descEl = data.description
-
+        let tagEl = data.tag
 
         let nameInput = prompt("Enter the updated name:", nameEl);
         let descInput = prompt("Enter the updated decription:", descEl);
+        let tagInput = prompt("Enter the updated tag:", tagEl);
 
         data.name = nameInput
         data.description = descInput
+        data.tag = tagInput 
 
         localStorage.setItem('task', JSON.stringify(dataArray));
         render(dataArray)

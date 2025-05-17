@@ -88,7 +88,7 @@ function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, get
 
 
     deleteBtn.addEventListener("click", (e) => {
-        taskRow.remove()
+        taskDiv.remove()
 
         let historyArray = JSON.parse(localStorage.getItem('history') )|| [];
         historyArray.splice(i, 1);

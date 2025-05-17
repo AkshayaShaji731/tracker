@@ -101,6 +101,12 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
         let date = dataArray[index].date
         let status = dataArray[index].status
         let endDate = dataArray[index].endDate
+        if(endDate==""){
+            endDate="--"
+        }
+        else{
+            endDate=endDate
+        }
         displayContent(time, name, desc, tag, date, index, endDate, status)
 
         timer(index, timeobj)

@@ -111,46 +111,7 @@ export function timer(index) {
         console.log("hiii")
         timerStart()
     })
-    function timerStart() {
-        clearInterval(interval)
-        interval = setInterval(startTime, 1000)
 
-        let data = dataArray[index]
-
-        data.status = "Pending"
-
-        let nowTime = new Date().toLocaleTimeString();
-        let currentTime = data.currentTime
-        currentTime.push(nowTime)
-
-        let dayArray = data.dateTotal
-
-        let today = new Date().toISOString().split('T')[0];
-        let currentDate = data.currentDate
-        currentDate.push(today)
-        localStorage.setItem('task', JSON.stringify(dataArray));
-        startBtn.removeEventListener("click", timerStart)
-        startBtn.id = "d-pause-btn"
-        startBtn.innerHTML="Pause"
-        startBtn.addEventListener("click",timerPause)
-    }
-    function timerPause(){
-        clearInterval(interval)
-        startBtn.removeEventListener("click", timerPause)
-        startBtn.innerHTML="Resume"
-        startBtn.addEventListener("click",timerStart)
-    }
-    // document.querySelector('#d-pause-btn').addEventListener('click', () => {
-    //     if (pause == "true") {
-    //         clearInterval(interval)
-    //         pause = "false"
-    //     }
-    //     else {
-    //         interval = setInterval(startTime, 1000)
-    //         pause = "true"
-    //     }
-
-    // })
     document.querySelector("#d-stop-btn").addEventListener("click", (e) => {
         listOfTime(index)
         render(dataArray)
@@ -187,6 +148,36 @@ export function timer(index) {
         hour = 0
 
     })
+
+    function timerStart() {
+        clearInterval(interval)
+        interval = setInterval(startTime, 1000)
+
+        let data = dataArray[index]
+
+        data.status = "Pending"
+
+        let nowTime = new Date().toLocaleTimeString();
+        let currentTime = data.currentTime
+        currentTime.push(nowTime)
+
+        let dayArray = data.dateTotal
+
+        let today = new Date().toISOString().split('T')[0];
+        let currentDate = data.currentDate
+        currentDate.push(today)
+        localStorage.setItem('task', JSON.stringify(dataArray));
+        startBtn.removeEventListener("click", timerStart)
+        startBtn.id = "d-pause-btn"
+        startBtn.innerHTML="Pause"
+        startBtn.addEventListener("click",timerPause)
+    }
+    function timerPause(){
+        clearInterval(interval)
+        startBtn.removeEventListener("click", timerPause)
+        startBtn.innerHTML="Resume"
+        startBtn.addEventListener("click",timerStart)
+    }
     let minute = document.querySelector('.d-minute')
     let second = document.querySelector('.d-second')
     let hours = document.querySelector('.d-hour')
@@ -236,7 +227,7 @@ export function listOfTime(index) {
         if (nowTime.length >= 1) {
             document.getElementById("time-default").style.display = "none"
         }
-        for (let i = 0; i < list.length; i++) {
+        for (let i = 0; i < list.length; i++) { 
             let currentDate = today[i]
             let currentTime = nowTime[i]
             let timeData = list[i].hour + ":" + list[i].min + ":" + list[i].second

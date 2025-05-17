@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+#root {
+    /* background-color: rgb(70, 46, 94); */
+    background-image: url("https://img.freepik.com/premium-photo/man-standing-clock-silhouette-dark-background_776894-6582.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+}
+
+#login-con,
+#login-context,#sign-up {
+    width: 260px;
+    height: 460px;
+    border-radius: 4px;
+    background-color: rgba(248, 248, 248, 0.192);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    padding: 10px;
+    /* border: 1px solid gray; */
+}
+
+#login-context {
+    background-image: url("https://img.freepik.com/premium-photo/fleeting-time-copy-space-concept-modern-analog-dynamic-clock-dissolving-black-background_1023817-632.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 400px;
+    align-items: start;
+    display: none;
+}
+#login-context h3 ,p{
+    padding: 5px;
+    color: #fff;
+}
+
+#login-con h3
+h4 ,#sign-up h3{
+    margin: 5px;
+    /* color: #fff; */
+    width: fit-content;
+}
+
+#login-con input  ,#sign-up input{
+    background: transparent;
+    border-color: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+}
+
+#login-con input::placeholder ,#sign-up input::placeholder{
+    color: #fff;
+}
+
+#login-btn {
+    padding: 10px;
+    width: 100%;
+}
+
+#forgot-con {
+    position: absolute;
+    width: fit-content;
+    right: 20px;
+    bottom: 80px;
+}
+
+#forgot-con a {
+    text-decoration: none;
+    color: rgb(236, 233, 233);
+    font-size: 14px;
+}
+
+#login-con p {
+    position: absolute;
+    width: fit-content;
+    bottom: 50px;
+    text-decoration: none;
+    color: rgb(236, 233, 233);
+    font-size: 12px;
+}
+
+#sign-up-btn {
+    position: absolute;
+    width: fit-content;
+    bottom: 50px;
+    text-decoration: none;
+    color: rgb(236, 233, 233);
+    font-size: 12px;
+}
+
+#login-con p a {
+    color: rgb(236, 233, 233);
+}
+
+/* hover */
+#forgot-con a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (min-width: 768px){
+    #login-context{
+        display: flex;
+    } 
+}

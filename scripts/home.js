@@ -45,6 +45,7 @@ export function createTask() {
         <textarea id="description" placeholder="Description" class="description" maxlength="100"></textarea>
         <label for="tag">Give tag</label>
         <textarea type="text" id="tag" placeholder="tag" class="tag" maxlength="100"></textarea>
+        <div class="space"></div>
         <button class="task-create-btn" >Create</button>`
         active = "inactive"
 
@@ -87,6 +88,12 @@ export function displayList(dataArray) {
     let date = dataArray[index].date
     let endDate = dataArray[index].endDate
     let status = dataArray[index].status
+    if(endDate==""){
+        endDate="--"
+    }
+    else{
+        endDate=endDate
+    }
 
     timer(index)
     displayContent(time, name, desc, tag, date, index, endDate, status)
