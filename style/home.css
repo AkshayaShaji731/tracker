@@ -450,7 +450,7 @@ table td {
     .wrapper {
         /* height: 100vh;    */
         /* background-image: linear-gradient(to right top, #c4d0e1, #9aa7ba, #718094, #4a5b70, #24394e); */
-        grid-template-columns: 18% 78%;
+        grid-template-columns: 12% 84%;
         grid-auto-flow: column;
         gap: 20px;
     }

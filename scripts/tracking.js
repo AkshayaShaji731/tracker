@@ -1,8 +1,10 @@
 import { createNavBar, navBarMob } from "../data/navbar.js";
-import { createWeekGraph } from "../data/weekly-graph.js";
+import { weekGraph } from "../data/weekly-graph-grid.js";
+// import { createWeekGraph } from "../data/weekly-graph.js";
 createNavBar()
 navBarMob()
-createWeekGraph()
+weekGraph()
+// createWeekGraph()
 
 let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 let completedArray = JSON.parse(localStorage.getItem('status')) || [];
