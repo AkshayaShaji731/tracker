@@ -240,6 +240,12 @@ function numberOfDays(numDays) {
 
 // mobile view
 function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time){
+    if(dataArray.length==0){
+        document.querySelector('.emptypending').style.display="block"
+    }
+    else{
+        document.querySelector('.emptypending').style.display="none"
+    }
     const taskDiv=document.createElement("div");
     taskDiv.classList.add('task-div')
     taskDiv.innerHTML=`
@@ -276,6 +282,13 @@ function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescrip
     )
 }
 function trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time){
+    if(completedArray.length==0){
+        document.querySelector('.emptyCompleted').style.display="block"
+        document.querySelector('.display').style.display="none"
+    }
+    else{
+        document.querySelector('.emptyCompleted').style.display="none"
+    }
     const taskDiv=document.createElement("div");
     taskDiv.classList.add('task-div')
     taskDiv.innerHTML=`

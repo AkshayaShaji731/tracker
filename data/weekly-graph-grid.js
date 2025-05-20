@@ -30,7 +30,7 @@
 const root = document.querySelector(".root")
 const outerCon = document.querySelector(".outer-con")
 export function weekGraph() {
-    let y = [4, 3, 4, 2, 0, 6, 9]
+    let y = [4, 3, 4, 2, 0, 6, 7]
     let col = Math.max(...y)
     let x = [0, 1, 2, 3, 4, 5, 6]
     // let dateEl = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"]
@@ -94,7 +94,30 @@ export function weekGraph() {
 
 // let curr = new Date();
 
+const prevWeekBtn = document.querySelector(".prev-week")
+const currWeekBtn = document.querySelector(".current-week")
+
 let curr = new Date();
+prevWeekBtn.addEventListener("click", () => {
+  prevWeekBtn.style.backgroundColor = "darkblue"
+  prevWeekBtn.style.color = "white"
+  currWeekBtn.style.backgroundColor = "white"
+  currWeekBtn.style.color = "black"
+  curr = new Date
+  curr.setDate(curr.getDate() - 7);
+  weekGraph() 
+})
+
+currWeekBtn.addEventListener("click", () => {
+  currWeekBtn.style.backgroundColor = "darkblue"
+  currWeekBtn.style.color = "white"
+  prevWeekBtn.style.backgroundColor = "white"
+  prevWeekBtn.style.color = ""
+  curr = new Date
+  weekGraph() 
+})
+currWeekBtn.style.backgroundColor = "darkblue"
+currWeekBtn.style.color = "white"
 
 function week() {
     let week = [];

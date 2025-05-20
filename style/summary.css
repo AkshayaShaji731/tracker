@@ -17,7 +17,8 @@ body {
 }
 
 .wrapper {
-    background-color: rgb(69, 92, 92);
+    /* background-color: rgb(69, 92, 92); */
+    background-color: black;
     display: block;
     /* display:grid; */
     position: relative;
@@ -186,7 +187,7 @@ display: flex;
 @media screen and (min-width:1024px) {
     .wrapper {
         display:grid;
-        background-color: rgb(69, 92, 92);
+        /* background-color: rgb(69, 92, 92); */
         /* background-image: linear-gradient(to right top, #c4d0e1, #9aa7ba, #718094, #4a5b70, #24394e); */
         grid-template-columns: 18% 78%;
         grid-auto-flow: column;

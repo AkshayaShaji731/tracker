@@ -34,6 +34,12 @@
      height: 50vh; 
      width: 100%;
 }
+.display-pending-con{
+    display: none;
+}
+.display-completed-con{
+    display: none;
+}
 .display-task-pending{
     display:block;
 }
@@ -45,20 +51,21 @@
 }
 
 /* graph */
-.root{
-    display: flex;
+/* .root{
+    display: flex; */
     /* flex-direction: column-reverse; */
-    justify-content: center;
+    /* justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 100%; */
     /* height: 50vh; */
-    margin-block-end: 30px;
+    /* margin-block-end: 30px;
 }
 .outer-con{
     display: flex;
     border: 1px solid black;
     padding: 30px;
     position: relative;
+    width: 100%;
 }
 .index-container{
     display: block;
@@ -66,35 +73,40 @@
     position: absolute;
     bottom: 31px;
     left: 0;
+    width: 100%;
 }
 .index{
     display: flex;
-    gap: 3px;
+    gap: 3px; */
     /* position: absolute; */
-    left :0;
+    /* left :0; */
     /* font-size: 20px; */
     /* border: 1px solid black; */
-    justify-content: center;
+    /* justify-content: center;
     align-items: center;
     width: 20px;
     height: 40px;
 }
 .container{
     display: flex;
-    flex-direction: column;
-    padding: 50px 0px 0px 50px;
+    flex-direction: column; */
+    /* padding: 50px 0px 0px 50px; */
+    /* padding: 30px 0px 0px 30px;
     border: 1px solid blue;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 .col{
     display: grid;
     grid-template-columns: repeat(7,1fr);
     gap: 40px;
+    gap: 10px;
 }
 .row{
-    display:grid;
-    width: 60px;
+    display:grid; */
+    /* width: 60px; */
+    /* width: 20px;
     height: 40px;
     background-color: brown;
     border: 1px solid black;
@@ -107,15 +119,145 @@
     bottom: 0px;
     gap: 16px;
 }
-.date{
-    width: 60px;
+.date{ */
+    /* width: 60px; */
+    /* width: 21px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
 
-}
+
+} */
+
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+  }
+  
+  .outer-con {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+  }
+  
+  .index-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 10px;
+    margin-bottom: auto;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+  }
+  
+  .index {
+    /* height: 2rem; */
+    height:1.2rem;
+    color: #fff;
+    font-size: 0.9rem;
+    min-height: 0.5rem;
+    width: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-rows: repeat(auto-fill, minmax(1rem, 1fr));
+    padding-left: 40px;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .col {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+  }
+  
+  .row {
+    width: 100%;
+    aspect-ratio: 1 / 1.8; 
+    aspect-ratio: 19/11;
+    background-color: brown;
+    border: 1px solid black;
+  }
+  
+  .date-container {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 46px;
+    bottom: 0;
+    /* width: calc(100% - 40px); */
+    width: calc(100% - 70px);
+    box-sizing: border-box;
+  }
+  
+  .date {
+    font-size: 0.7rem;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+    color: #fff;
+  }
+
+  @media (min-width: 444px) {
+    .date-container{
+        left: 64px;
+        width: calc(100% - 90px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .col {
+      gap: 6px;
+    }
+  
+    .date {
+      font-size: 0.6rem;
+    }
+  
+    .index {
+      font-size: 0.7rem;
+      width: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .outer-con {
+      padding: 15px;
+    }
+  
+    .row {
+      border-width: 0.5px;
+    }
+  
+    .date-container {
+      gap: 8px;
+    }
+  
+    .container {
+      padding-left: 30px;
+    }
+  }
+  
 
 @media screen and (min-width:1024px) {
     .wrapper {
         display:grid;
-        background-color: rgb(69, 92, 92);
+        /* background-color: rgb(69, 92, 92); */
         /* background-image: linear-gradient(to right top, #c4d0e1, #9aa7ba, #718094, #4a5b70, #24394e); */
         grid-template-columns: 18% 78%;
         grid-auto-flow: column;
