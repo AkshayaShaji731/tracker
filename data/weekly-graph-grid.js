@@ -30,8 +30,8 @@
 const root = document.querySelector(".root")
 const outerCon = document.querySelector(".outer-con")
 export function weekGraph() {
-    let y = [4, 3, 4, 2, 0, 6, 7]
-    let col = Math.max(...y)
+    let y = [4, 3.3, 4, 2, 0.5, 6, 7]
+     let col = Math.floor(Math.max(...y))
     let x = [0, 1, 2, 3, 4, 5, 6]
     // let dateEl = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"]
     let dateEl=week()
@@ -61,16 +61,44 @@ export function weekGraph() {
         container.appendChild(col)
     }
 
-    const columns = container.querySelectorAll(".col");
     for (let j = 0; j < y.length; j++) {
-        for (let i = 0; i < y[j]; i++) {
-            const colIndex = columns.length - 1 - i;
-            const pointCol = columns[colIndex];
-            const rows = pointCol.querySelectorAll(".row");
-            const pointRow = rows[j];
-            pointRow.style.backgroundColor = "blue";
+        let num=Math.floor(y[j])
+        let decimal=Math.abs(y[j]-num)
+        for (let i = num- 1; i >= 0; i--) {
+            let column = root.querySelectorAll(".col")
+            let pointCol = column[i]
+            let row = pointCol.querySelectorAll(".row")
+            let pointRow = row[j]
+            pointRow.style.backgroundColor = "blue"
+        }
+        if(decimal>0){
+            let column = root.querySelectorAll(".col")
+            let pointCol = column[num]
+            let row = pointCol.querySelectorAll(".row")[x[j]]
+    
+            const fill = document.createElement("div")
+            fill.style.position = "absolute"
+            fill.style.bottom = "0"
+            fill.style.left = "0"
+            fill.style.width = "100%"
+            fill.style.height = `${decimal * 100}%`
+            fill.style.backgroundColor = "blue"
+    
+            row.style.position = "relative"
+            row.appendChild(fill)
         }
     }
+
+    // const columns = container.querySelectorAll(".col");
+    // for (let j = 0; j < y.length; j++) {
+    //     for (let i = 0; i < y[j]; i++) {
+    //         const colIndex = columns.length - 1 - i;
+    //         const pointCol = columns[colIndex];
+    //         const rows = pointCol.querySelectorAll(".row");
+    //         const pointRow = rows[j];
+    //         pointRow.style.backgroundColor = "blue";
+    //     }
+    // }
 
     for (let i = 0; i < 7; i++) {
         const date = document.createElement("div")
