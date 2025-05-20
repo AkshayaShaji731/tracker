@@ -1,36 +1,8 @@
-// let graphCon = document.querySelector(".graph")
-// export function weekly() {
-//     const x = 7;
-//     const y = 15;
-//     for (let i = 0; i < y; i++) {
-//         let yDir= y-i
-//         if(yDir<=9){
-//             yDir="0"+yDir
-//         }
-//         else{
-//             yDir=yDir
-//         }
-//         let hours = document.createElement("div")
-//         hours.className = "col"
-//         graphCon.appendChild(hours)
-//         let yAxis = document.createElement("div")
-//         yAxis.className = "y-axis"
-//         yAxis.innerHTML =yDir
-//         hours.appendChild(yAxis)
-
-//         for (let j = 0; j < x; j++) {
-//             let day = document.createElement("div")
-//             day.className = "row-graph"
-//             hours.appendChild(day)
-//         }
-//     }
-// }
-
-
 const root = document.querySelector(".root")
 const outerCon = document.querySelector(".outer-con")
+let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 export function weekGraph() {
-    let y = [4, 3.3, 4, 2, 0.5, 6, 7]
+    let y = graph()
      let col = Math.floor(Math.max(...y))
     let x = [0, 1, 2, 3, 4, 5, 6]
     // let dateEl = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"]
@@ -108,24 +80,24 @@ export function weekGraph() {
     }
 }
 
-// let curr = new Date
-// function week() {
-//     let week = []
-//     const currentDate = new Date(curr);
-//     for (let i = 1; i <= 7; i++) {
-//       let first = currentDate.getDate() - currentDate.getDay() + i
-//       let day = new Date(currentDate.setDate(first)).toISOString().slice(0, 10)
-//       week.push(day)
-//     }
-//     return week
-//   }
+let curr = new Date()
+function week() {
+    let week = []
+    const currentDate = new Date(curr);
+    for (let i = 1; i <= 7; i++) {
+      let first = currentDate.getDate() - currentDate.getDay() + i
+      let day = new Date(currentDate.setDate(first)).toISOString().slice(0, 10)
+      week.push(day)
+    }
+    return week
+  }
 
 // let curr = new Date();
 
 const prevWeekBtn = document.querySelector(".prev-week")
 const currWeekBtn = document.querySelector(".current-week")
 
-let curr = new Date();
+// let curr = new Date();
 prevWeekBtn.addEventListener("click", () => {
   prevWeekBtn.style.backgroundColor = "darkblue"
   prevWeekBtn.style.color = "white"
@@ -147,20 +119,95 @@ currWeekBtn.addEventListener("click", () => {
 currWeekBtn.style.backgroundColor = "darkblue"
 currWeekBtn.style.color = "white"
 
-function week() {
-    let week = [];
-    const currentDate = new Date(curr);
-
-    for (let i = 1; i <= 7; i++) {
-        let first = currentDate.getDate() - currentDate.getDay() + i;
-        let date = new Date(currentDate.setDate(first));
-
-        let parts = date.toDateString().split(' '); 
-        let month = parts[1]; 
-        let day = parts[2];   
-
-        week.push(`${month}-${day}`);
+function graph() {
+    let graphObj = {
+      date: "",
+      time: ""
     }
-
-    return week;
-}
+    let dateArray = []
+    let min
+    let sec
+    let hour
+    let total = {
+      hour: 0,
+      minute: 0,
+      seconds: 0
+    }
+    let graphData = []
+    // console.log(dataArray)
+  
+    for (let i = 0; i < dataArray.length; i++) {
+      let demodate = dataArray[i].currentDate
+      let uniq = [...new Set(demodate)]
+      dateArray.push(...uniq)
+      dateArray = [...new Set(dateArray)]
+  
+    }
+  
+    for (let d = 0; d < dateArray.length; d++) {
+      for (let k = 0; k < dataArray.length; k++) {
+  
+        let dayTotal = dataArray[k].dateTotal
+  
+        for (let j = 0; j < dayTotal.length; j++) {
+          let task = dayTotal[j];
+          // let demo = dayTotal[j]
+          if (task.date == dateArray[d]) {
+            hour = task.hour;
+            min = task.minute;
+            sec = task.seconds;
+            total.hour += hour;
+            total.minute += min;
+            total.seconds += sec;
+            if (total.seconds >= 60) {
+              total.minute += Math.floor(total.seconds / 60);
+              total.seconds = total.seconds % 60;
+            }
+  
+            if (total.minute >= 60) {
+              total.hour += Math.floor(total.minute / 60);
+              total.minute = total.minute % 60;
+            }
+          }
+        }
+        graphObj.date = dateArray[d]
+        graphObj.time = total
+      }
+      graphData.push(graphObj)
+      graphObj = {
+        date: "",
+        time: ""
+      }
+      total = {
+        hour: 0,
+        minute: 0,
+        seconds: 0
+      }
+    }
+    let weekArray = week()
+    let totalSec
+    // console.log(graphData)
+    let graphPoints = []
+    let pointedData = []
+    for (let l = 0; l < weekArray.length; l++) {
+      for (let m = 0; m < graphData.length; m++) {
+        console.log(graphData)
+        console.log(weekArray[l],graphData[m])
+        if (weekArray[l] == graphData[m].date) {
+          let points = graphData[m].time
+          let hour = points.hour 
+          let min = points.minute/60
+          let sec = points.seconds /360
+          totalSec = hour + min + sec
+          break
+        }
+        else {
+          totalSec = 0
+          continue
+        }
+      }
+      graphPoints.push(totalSec)
+    }
+    console.log(graphPoints)
+    return graphPoints
+  }

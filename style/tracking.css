@@ -219,6 +219,12 @@
         width: calc(100% - 90px);
     }
   }
+  @media screen and (min-width:600px) {
+    .date{
+      writing-mode: horizontal-tb;
+      transform: rotate(0deg)
+    }
+  }
   
   @media (max-width: 768px) {
     .col {
