@@ -2,11 +2,12 @@ const root = document.querySelector(".root")
 const outerCon = document.querySelector(".outer-con")
 let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 export function weekGraph() {
+    let data=week()
     let y = graph()
      let col = Math.floor(Math.max(...y))
     let x = [0, 1, 2, 3, 4, 5, 6]
     // let dateEl = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"]
-    let dateEl=week()
+    let dateEl=formatDateArray(data)
     outerCon.innerHTML = `
        <div class="index-container"></div>
        <div class="container"></div>
@@ -117,7 +118,7 @@ currWeekBtn.addEventListener("click", () => {
   weekGraph() 
 })
 currWeekBtn.style.backgroundColor = "darkblue"
-currWeekBtn.style.color = "white"
+currWeekBtn.style.color = "white"   
 
 function graph() {
     let graphObj = {
@@ -211,3 +212,13 @@ function graph() {
     console.log(graphPoints)
     return graphPoints
   }
+  function formatDateArray(inputDates) {
+    return inputDates.map(inputDate => {
+        const date = new Date(inputDate); 
+
+        return new Intl.DateTimeFormat('en-US', {
+            month: 'long', 
+            day: 'numeric'
+        }).format(date);
+    });
+}

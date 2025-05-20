@@ -188,7 +188,6 @@ function graph() {
     }
     graphPoints.push(totalSec)
   }
-  // console.log(graphPoints)
   return graphPoints
 }
 function filter() {
