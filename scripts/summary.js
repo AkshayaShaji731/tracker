@@ -6,6 +6,9 @@ navBarMob()
 
 
 let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+let completedArray = JSON.parse(localStorage.getItem('status')) || [];
+let arrayLs=[...dataArray,...completedArray]
+// console.log(array)
 const mainCont = document.querySelector(".main-container")
 const dayTask = document.querySelector(".daily-task")
 const Active = document.querySelector(".active-task")
@@ -26,22 +29,22 @@ function activeTimeFunction() {
 function taskCreatedToady() {
     const date = new Date().toISOString().split('T')[0]
 
-    for (let i = 0; i < dataArray.length; i++) {
+    for (let i = 0; i <arrayLs.length; i++) {
 
-        if (date == dataArray[i].date) {
+        if (date ==arrayLs[i].date) {
             let taskCon = document.createElement("div")
             taskCon.classList.add("task")
             let time = "00:00:00"
-            if (dataArray[i].totalTaskTime == "") {
+            if (arrayLs[i].totalTaskTime == "") {
                 time = "00:00:00"
                 console.log(time);
             }
             else {
-                time = dataArray[i].totalTaskTime.hour + ":" + dataArray[i].totalTaskTime.min + ":" + dataArray[i].totalTaskTime.sec
+                time = arrayLs[i].totalTaskTime.hour + ":" +arrayLs[i].totalTaskTime.min + ":" +arrayLs[i].totalTaskTime.sec
             }
             taskCon.innerHTML = `
-      <h4>${dataArray[i].name}</h4>
-      <p>${dataArray[i].description}</p>
+      <h4>${arrayLs[i].name}</h4>
+      <p>${arrayLs[i].description}</p>
       <p>Total Time:${time}</p>
           `
             dayTask.appendChild(taskCon)
@@ -51,23 +54,23 @@ function taskCreatedToady() {
 export function activeTask() {
     let currentDate = new Date().toISOString().split('T')[0]
     let array = []
-    for (let i = 0; i < dataArray.length; i++) {
-        let dateArray = dataArray[i].dateTotal
+    for (let i = 0; i < arrayLs.length; i++) {
+        let dateArray = arrayLs[i].dateTotal
         for (let j = 0; j < dateArray.length; j++) {
             if (dateArray[j].date == currentDate) {
                 let taskCon = document.createElement("div")
                 taskCon.classList.add("task")
                 let time = "00:00:00"
-                if (dataArray[i].totalTaskTime == "") {
+                if (arrayLs[i].totalTaskTime == "") {
                     time = "00:00:00"
                     console.log(time);
                 }
                 else {
-                    time = dataArray[i].totalTaskTime.hour + ":" + dataArray[i].totalTaskTime.min + ":" + dataArray[i].totalTaskTime.sec
+                    time = arrayLs[i].totalTaskTime.hour + ":" + arrayLs[i].totalTaskTime.min + ":" + arrayLs[i].totalTaskTime.sec
                 }
                 taskCon.innerHTML = `
-                  <h4>${dataArray[i].name}</h4>
-                  <p>${dataArray[i].description}</p>
+                  <h4>${arrayLs[i].name}</h4>
+                  <p>${arrayLs[i].description}</p>
                   <p>Total Time:${time}</p>
                  `
                 Active.appendChild(taskCon)

@@ -57,6 +57,21 @@ export function createTask() {
         const getDescription = document.getElementById('description')
         const getTag = document.getElementById('tag')
 
+        getName.addEventListener("keypress",(e)=>{
+            if(e.code=="Enter"){
+                createLS(getName, getDescription, getTag, getDate) 
+            }
+        })
+        getDescription.addEventListener("keypress",(e)=>{
+            if(e.code=="Enter"){
+                createLS(getName, getDescription, getTag, getDate) 
+            }
+        })
+        getTag.addEventListener("keypress",(e)=>{
+            if(e.code=="Enter"){
+                createLS(getName, getDescription, getTag, getDate) 
+            }
+        }) 
         createBtn.addEventListener('click', () => {
             createLS(getName, getDescription, getTag, getDate)
         })

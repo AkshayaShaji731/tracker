@@ -188,7 +188,7 @@ function timercloseData(index,timeslist){
     let today=index.currentDate
     let nowTime=index.currentTime
     if (nowTime.length >= 1) {
-        document.getElementById("time-default").style.display = "none"
+        document.querySelector(".time-default").style.display = "none"
     }
     for (let i = 0; i < time.length; i++) {
         let currentDate=today[i]

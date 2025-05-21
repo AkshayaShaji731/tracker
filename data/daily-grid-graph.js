@@ -10,22 +10,23 @@ export function weekGraph() {
     let y = daygraph()
     let col = Math.floor(Math.max(...y))
     let x = [0, 1, 2, 3, 4, 5, 6]
-    let dateEl =day()
+    let dateEl = day()
+    // <div class="index-container"></div>
     outerCon.innerHTML = `
-       <div class="index-container"></div>
+    <p id="index"> hours<p>
        <div class="container"></div>
        <div class="date-container"></div>
        `
-    const indexCon = root.querySelector('.index-container')
+    // const indexCon = root.querySelector('.index-container')
     const container = root.querySelector('.container')
     const dateCon = root.querySelector(".date-container")
 
-    for (let i = col + 3; i > 0; i--) {
-        const index = document.createElement("div")
-        index.classList.add("index")
-        index.innerText = i
-        indexCon.appendChild(index)
-    }
+    // for (let i = col + 3; i > 0; i--) {
+    //     const index = document.createElement("div")
+    //     index.classList.add("index")
+    //     index.innerText = i
+    //     indexCon.appendChild(index)
+    // }
     for (let i = 0; i < col + 3; i++) {
         let col = document.createElement("div")
         col.classList.add("col")
@@ -37,20 +38,20 @@ export function weekGraph() {
         container.appendChild(col)
     }
     for (let j = 0; j < y.length; j++) {
-        let num=Math.floor(y[j])
-        let decimal=Math.abs(y[j]-num)
-        for (let i = num- 1; i >= 0; i--) {
+        let num = Math.floor(y[j])
+        let decimal = Math.abs(y[j] - num)
+        for (let i = num - 1; i >= 0; i--) {
             let column = root.querySelectorAll(".col")
             let pointCol = column[i]
             let row = pointCol.querySelectorAll(".row")
             let pointRow = row[x[j]]
             pointRow.style.backgroundColor = "blue"
         }
-        if(decimal>0){
+        if (decimal > 0) {
             let column = root.querySelectorAll(".col")
             let pointCol = column[num]
             let row = pointCol.querySelectorAll(".row")[x[j]]
-    
+
             const fill = document.createElement("div")
             fill.style.position = "absolute"
             fill.style.bottom = "0"
@@ -58,7 +59,7 @@ export function weekGraph() {
             fill.style.width = "100%"
             fill.style.height = `${decimal * 100}%`
             fill.style.backgroundColor = "blue"
-    
+
             row.style.position = "relative"
             row.appendChild(fill)
         }

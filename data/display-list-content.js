@@ -67,8 +67,9 @@ export function displayContent(time, name, desc, tag, date, index, enddate, stat
                 localStorage.setItem('status', JSON.stringify(completedArray));
             }
         }
-        console.log(dataArray)
-        render(dataArray)
+        // console.log(dataArray)
+        // render(dataArray)
+        window.location.reload()
 
     })
     if (status == "completed") {
@@ -108,7 +109,7 @@ export function timer(index) {
     var interval;
     let startBtn = document.querySelector('#d-start-btn')
     startBtn.addEventListener("click", () => {
-        console.log("hiii")
+        // console.log("hiii")
         timerStart()
     })
 
@@ -354,20 +355,29 @@ function dailyTask(dataArray, currentDate) {
 }
 export function searchTask() {
     let searchArray = []
-    searchBtn.addEventListener("click", () => {
-        let searchEl = searchInput.value
-        for (let i = 0; i < dataArray.length; i++) {
-            if (dataArray[i].name == searchEl) {
-                searchArray.push(dataArray[i])
-            }
+    searchInput.addEventListener("keypress",(e)=>{
+        if(e.code=="Enter"){
+            search()
         }
-        searchInput.value = ""
-        if (searchArray.length == 0) {
-            alert("it not found")
-        }
-        render(searchArray)
-        searchArray = []
     })
+    searchBtn.addEventListener("click",search)
+}
+function search(){
+    let searchArray = []
+    if(searchInput.value !=""){
+        let searchEl = searchInput.value
+    for (let i = 0; i < dataArray.length; i++) {
+        if (dataArray[i].name == searchEl) {
+            searchArray.push(dataArray[i])
+        }
+    }
+    searchInput.value = ""
+    if (searchArray.length == 0) {
+        alert("it not found")
+    }
+    render(searchArray)
+    searchArray = []
+    }
 }
 
 export function displayContentTrack(index, date, name, enddate, time, desc, tag, status, displayHTML) {

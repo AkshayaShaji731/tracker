@@ -93,18 +93,27 @@
   bottom: 10px;
 }
 
-  
-  .index {
-    /* height: 2rem; */
-    height:1.2rem;
-    color: #fff;
-    font-size: 0.9rem;
-    min-height: 0.5rem;
-    width: 17px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+#index {
+  position: absolute;
+  left: 0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: white;
+  bottom: 20px;
+  font-size: 12px;
+}
+
+.index {
+  /* height: 2rem; */
+  height: 1.2rem;
+  color: #fff;
+  font-size: 0.9rem;
+  min-height: 0.5rem;
+  width: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* .index {
   height: 100%;

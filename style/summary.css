@@ -206,7 +206,15 @@ display: flex;
     max-width: 800px;
     box-sizing: border-box;
   }
-  
+  #index {
+    position: absolute;
+    left: 0;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: white;
+    bottom: 20px;
+    font-size: 12px;
+  }
   .index-container {
     display: flex;
     flex-direction: column;

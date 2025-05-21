@@ -1,6 +1,8 @@
 const root = document.querySelector(".root")
 const outerCon = document.querySelector(".outer-con")
 let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+let completedArray = JSON.parse(localStorage.getItem('status')) || [];
+
 export function weekGraph() {
     let data=week()
     let y = graph()
@@ -8,21 +10,22 @@ export function weekGraph() {
     let x = [0, 1, 2, 3, 4, 5, 6]
     // let dateEl = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"]
     let dateEl=formatDateArray(data)
+    // <div class="index-container"></div>
     outerCon.innerHTML = `
-       <div class="index-container"></div>
+    <p id="index"> hours<p>
        <div class="container"></div>
        <div class="date-container"></div>
        `
-    const indexCon = root.querySelector('.index-container')
+    // const indexCon = root.querySelector('.index-container')
     const container = root.querySelector('.container')
     const dateCon = root.querySelector(".date-container")
 
-    for (let i = col + 3; i > 0; i--) {
-        const index = document.createElement("div")
-        index.classList.add("index")
-        index.innerText = i+"hr"
-        indexCon.appendChild(index)
-    }
+    // for (let i = col + 3; i > 0; i--) {
+    //     const index = document.createElement("div")
+    //     index.classList.add("index")
+    //     index.innerText = i+"hr"
+    //     indexCon.appendChild(index)
+    // }
     for (let i = 0; i < col + 3; i++) {
         let col = document.createElement("div")
         col.classList.add("col")
@@ -96,7 +99,7 @@ function week() {
 // let curr = new Date();
 
 const prevWeekBtn = document.querySelector(".prev-week")
-console.log(prevWeekBtn)
+// console.log(prevWeekBtn)
 const currWeekBtn = document.querySelector(".current-week")
 
 // let curr = new Date();
@@ -137,9 +140,12 @@ function graph() {
     }
     let graphData = []
     // console.log(dataArray)
+
+    let array= [...dataArray, ...completedArray]
+    // console.log(array)
   
-    for (let i = 0; i < dataArray.length; i++) {
-      let demodate = dataArray[i].currentDate
+    for (let i = 0; i < array.length; i++) {
+      let demodate = array[i].currentDate
       let uniq = [...new Set(demodate)]
       dateArray.push(...uniq)
       dateArray = [...new Set(dateArray)]
@@ -147,9 +153,9 @@ function graph() {
     }
   
     for (let d = 0; d < dateArray.length; d++) {
-      for (let k = 0; k < dataArray.length; k++) {
+      for (let k = 0; k < array.length; k++) {
   
-        let dayTotal = dataArray[k].dateTotal
+        let dayTotal = array[k].dateTotal
   
         for (let j = 0; j < dayTotal.length; j++) {
           let task = dayTotal[j];
@@ -193,8 +199,8 @@ function graph() {
     let pointedData = []
     for (let l = 0; l < weekArray.length; l++) {
       for (let m = 0; m < graphData.length; m++) {
-        console.log(graphData)
-        console.log(weekArray[l],graphData[m])
+        // console.log(graphData)
+        // console.log(weekArray[l],graphData[m])
         if (weekArray[l] == graphData[m].date) {
           let points = graphData[m].time
           let hour = points.hour 
@@ -210,7 +216,7 @@ function graph() {
       }
       graphPoints.push(totalSec)
     }
-    console.log(graphPoints)
+    // console.log(graphPoints)
     return graphPoints
   }
   function formatDateArray(inputDates) {
