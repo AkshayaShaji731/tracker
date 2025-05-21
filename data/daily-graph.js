@@ -4,6 +4,8 @@ let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 const filterInput = document.querySelector(".filter-input")
 const filterBtn = document.querySelector(".filter-btn")
 
+const taskCon=document.querySelector(".task")
+
 let chart = null
 export function createDayGraph() {
     let graphChart = document.getElementById("day-graph").getContext("2d");
@@ -101,5 +103,6 @@ function daygraph() {
 filterBtn.addEventListener("click", () => {
     currentDate = filterInput.value
     createDayGraph()
-    activeTask(currentDate)
+    taskCon.innerHTML=""
+    // activeTask(currentDate)
 })

@@ -96,6 +96,7 @@ function week() {
 // let curr = new Date();
 
 const prevWeekBtn = document.querySelector(".prev-week")
+console.log(prevWeekBtn)
 const currWeekBtn = document.querySelector(".current-week")
 
 // let curr = new Date();

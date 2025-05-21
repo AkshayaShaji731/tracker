@@ -14,3 +14,9 @@
     text-decoration: none;
     color: #fff;
 }
+.display-pending-con {
+    display: none;
+  }
+ .time-list{
+    display: block;
+ } 

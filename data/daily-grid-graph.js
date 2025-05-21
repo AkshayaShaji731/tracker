@@ -1,3 +1,5 @@
+import { activeTask } from "../scripts/summary.js";
+
 let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 const filterInput = document.querySelector(".filter-input")
 const filterBtn = document.querySelector(".filter-btn")
@@ -8,7 +10,7 @@ export function weekGraph() {
     let y = daygraph()
     let col = Math.floor(Math.max(...y))
     let x = [0, 1, 2, 3, 4, 5, 6]
-    let dateEl = [day()]
+    let dateEl =day()
     outerCon.innerHTML = `
        <div class="index-container"></div>
        <div class="container"></div>
@@ -104,6 +106,6 @@ function daygraph() {
 }
 filterBtn.addEventListener("click", () => {
     currentDate = filterInput.value
-    createDayGraph()
+    weekGraph()
     activeTask(currentDate)
 })

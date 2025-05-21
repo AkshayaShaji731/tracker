@@ -20,15 +20,27 @@
       </section>
       <section class="nav-container"> </section>
       <section class="main-container">
+        <div class="display-pending-con">
+          <div class="display">
+            <div class="display-pending">
+            </div>
+            <div class="days"></div>
+            <div class="time-list">
+              <h3 class="time-head">Time List</h3>
+              <p id="time-default">00:00:00</p>
+              <table class="times-pending"></table>
+            </div>
+          </div>
+        </div>
         <div class="display-task"></div>
         <div class="display-task-lap">
-          <table>
+          <table class="history-table">
             <tr>
               <th id="t-num">s.no</th>
               <th id="t-date">Start Date</th>
               <th id="t-date">End Date</th>
               <th id="t-name">TaskName</th>
-              <th id="t-des">Task Description</th>
+              <th id="t-des">Task Description</th>  
               <th id="t-tag">Task Tag</th>
               <th id="t-time">Time<th></th>
             </tr>

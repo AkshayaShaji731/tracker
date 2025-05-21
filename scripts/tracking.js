@@ -182,7 +182,6 @@ function displayContentTrack(index, date, name, enddate, time, desc, tag, status
          </tr>
        </table>`
 }
-
 function timercloseData(index,timeslist){
     timeslist.innerHTML=""
     let  time=index.time
@@ -206,7 +205,7 @@ function timercloseData(index,timeslist){
         timeslist.appendChild(times)   
     }
 }
-function getNumDays(data){
+ function getNumDays(data){
     let num=0;
     let count
     let days=data.currentDate
