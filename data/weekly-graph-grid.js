@@ -20,7 +20,7 @@ export function weekGraph() {
     for (let i = col + 3; i > 0; i--) {
         const index = document.createElement("div")
         index.classList.add("index")
-        index.innerText = i
+        index.innerText = i+"hr"
         indexCon.appendChild(index)
     }
     for (let i = 0; i < col + 3; i++) {
@@ -214,11 +214,7 @@ function graph() {
   }
   function formatDateArray(inputDates) {
     return inputDates.map(inputDate => {
-        const date = new Date(inputDate); 
-
-        return new Intl.DateTimeFormat('en-US', {
-            month: 'long', 
-            day: 'numeric'
-        }).format(date);
+      const date = new Date(inputDate);
+      return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
     });
-}
+  }

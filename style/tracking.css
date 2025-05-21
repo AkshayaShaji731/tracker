@@ -93,9 +93,9 @@
   bottom: 10px;
 }
 
-/*   
+  
   .index {
-    height: 2rem;
+    /* height: 2rem; */
     height:1.2rem;
     color: #fff;
     font-size: 0.9rem;
@@ -104,9 +104,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  } */
+  }
 
-.index {
+/* .index {
   height: 100%;
   color: #fff;
   font-size: 0.9rem;
@@ -116,7 +116,7 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-}
+} */
 
 .container {
   display: flex;
@@ -125,6 +125,8 @@
   box-sizing: border-box;
   width: 100%;
   overflow-x: auto;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
 }
 
 .col {
@@ -186,6 +188,7 @@
   .index {
     font-size: 0.7rem;
     width: 1.5rem;
+    height: 1.6rem;
   }
 }
 

@@ -38,7 +38,7 @@ export function createDayGraph() {
                 },
                 tooltip: {
                     enabled: false,
-                },
+                },  
             },
             scales: {
                 x: {
@@ -68,6 +68,7 @@ export function createDayGraph() {
 }
 
 let currentDate = new Date().toISOString().split('T')[0];
+
 function day() {
     let array = []
     for (let i = 0; i < dataArray.length; i++) {
@@ -90,7 +91,7 @@ function daygraph() {
         for (let j = 0; j < dateArray.length; j++) {
             if (dateArray[j].date == date) {
                 let arrayEl = dateArray[j]
-                let points = arrayEl.hour * 60 + arrayEl.minute + arrayEl.seconds / 60
+                let points = arrayEl.hour+ arrayEl.minute/60 + arrayEl.seconds/ 360
                 array.push(points)
             }
         }
