@@ -1,4 +1,7 @@
 const root=document.getElementById("root")
+let userInfo=JSON.parse(localStorage.getItem("user")) || []
+const currentUserEmail = localStorage.getItem("currentUser");
+// console.log(userInfo)
 
 
 root.innerHTML=`
@@ -17,7 +20,7 @@ loginContext.innerHTML=`
 loginIn.innerHTML=`
 <h3>Welcome to UseTracker</h3>
 <h4>Log in</h4>
-<input type="text" placeholder="UserId" id="user-name">
+<input type="text" placeholder="Email" id="user-name">
 <input type="password" placeholder="Password" id="password">
 <button id="login-btn">Log In</button>
 <div id="forgot-con">
@@ -25,11 +28,20 @@ loginIn.innerHTML=`
 </div>
 <p>Don't have an Account?<a href="sign-up.html" id="sign-in-btn">Create</a></p>`
 
-document.getElementById("login-btn").addEventListener("click",()=>{
-    window.location.href = "home.html";
-})
-
 const userId=document.getElementById("user-name")
 const password=document.getElementById("password")
+document.getElementById("login-btn").addEventListener("click",()=>{
+    // window.location.href = "home.html";
+   let checkId=userInfo.find(user=>user.email==userId.value)
+
+   if(checkId){
+    let checkPassword=userInfo.find(user=>user.password==password.value)
+    if(checkPassword){
+      console.log("verified")
+      window.location.href = "home.html"
+    }
+   }
+    
+})
 
 

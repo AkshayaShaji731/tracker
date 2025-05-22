@@ -10,7 +10,7 @@ export function weekGraph() {
     let y = daygraph()
     let col = Math.floor(Math.max(...y))
     let x = [0, 1, 2, 3, 4, 5, 6]
-    let dateEl = day()
+    let dateEl =day()
     // <div class="index-container"></div>
     outerCon.innerHTML = `
     <p id="index"> hours<p>
@@ -38,20 +38,20 @@ export function weekGraph() {
         container.appendChild(col)
     }
     for (let j = 0; j < y.length; j++) {
-        let num = Math.floor(y[j])
-        let decimal = Math.abs(y[j] - num)
-        for (let i = num - 1; i >= 0; i--) {
+        let num=Math.floor(y[j])
+        let decimal=Math.abs(y[j]-num)
+        for (let i = num- 1; i >= 0; i--) {
             let column = root.querySelectorAll(".col")
             let pointCol = column[i]
             let row = pointCol.querySelectorAll(".row")
             let pointRow = row[x[j]]
             pointRow.style.backgroundColor = "blue"
         }
-        if (decimal > 0) {
+        if(decimal>0){
             let column = root.querySelectorAll(".col")
             let pointCol = column[num]
             let row = pointCol.querySelectorAll(".row")[x[j]]
-
+    
             const fill = document.createElement("div")
             fill.style.position = "absolute"
             fill.style.bottom = "0"
@@ -59,7 +59,7 @@ export function weekGraph() {
             fill.style.width = "100%"
             fill.style.height = `${decimal * 100}%`
             fill.style.backgroundColor = "blue"
-
+    
             row.style.position = "relative"
             row.appendChild(fill)
         }

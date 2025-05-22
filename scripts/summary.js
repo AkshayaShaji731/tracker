@@ -4,7 +4,6 @@ import { weekGraph } from "../data/daily-grid-graph.js";
 createNavBar()
 navBarMob()
 
-
 let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 let arrayLs=[...dataArray,...completedArray]

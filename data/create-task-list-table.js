@@ -5,7 +5,8 @@ const task = document.querySelector('.task-list-item')
 
 
 
-let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+// let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+let userInfo=JSON.parse(localStorage.getItem("user")) || []
 let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 // console.log(completedArray)
 
@@ -113,41 +114,89 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
         listOfTime(index)
     })
 }
-
-
 export function createLS(getName, getDescription, getTag, getDate) {
-    if (getDate.value == '' || getName.value == '') {
-        alert("Enter the Date and Name")
+    if (getDate.value === '' || getName.value === '') {
+        alert("Enter the Date and Name");
+        return;
     }
-    else {
-        let data = {
-            name: getName.value,
-            description: getDescription.value,
-            tag: getTag.value,
-            date: getDate,
-            endDate: "",
-            time: [],
-            currentTime: [],
-            currentDate: [],
-            totalTaskTime: "",
-            dateTotal: [],
-            dailyTotalTime: [],
-            status: "Task Created"
+    let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 
-        }
-        let dataArray = JSON.parse(localStorage.getItem('task')) || [];
-        dataArray.push(data);
+    let currentUserEmail = localStorage.getItem("currentUser");
 
-        localStorage.setItem('task', JSON.stringify(dataArray));
-        dataArray = JSON.parse(localStorage.getItem('task') || [])
-        render(dataArray)
+    if (!currentUserEmail) {
+        alert("No user is currently logged in.");
+        return;
     }
-    getName.value = ""
-    getDescription.value = ""
-    getTag.value = ""
-    // getDate.value = ""
-    window.location.reload()
+    let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
+
+    if (userIndex === -1) {
+        alert("User not found.");
+        return;
+    }
+
+    let data = {
+        name: getName.value,
+        description: getDescription.value,
+        tag: getTag.value,
+        date: getDate.value,
+        endDate: "",
+        time: [],
+        currentTime: [],
+        currentDate: [],
+        totalTaskTime: "",
+        dateTotal: [],
+        dailyTotalTime: [],
+        status: "Task Created"
+    };
+
+    userInfo[userIndex].dataArray.push(data);
+    localStorage.setItem("user", JSON.stringify(userInfo));
+
+    getName.value = "";
+    getDescription.value = "";
+    getTag.value = "";
+    window.location.reload();
 }
+
+
+// export function createLS(getName, getDescription, getTag, getDate) {
+//     if (getDate.value == '' || getName.value == '') {
+//         alert("Enter the Date and Name")
+//     }
+//     else {
+//         let data = {
+//             name: getName.value,
+//             description: getDescription.value,
+//             tag: getTag.value,
+//             date: getDate,
+//             endDate: "",
+//             time: [],
+//             currentTime: [],
+//             currentDate: [],
+//             totalTaskTime: "",
+//             dateTotal: [],
+//             dailyTotalTime: [],
+//             status: "Task Created"
+
+//         }
+//         // let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+//         let userInfo=JSON.parse(localStorage.getItem("user")) || []
+//         let dataArray=userInfo.dataArray
+//         dataArray.push(data);
+
+//         // localStorage.setItem('task', JSON.stringify(dataArray));
+//         localStorage.setItem('user', JSON.stringify(userInfo));
+//         userInfo=JSON.parse(localStorage.getItem("user")) || [];
+//         console.log(userInfo)
+//         // dataArray = JSON.parse(localStorage.getItem('task') || [])
+//         // render(dataArray)
+//     }
+//     getName.value = ""
+//     getDescription.value = ""
+//     getTag.value = ""
+//     // getDate.value = ""
+//     window.location.reload()
+// }
 const taskTable = document.querySelector(".display-task")
 
 export function render(dataArray) {
