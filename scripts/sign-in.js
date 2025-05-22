@@ -1,22 +1,20 @@
-const root=document.getElementById("root")
-let userInfo=JSON.parse(localStorage.getItem("user")) || []
-// console.log(userInfo)
+const root = document.getElementById("root")
+let userInfo = JSON.parse(localStorage.getItem("user")) || []
 
-
-root.innerHTML=`
+root.innerHTML = `
 <div id="login-context"></div>
 <div id="login-con"></div>
 `
 
-const loginContext=document.getElementById("login-context")
-const loginIn=document.getElementById("login-con")
+const loginContext = document.getElementById("login-context")
+const loginIn = document.getElementById("login-con")
 
-loginContext.innerHTML=`
+loginContext.innerHTML = `
 <h3>Welcome to UseTracker</h3>
 <p>Make every minute count. Our smart time tracker helps you stay focused, manage tasks, and take control of your productivity.</p>`
 
 
-loginIn.innerHTML=`
+loginIn.innerHTML = `
 <h3>Welcome to UseTracker</h3>
 <h4>Log in</h4>
 <input type="text" placeholder="Email" id="user-name">
@@ -27,21 +25,41 @@ loginIn.innerHTML=`
 </div>
 <p>Don't have an Account?<a href="sign-up.html" id="sign-in-btn">Create</a></p>`
 
-const userId=document.getElementById("user-name")
-const password=document.getElementById("password")
-document.getElementById("login-btn").addEventListener("click",()=>{
-    // window.location.href = "home.html";
-   let checkId=userInfo.find(user=>user.email==userId.value)
-
-   if(checkId){
-    let checkPassword=userInfo.find(user=>user.password==password.value)
-    localStorage.setItem("currentUser",userId.value)
-    if(checkPassword){
-      console.log("verified")
-      window.location.href = "home.html"
-    }
-   }
-    
+const userId = document.getElementById("user-name")
+const password = document.getElementById("password")
+document.addEventListener("keypress",(e)=>{
+  if(e.code=="Enter"){
+    e.preventDefault()
+    login()
+  }
 })
-
+document.getElementById("login-btn").addEventListener("click", login)
+function login(){
+  if (userId.value =="" || password.value == "") {
+    alert("Enter all the fields")
+  }
+  else {
+    let checkId = userInfo.find(user => user.email == userId.value)
+    password.style.borderColor = "white"
+    userId.style.borderColor = "white"
+    if (checkId) {
+      let checkPassword = userInfo.find(user => user.password == password.value)
+      localStorage.setItem("currentUser", userId.value)
+      if (checkPassword) {
+        window.location.href = "home.html"
+        // password.style.borderColor="red"
+      }
+      else {
+        alert("Wrong password. Try again")
+        password.style.borderColor = "red"
+      }
+    }
+    else {
+      alert("Account doesn't Exist")
+      userId.style.borderColor = "red"
+    }
+    userId.value = ""
+    password.value = ""
+  }
+}
 
