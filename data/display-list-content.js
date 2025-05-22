@@ -1,12 +1,17 @@
 import { displayList } from "../scripts/home.js";
 import { render, total } from "./create-task-list-table.js";
 
-let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+let userInfo = JSON.parse(localStorage.getItem("user")) || [];
+let currentUserEmail = localStorage.getItem("currentUser");
+let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
+let dataArray = userInfo[userIndex].dataArray
+let completedArray=userInfo[userIndex].completedArray
+
 const displaylistCon = document.querySelector('.display-content')
 const days = document.querySelector('.days')
 const timerCon = document.querySelector(".display-timer")
 const timeslist = document.querySelector(".times")
-let completedArray = JSON.parse(localStorage.getItem('status')) || [];
+// let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 const searchInput = document.querySelector(".search")
 const searchBtn = document.getElementById("search-btn")
 
@@ -57,18 +62,20 @@ export function displayContent(time, name, desc, tag, date, index, enddate, stat
 
         document.querySelector(".status-text").innerText = "Completed"
         endDate = new Date().toISOString().split('T')[0];
+        // console.log(dataArray)
         dataArray[index].endDate = endDate
         dataArray[index].status = "completed"
-        localStorage.setItem('task', JSON.stringify(dataArray));
+        // localStorage.setItem("user", JSON.stringify(userInfo));
         for (let i = 0; i < dataArray.length; i++) {
             let status = dataArray[i].status
             if (status == "completed") {
                 completedArray.push(dataArray[i])
-                localStorage.setItem('status', JSON.stringify(completedArray));
+                localStorage.setItem("user", JSON.stringify(userInfo));
             }
         }
         // console.log(dataArray)
         // render(dataArray)
+        localStorage.setItem("user", JSON.stringify(userInfo));
         window.location.reload()
 
     })
@@ -132,8 +139,7 @@ export function timer(index) {
         let totalTime = total(taskTime)
         data.totalTaskTime = totalTime
 
-
-        localStorage.setItem('task', JSON.stringify(dataArray));
+        localStorage.setItem("user", JSON.stringify(userInfo));
 
         let dailydata = daily()
 
@@ -167,7 +173,7 @@ export function timer(index) {
         let today = new Date().toISOString().split('T')[0];
         let currentDate = data.currentDate
         currentDate.push(today)
-        localStorage.setItem('task', JSON.stringify(dataArray));
+        localStorage.setItem("user", JSON.stringify(userInfo));
         startBtn.removeEventListener("click", timerStart)
         startBtn.id = "d-pause-btn"
         startBtn.innerHTML="Pause"
@@ -262,7 +268,7 @@ export function daily() {
             date = dataArray[i].currentDate
             let [taskArray, taskArrayDate] = dailyTask(dataArray[i], currentDate);
             dataArray[i].dateTotal = taskArray
-            localStorage.setItem('task', JSON.stringify(dataArray));
+            localStorage.setItem("user", JSON.stringify(userInfo));
             array = taskArrayDate
             taskArrayEl = taskArray
         }

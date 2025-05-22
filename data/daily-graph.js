@@ -1,6 +1,12 @@
 import { activeTask } from "../scripts/summary.js";
 
-let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+// let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+let userInfo = JSON.parse(localStorage.getItem("user")) || [];
+let currentUserEmail = localStorage.getItem("currentUser");
+let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
+let dataArray = userInfo[userIndex].dataArray
+let completedArray=userInfo[userIndex].completedArray
+
 const filterInput = document.querySelector(".filter-input")
 const filterBtn = document.querySelector(".filter-btn")
 

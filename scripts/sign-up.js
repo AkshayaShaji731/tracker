@@ -1,7 +1,6 @@
 const root = document.getElementById("root")
 
-let userInfo=JSON.parse(localStorage.getItem("user")) || []
-console.log(userInfo)
+let userInfo = JSON.parse(localStorage.getItem("user")) || []
 
 root.innerHTML = `
 <div id="sign-up"></div>
@@ -19,26 +18,43 @@ signUp.innerHTML = `
 `
 
 const signUpBtn = document.querySelector('.signUp-btn')
+const username = document.getElementById("name")
+const email = document.getElementById("email")
+const password = document.getElementById("password")
 
 signUpBtn.addEventListener("click", () => {
-    const name = document.getElementById("name")
-    const email = document.getElementById("email")
-    const password = document.getElementById("password")
 
-    let user={
-        name:name.value,
-        email:email.value,
-        password:password.value,
-        dataArray:[],
-        historyArray:[],
-        completedArray:[],
-        mergeArray:[]
+    let user = {
+        name: username.value,
+        email: email.value,
+        password: password.value,
+        dataArray: [],
+        historyArray: [],
+        completedArray: [],
+        mergeArray: []
     }
-    let userInfo=JSON.parse(localStorage.getItem("user")) || [];
-    userInfo.push(user)
-    localStorage.setItem('user', JSON.stringify(userInfo));
-    localStorage.setItem("currentUser", email.value)
-    userInfo=JSON.parse(localStorage.getItem("user")) || [];
-    console.log(userInfo)
+    if (username.value == " " || email.value == "" || password.value == "") {
+        alert('enter all the fileds')
+    }
+    else {
+        let userInfo = JSON.parse(localStorage.getItem("user")) || [];
+        let verify=userInfo.find(user=>(user.email==email.value))
+        if(verify){
+            alert("Account already created")
+            window.location.href = "sign-in.html"
+        }
+        else{
+            userInfo.push(user)
+            localStorage.setItem('user', JSON.stringify(userInfo));
+            userInfo = JSON.parse(localStorage.getItem("user")) || [];
+            console.log(userInfo)
+            username.value=""
+            email.value=""
+            password.value=""
+            window.location.href = "home.html"
+            localStorage.setItem("currentUser",userId.value)
+        }
+    }
+
 
 })

@@ -7,6 +7,10 @@ const task = document.querySelector('.task-list-item')
 
 // let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 let userInfo=JSON.parse(localStorage.getItem("user")) || []
+let currentUserEmail = localStorage.getItem("currentUser");
+let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
+let dataArray=userInfo[userIndex].dataArray
+
 let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 // console.log(completedArray)
 
@@ -30,14 +34,16 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
      <div class="start-stop-btn"></div>
      </td>`
     tableList.appendChild(taskRow)
-
     if (getStatus == "completed") {
-
         taskRow.remove()
 
-        let dataArray = JSON.parse(localStorage.getItem('task')) || [];
-        dataArray.splice(i, 1);
-        localStorage.setItem('task', JSON.stringify(dataArray));
+        // let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+        let userInfo = JSON.parse(localStorage.getItem("user")) || [];
+
+        let currentUserEmail = localStorage.getItem("currentUser");
+        let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
+        userInfo[userIndex].dataArray.splice(i, 1);
+        localStorage.setItem("user", JSON.stringify(userInfo));
         render(dataArray)
     }
 
@@ -56,9 +62,10 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
     deleteBtn.addEventListener("click", (e) => {
         taskRow.remove()
 
-        let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+        console.log(dataArray)
         dataArray.splice(i, 1);
-        localStorage.setItem('task', JSON.stringify(dataArray));
+        localStorage.setItem("user", JSON.stringify(userInfo));
+        
         render(dataArray)
     })
 
@@ -79,7 +86,7 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
         data.description = descInput
         data.tag = tagInput
 
-        localStorage.setItem('task', JSON.stringify(dataArray));
+        localStorage.setItem("user", JSON.stringify(userInfo));
         render(dataArray)
     })
     timerEl.addEventListener('click', (e) => {
@@ -138,7 +145,7 @@ export function createLS(getName, getDescription, getTag, getDate) {
         name: getName.value,
         description: getDescription.value,
         tag: getTag.value,
-        date: getDate.value,
+        date: getDate,
         endDate: "",
         time: [],
         currentTime: [],

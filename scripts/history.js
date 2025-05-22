@@ -4,10 +4,14 @@ const taskList=document.querySelector('.display-task')
 
 createNavBar()
 navBarMob()
-let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+let userInfo = JSON.parse(localStorage.getItem("user")) || [];
+let currentUserEmail = localStorage.getItem("currentUser");
+let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
+let dataArray = userInfo[userIndex].dataArray
+let historyArray=userInfo[userIndex].historyArray
 
 
-let historyArray = JSON.parse(localStorage.getItem('history')) || [];
+// let historyArray = JSON.parse(localStorage.getItem('history')) || [];
 createHistoryLs()
 
 function createHistoryLs() {
@@ -24,7 +28,7 @@ function createHistoryLs() {
             historyArray.push(dataArray[i])
         }
     }
-    localStorage.setItem('history', JSON.stringify(historyArray));
+    localStorage.setItem("user", JSON.stringify(userInfo));
     // dataSort
     historyArray.sort(function(a,b){return new Date( a.date) -new Date(b.date)})
 }
@@ -107,9 +111,11 @@ function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, get
     deleteBtn.addEventListener("click", (e) => {
         taskDiv.remove()
 
-        let historyArray = JSON.parse(localStorage.getItem('history') )|| [];
+        // let historyArray = JSON.parse(localStorage.getItem('history') )|| [];
+        console.log(historyArray)
         historyArray.splice(i, 1);
-        localStorage.setItem('history', JSON.stringify(historyArray));
+        localStorage.setItem("user", JSON.stringify(userInfo));
+        // localStorage.setItem('history', JSON.stringify(historyArray));
         // reload()
         
     })
@@ -155,9 +161,10 @@ function createHistory(getDate, getTag, getDescription, getName, sNum, i, getTim
     deleteBtn.addEventListener("click", (e) => {
         taskRow.remove()
 
-        let historyArray = JSON.parse(localStorage.getItem('history') )|| [];
+        // let historyArray = JSON.parse(localStorage.getItem('history') )|| [];
         historyArray.splice(i, 1);
-        localStorage.setItem('history', JSON.stringify(historyArray));
+        localStorage.setItem("user", JSON.stringify(userInfo));
+        // localStorage.setItem('history', JSON.stringify(historyArray));
         // reload()
         
     })

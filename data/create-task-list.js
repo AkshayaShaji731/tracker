@@ -2,7 +2,11 @@ import { displayContent, timer, listOfTime } from "./display-list-content.js";
 import { render } from "./create-task-list-table.js";
 
 const taskTable = document.querySelector(".display-task")
-let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+// let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+let userInfo=JSON.parse(localStorage.getItem("user")) || []
+let currentUserEmail = localStorage.getItem("currentUser");
+let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
+let dataArray=userInfo[userIndex].dataArray
 
 
 export function createlistMob(getDate, getDescription, getName, sNum, i, getTime) {
@@ -42,9 +46,8 @@ export function createlistMob(getDate, getDescription, getName, sNum, i, getTime
     deleteBtn.addEventListener("click", (e) => {
         taskDiv.remove()
 
-        let dataArray = JSON.parse(localStorage.getItem('task')) || [];
         dataArray.splice(i, 1);
-        localStorage.setItem('task', JSON.stringify(dataArray));
+        localStorage.setItem("user", JSON.stringify(userInfo));
         render(dataArray)
 
     })
@@ -65,7 +68,7 @@ export function createlistMob(getDate, getDescription, getName, sNum, i, getTime
         data.description = descInput
         data.tag = tagInput 
 
-        localStorage.setItem('task', JSON.stringify(dataArray));
+        localStorage.setItem("user", JSON.stringify(userInfo));
         render(dataArray)
     })
 

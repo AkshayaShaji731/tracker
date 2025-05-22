@@ -15,7 +15,10 @@ let active = "active"
 getDate()
 createNavBar()
 navBarMob()
-let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+let userInfo=JSON.parse(localStorage.getItem("user")) || []
+let currentUserEmail = localStorage.getItem("currentUser");
+let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
+let dataArray=userInfo[userIndex].dataArray
 
 if (dataArray == "") {
     document.querySelector(".display-con").style.display = "none"

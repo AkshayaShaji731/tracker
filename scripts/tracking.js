@@ -6,8 +6,14 @@ navBarMob()
 weekGraph()
 // createWeekGraph()
 
-let dataArray = JSON.parse(localStorage.getItem('task')) || [];
-let completedArray = JSON.parse(localStorage.getItem('status')) || [];
+// let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+// let completedArray = JSON.parse(localStorage.getItem('status')) || [];
+
+let userInfo = JSON.parse(localStorage.getItem("user")) || [];
+let currentUserEmail = localStorage.getItem("currentUser");
+let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
+let dataArray = userInfo[userIndex].dataArray
+let completedArray=userInfo[userIndex].completedArray
 
 const pendindMobCon=document.querySelector(".display-task-pending")
 const completedMobCon=document.querySelector(".display-task-completed")

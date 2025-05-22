@@ -4,8 +4,13 @@ import { weekGraph } from "../data/daily-grid-graph.js";
 createNavBar()
 navBarMob()
 
-let dataArray = JSON.parse(localStorage.getItem('task')) || [];
-let completedArray = JSON.parse(localStorage.getItem('status')) || [];
+let userInfo = JSON.parse(localStorage.getItem("user")) || [];
+let currentUserEmail = localStorage.getItem("currentUser");
+let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
+let dataArray = userInfo[userIndex].dataArray
+let completedArray=userInfo[userIndex].completedArray
+// let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+// let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 let arrayLs=[...dataArray,...completedArray]
 // console.log(array)
 const mainCont = document.querySelector(".main-container")
@@ -100,7 +105,7 @@ function daily() {
             let [taskArray, taskArrayDate] = dailyTask(dataArray[i], currentDate);
             dataArray[i].dateTotal = taskArray
             // console.log(taskArray)
-            localStorage.setItem('task', JSON.stringify(dataArray));
+            localStorage.setItem("user", JSON.stringify(userInfo));
             array = taskArrayDate
             taskArrayEl = taskArray
         }

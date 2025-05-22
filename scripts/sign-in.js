@@ -1,6 +1,5 @@
 const root=document.getElementById("root")
 let userInfo=JSON.parse(localStorage.getItem("user")) || []
-const currentUserEmail = localStorage.getItem("currentUser");
 // console.log(userInfo)
 
 
@@ -36,6 +35,7 @@ document.getElementById("login-btn").addEventListener("click",()=>{
 
    if(checkId){
     let checkPassword=userInfo.find(user=>user.password==password.value)
+    localStorage.setItem("currentUser",userId.value)
     if(checkPassword){
       console.log("verified")
       window.location.href = "home.html"
