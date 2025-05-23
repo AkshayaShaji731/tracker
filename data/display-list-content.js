@@ -4,8 +4,8 @@ import { render, total } from "./create-task-list-table.js";
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
-let dataArray = userInfo[userIndex].dataArray
-let completedArray=userInfo[userIndex].completedArray
+let dataArray = userInfo[userIndex+1].dataArray
+let completedArray=userInfo[userIndex+1].completedArray
 
 const displaylistCon = document.querySelector('.display-content')
 const days = document.querySelector('.days')
@@ -17,6 +17,7 @@ const searchBtn = document.getElementById("search-btn")
 
 
 export function displayContent(time, name, desc, tag, date, index, enddate, status) {
+
     displaylistCon.innerHTML = ` 
       <h3>Task details</h3>
        <table>
@@ -60,6 +61,7 @@ export function displayContent(time, name, desc, tag, date, index, enddate, stat
     let endDate
     document.querySelector('.submit').addEventListener("click", () => {
 
+
         document.querySelector(".status-text").innerText = "Completed"
         endDate = new Date().toISOString().split('T')[0];
         // console.log(dataArray)
@@ -70,7 +72,7 @@ export function displayContent(time, name, desc, tag, date, index, enddate, stat
             let status = dataArray[i].status
             if (status == "completed") {
                 completedArray.push(dataArray[i])
-                localStorage.setItem("user", JSON.stringify(userInfo));
+                // localStorage.setItem("user", JSON.stringify(userInfo));
             }
         }
         // console.log(dataArray)
@@ -98,6 +100,7 @@ export function numberOfDays(numDays) {
 
 }
 export function timer(index) {
+
     timerCon.innerHTML = `
     <p id="timer-heading">Timer</p>
    <div class="time-display-con">
@@ -176,14 +179,14 @@ export function timer(index) {
         localStorage.setItem("user", JSON.stringify(userInfo));
         startBtn.removeEventListener("click", timerStart)
         startBtn.id = "d-pause-btn"
-        startBtn.innerHTML="Pause"
-        startBtn.addEventListener("click",timerPause)
+        startBtn.innerHTML = "Pause"
+        startBtn.addEventListener("click", timerPause)
     }
-    function timerPause(){
+    function timerPause() {
         clearInterval(interval)
         startBtn.removeEventListener("click", timerPause)
-        startBtn.innerHTML="Resume"
-        startBtn.addEventListener("click",timerStart)
+        startBtn.innerHTML = "Resume"
+        startBtn.addEventListener("click", timerStart)
     }
     let minute = document.querySelector('.d-minute')
     let second = document.querySelector('.d-second')
@@ -225,6 +228,7 @@ export function timer(index) {
 }
 
 export function listOfTime(index) {
+   
     if (dataArray.length >= 1 && dataArray[index]) {
         timeslist.innerHTML = " "
         // console.log(dataArray[index].time)
@@ -234,7 +238,7 @@ export function listOfTime(index) {
         if (nowTime.length >= 1) {
             document.getElementById("time-default").style.display = "none"
         }
-        for (let i = 0; i < list.length; i++) { 
+        for (let i = 0; i < list.length; i++) {
             let currentDate = today[i]
             let currentTime = nowTime[i]
             let timeData = list[i].hour + ":" + list[i].min + ":" + list[i].second
@@ -361,28 +365,29 @@ function dailyTask(dataArray, currentDate) {
 }
 export function searchTask() {
     let searchArray = []
-    searchInput.addEventListener("keypress",(e)=>{
-        if(e.code=="Enter"){
+    searchInput.addEventListener("keypress", (e) => {
+        if (e.code == "Enter") {
             search()
         }
     })
-    searchBtn.addEventListener("click",search)
+    searchBtn.addEventListener("click", search)
 }
-function search(){
+function search() {
+    let dataArray = userInfo[userIndex].dataArray
     let searchArray = []
-    if(searchInput.value !=""){
+    if (searchInput.value != "") {
         let searchEl = searchInput.value
-    for (let i = 0; i < dataArray.length; i++) {
-        if (dataArray[i].name == searchEl) {
-            searchArray.push(dataArray[i])
+        for (let i = 0; i < dataArray.length; i++) {
+            if (dataArray[i].name == searchEl) {
+                searchArray.push(dataArray[i])
+            }
         }
-    }
-    searchInput.value = ""
-    if (searchArray.length == 0) {
-        alert("it not found")
-    }
-    render(searchArray)
-    searchArray = []
+        searchInput.value = ""
+        if (searchArray.length == 0) {
+            alert("it not found")
+        }
+        render(searchArray)
+        searchArray = []
     }
 }
 

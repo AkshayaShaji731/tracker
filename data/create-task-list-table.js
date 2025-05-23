@@ -9,13 +9,12 @@ const task = document.querySelector('.task-list-item')
 let userInfo=JSON.parse(localStorage.getItem("user")) || []
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
-let dataArray=userInfo[userIndex].dataArray
+let dataArray=userInfo[userIndex+1].dataArray
 
 let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 // console.log(completedArray)
 
 export function createlist(getDate, getTag, getDescription, getName, sNum, i, getTime, getEndDate, getStatus) {
-
 
     const taskRow = document.createElement("tr")
     taskRow.classList.add('taskrow')
@@ -37,7 +36,6 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
     if (getStatus == "completed") {
         taskRow.remove()
 
-        // let dataArray = JSON.parse(localStorage.getItem('task')) || [];
         let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 
         let currentUserEmail = localStorage.getItem("currentUser");
@@ -122,6 +120,7 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
     })
 }
 export function createLS(getName, getDescription, getTag, getDate) {
+    
     if (getDate.value === '' || getName.value === '') {
         alert("Enter the Date and Name");
         return;

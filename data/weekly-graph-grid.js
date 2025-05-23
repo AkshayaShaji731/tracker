@@ -11,7 +11,9 @@ let completedArray=userInfo[userIndex].completedArray
 export function weekGraph() {
     let data=week()
     let y = graph()
+    foreach
      let col = Math.floor(Math.max(...y))
+      console.log(col)
     let x = [0, 1, 2, 3, 4, 5, 6]
     // let dateEl = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"]
     let dateEl=formatDateArray(data)
@@ -221,7 +223,6 @@ function graph() {
       }
       graphPoints.push(totalSec)
     }
-    // console.log(graphPoints)
     return graphPoints
   }
   function formatDateArray(inputDates) {

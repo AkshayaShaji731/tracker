@@ -6,7 +6,7 @@ const taskTable = document.querySelector(".display-task")
 let userInfo=JSON.parse(localStorage.getItem("user")) || []
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
-let dataArray=userInfo[userIndex].dataArray
+let dataArray=userInfo[userIndex+1].dataArray
 
 
 export function createlistMob(getDate, getDescription, getName, sNum, i, getTime) {

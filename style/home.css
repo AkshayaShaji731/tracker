@@ -226,11 +226,13 @@ body {
     padding:16px;
     /* margin: 5px; */
     outline: none;
+    background-color: #fff;
 }
 .description,
 .tag{
     padding: 10px;
     outline: none;
+    background-color: #fff;
     /* margin-right: 10px; */
     /* margin: 5px; */
 }

@@ -18,7 +18,7 @@ navBarMob()
 let userInfo=JSON.parse(localStorage.getItem("user")) || []
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
-let dataArray=userInfo[userIndex].dataArray
+let dataArray=userInfo[userIndex+1].dataArray
 
 if (dataArray == "") {
     document.querySelector(".display-con").style.display = "none"
@@ -85,8 +85,9 @@ export function createTask() {
     }
 }
 export function displayList(dataArray) {
+    // console.log(dataArray)
 
-    if (dataArray == "") {
+    if (dataArray=="") {
         document.querySelector(".display-con").style.display = "none"
     }
     let index = dataArray.length - 1
