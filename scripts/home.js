@@ -18,7 +18,14 @@ navBarMob()
 let userInfo=JSON.parse(localStorage.getItem("user")) || []
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
-let dataArray=userInfo[userIndex+1].dataArray
+let dataArray
+if (userIndex>-1){
+     dataArray=userInfo[userIndex].dataArray
+}
+else{
+     dataArray=userInfo[userIndex+1].dataArray
+}
+
 
 if (dataArray == "") {
     document.querySelector(".display-con").style.display = "none"

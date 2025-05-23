@@ -46,13 +46,13 @@ signUpBtn.addEventListener("click", () => {
         else{
             userInfo.push(user)
             localStorage.setItem('user', JSON.stringify(userInfo));
+            localStorage.setItem("currentUser",email.value)
             userInfo = JSON.parse(localStorage.getItem("user")) || [];
             console.log(userInfo)
             username.value=""
             email.value=""
             password.value=""
             window.location.href = "home.html"
-            localStorage.setItem("currentUser",userId.value)
         }
     }
 

@@ -4,8 +4,18 @@ import { render, total } from "./create-task-list-table.js";
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
-let dataArray = userInfo[userIndex+1].dataArray
-let completedArray=userInfo[userIndex+1].completedArray
+let dataArray
+let completedArray
+
+if (userIndex > -1) {
+    dataArray = userInfo[userIndex].dataArray
+    completedArray = userInfo[userIndex].completedArray
+}
+else {
+    dataArray = userInfo[userIndex + 1].dataArray
+    completedArray = userInfo[userIndex + 1].completedArray
+}
+
 
 const displaylistCon = document.querySelector('.display-content')
 const days = document.querySelector('.days')
@@ -228,7 +238,7 @@ export function timer(index) {
 }
 
 export function listOfTime(index) {
-   
+
     if (dataArray.length >= 1 && dataArray[index]) {
         timeslist.innerHTML = " "
         // console.log(dataArray[index].time)

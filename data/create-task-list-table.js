@@ -9,9 +9,15 @@ const task = document.querySelector('.task-list-item')
 let userInfo=JSON.parse(localStorage.getItem("user")) || []
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
-let dataArray=userInfo[userIndex+1].dataArray
+let dataArray
+if (userIndex>-1){
+     dataArray=userInfo[userIndex].dataArray
+}
+else{
+     dataArray=userInfo[userIndex+1].dataArray
+}
 
-let completedArray = JSON.parse(localStorage.getItem('status')) || [];
+// let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 // console.log(completedArray)
 
 export function createlist(getDate, getTag, getDescription, getName, sNum, i, getTime, getEndDate, getStatus) {
