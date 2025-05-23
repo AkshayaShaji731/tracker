@@ -14,7 +14,17 @@ const outerCon = document.querySelector(".outer-con")
 
 export function weekGraph() {
     let y = daygraph()
-    let col = Math.floor(Math.max(...y))
+    let checkY = y.map(function(e) {
+        if (e === undefined || Number.isNaN(e)) {
+          return 0;
+        } else {
+          return e; 
+        }
+      });
+      
+      let maxValue = Math.max(...checkY);
+      
+      let col = Math.floor(maxValue);
     let x = [0, 1, 2, 3, 4, 5, 6]
     let dateEl =day()
     // <div class="index-container"></div>

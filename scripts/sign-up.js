@@ -22,8 +22,15 @@ const username = document.getElementById("name")
 const email = document.getElementById("email")
 const password = document.getElementById("password")
 
-signUpBtn.addEventListener("click", () => {
+document.addEventListener("keypress",(e)=>{
+    if(e.code=="Enter"){
+      e.preventDefault()
+      signup()
+    }
+  })
 
+signUpBtn.addEventListener("click",signup)
+function signup(){
     let user = {
         name: username.value,
         email: email.value,
@@ -56,5 +63,4 @@ signUpBtn.addEventListener("click", () => {
         }
     }
 
-
-})
+}

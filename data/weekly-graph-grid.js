@@ -11,9 +11,20 @@ let completedArray=userInfo[userIndex].completedArray
 export function weekGraph() {
     let data=week()
     let y = graph()
-    foreach
-     let col = Math.floor(Math.max(...y))
-      console.log(col)
+    let checkY = y.map(function(e) {
+      if (e === undefined || Number.isNaN(e)) {
+        return 0;
+      } else {
+        return e; 
+      }
+    });
+    
+    let maxValue = Math.max(...checkY);
+    
+    let col = Math.floor(maxValue);
+    
+    console.log(col);
+
     let x = [0, 1, 2, 3, 4, 5, 6]
     // let dateEl = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"]
     let dateEl=formatDateArray(data)
