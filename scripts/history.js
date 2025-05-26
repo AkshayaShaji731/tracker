@@ -1,37 +1,36 @@
-import { createNavBar,navBarMob } from "../data/navbar.js";
+import { createNavBar, navBarMob } from "../data/navbar.js";
 const tableList = document.querySelector('.history-table')
-const taskList=document.querySelector('.display-task')
+const taskList = document.querySelector('.display-task')
 
 createNavBar()
 navBarMob()
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
-let dataArray = [...userInfo[userIndex].dataArray,...userInfo[userIndex].completedArray]
-let historyArray=userInfo[userIndex].historyArray
+let array = [...userInfo[userIndex].dataArray, ...userInfo[userIndex].completedArray]
+let historyArray = userInfo[userIndex].historyArray
 
 
 // let historyArray = JSON.parse(localStorage.getItem('history')) || [];
-createHistoryLs()
+// createHistoryLs()
+// function createHistoryLs() {
+//     for (let i = 0; i < array.length; i++) {
+//         let check = false
+//         for (let j = 0; j < historyArray.length; j++) {
+//             if (historyArray[j].name == array[i].name && historyArray[j].date == array[i].date) {
+//                 check = true
+//                 break
+//             }
 
-function createHistoryLs() {
-    for (let i = 0; i < dataArray.length; i++) {
-        let check = false
-        for (let j = 0; j < historyArray.length; j++) {
-            if (historyArray[j].name == dataArray[i].name && historyArray[j].date == dataArray[i].date) {
-                check = true
-                break
-            }
-
-        }
-        if (check==false) {
-            historyArray.push(dataArray[i])
-        }
-    }
-    localStorage.setItem("user", JSON.stringify(userInfo));
-    // dataSort
-    historyArray.sort(function(a,b){return new Date( a.date) -new Date(b.date)})
-}
+//         }
+//         if (check == false) {
+//             historyArray.push(array[i])
+//         }
+//     }
+//     localStorage.setItem("user", JSON.stringify(userInfo));
+//     // dataSort
+//     historyArray.sort(function (a, b) { return new Date(a.date) - new Date(b.date) })
+// }
 
 historyDisplay()
 function historyDisplay() {
@@ -72,14 +71,14 @@ function historyDisplay() {
         else {
             time = getTime.hour + ":" + getTime.min + ":" + getTime.sec
         }
-        createHistory(getDate, getTag, getDescription, getName, sNum, i, getTime,endDate,getStatus,time)
-        createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, getTime,endDate,getStatus,time)
+        createHistory(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
+        createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
     }
 }
-function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, getTime,endDate,getStatus,time){
-    const taskDiv=document.createElement("div");
+function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time) {
+    const taskDiv = document.createElement("div");
     taskDiv.classList.add('task-div')
-    taskDiv.innerHTML=`
+    taskDiv.innerHTML = `
     <div class="date-name">
       <h3>${sNum}.</h3> 
       <h3> ${getName}</h3>
@@ -93,7 +92,7 @@ function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, get
      </div>
       <p id="timer"></p>
     </div> `
-    
+
     taskList.appendChild(taskDiv)
 
     const displayTimer = taskDiv.querySelector("#timer")
@@ -117,19 +116,19 @@ function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, get
         localStorage.setItem("user", JSON.stringify(userInfo));
         // localStorage.setItem('history', JSON.stringify(historyArray));
         // reload()
-        
+
     })
-    detailsBtn.addEventListener("click",()=>{
+    detailsBtn.addEventListener("click", () => {
         // console.log("hlo")
         document.querySelector(".display-pending-con").style.display = "block"
-        let array=dataArray[sNum-1]
-        displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime,endDate,getStatus,time)
+        let array = dataArray[sNum - 1]
+        displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
         timercloseData(array)
         // getNumDays(array)
-       
+
     })
 }
-function createHistory(getDate, getTag, getDescription, getName, sNum, i, getTime,endDate,getStatus,time) {
+function createHistory(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time) {
     const taskRow = document.createElement("tr")
     taskRow.innerHTML = `
      <td id="s-no">${sNum}</td>
@@ -166,21 +165,21 @@ function createHistory(getDate, getTag, getDescription, getName, sNum, i, getTim
         localStorage.setItem("user", JSON.stringify(userInfo));
         // localStorage.setItem('history', JSON.stringify(historyArray));
         // reload()
-        
+
     })
 
-    detailsBtn.addEventListener("click",()=>{
+    detailsBtn.addEventListener("click", () => {
         console.log("hlo")
         document.querySelector(".display-pending-con").style.display = "block"
-        document.querySelector(".time-list").style.display="block"
-        let array=dataArray[sNum-1]
-        displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime,endDate,getStatus,time)
+        document.querySelector(".time-list").style.display = "block"
+        let array = dataArray[sNum - 1]
+        displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
         timercloseData(array)
         // getNumDays(array)
     })
 }
-function reload(){
-       tableList.innerHTML = `
+function reload() {
+    tableList.innerHTML = `
          <tr>
                   <th id="t-num">s.no</th>
                   <th id="t-date">Start Date</th>
@@ -191,13 +190,13 @@ function reload(){
                   <th id="t-time">Time<th>
                   <th id="t-btn"></th>
                 </tr>`
-       historyDisplay()
+    historyDisplay()
 }
-const displayHTML=document.querySelector('.display-pending')
-const timeslist= document.querySelector(".times-pending")
+const displayHTML = document.querySelector('.display-pending')
+const timeslist = document.querySelector(".times-pending")
 const days = document.querySelector('.days')
 
-function displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime,endDate,getStatus,time) {
+function displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time) {
     displayHTML.innerHTML = ` 
       <h3>Task details</h3>
        <table>
@@ -238,16 +237,16 @@ function displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, 
          </tr>
        </table>`
 }
-function timercloseData(index){
-    timeslist.innerHTML=""
-    let  time=index.time
-    let today=index.currentDate
-    let nowTime=index.currentTime
+function timercloseData(index) {
+    timeslist.innerHTML = ""
+    let time = index.time
+    let today = index.currentDate
+    let nowTime = index.currentTime
     if (nowTime.length >= 1) {
         document.getElementById("time-default").style.display = "none"
     }
     for (let i = 0; i < time.length; i++) {
-        let currentDate=today[i]
+        let currentDate = today[i]
         let currentTime = nowTime[i]
         let timeData = time[i].hour + ":" + time[i].min + ":" + time[i].second
         let times = document.createElement("tr")
@@ -258,7 +257,7 @@ function timercloseData(index){
             <td>${timeData}</td>
            </tr>`
 
-        timeslist.appendChild(times)   
+        timeslist.appendChild(times)
     }
 }
 //  function getNumDays(data){

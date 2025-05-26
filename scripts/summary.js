@@ -1,6 +1,6 @@
 import { createNavBar, navBarMob } from "../data/navbar.js";
 // import { createDayGraph } from "../data/daily-graph.js";
-import { weekGraph } from "../data/daily-grid-graph.js";
+import { dayGraph } from "../data/daily-grid-graph.js";
 createNavBar()
 navBarMob()
 
@@ -22,7 +22,7 @@ activeTimeFunction()
 taskCreatedToady()
 activeTask()
 // createDayGraph()
-weekGraph()
+dayGraph()
 
 function activeTimeFunction() {
     let dayActive = daily()

@@ -6,8 +6,6 @@ import { displayContent,timer,listOfTime,searchTask} from "../data/display-list-
 const dateEl = document.querySelector(".date")
 const taskBtn = document.querySelector('.add-task-btn')
 const task = document.querySelector('.task-list-item')
-// const displaylistCon = document.querySelector('.display-content')
-
 
 let active = "active"
 
@@ -16,6 +14,7 @@ getDate()
 createNavBar()
 navBarMob()
 let userInfo=JSON.parse(localStorage.getItem("user")) || []
+console.log(userInfo)
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let dataArray
@@ -60,7 +59,7 @@ export function createTask() {
         active = "inactive"
 
         let getDate =new Date().toISOString().split('T')[0]
-        // console.log(getDate)
+        console.log(getDate)
 
         const createBtn = document.querySelector('.task-create-btn')
         const getName = document.getElementById('name')

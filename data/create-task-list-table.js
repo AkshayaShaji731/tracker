@@ -10,14 +10,20 @@ let userInfo=JSON.parse(localStorage.getItem("user")) || []
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let dataArray
+let completedArray
 if (userIndex>-1){
      dataArray=userInfo[userIndex].dataArray
+     completedArray=userInfo[userIndex].completedArray
+
 }
 else{
      dataArray=userInfo[userIndex+1].dataArray
+     completedArray=userInfo[userIndex+1].dataArray
 }
 
-let completedArray = JSON.parse(localStorage.getItem('status')) || [];
+// let completedArray = JSON.parse(localStorage.getItem('status')) || [];
+let array = [...userInfo[userIndex].dataArray, ...userInfo[userIndex].completedArray]
+let historyArray = userInfo[userIndex].historyArray
 // console.log(completedArray)
 
 export function createlist(getDate, getTag, getDescription, getName, sNum, i, getTime, getEndDate, getStatus) {
@@ -271,6 +277,25 @@ export function total(data) {
         sec: totalSec
     }
     return totalTaskTIme
+}
+createHistoryLs()
+function createHistoryLs() {
+    for (let i = 0; i < array.length; i++) {
+        let check = false
+        for (let j = 0; j < historyArray.length; j++) {
+            if (historyArray[j].name == array[i].name && historyArray[j].date == array[i].date) {
+                check = true
+                break
+            }
+
+        }
+        if (check == false) {
+            historyArray.push(array[i])
+        }
+    }
+    localStorage.setItem("user", JSON.stringify(userInfo));
+    // dataSort
+    historyArray.sort(function (a, b) { return new Date(a.date) - new Date(b.date) })
 }
 
 

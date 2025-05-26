@@ -13,7 +13,7 @@ const filterBtn = document.querySelector(".filter-btn")
 const root = document.querySelector(".root")
 const outerCon = document.querySelector(".outer-con")
 
-export function weekGraph() {
+export function dayGraph() {
     let y = daygraph()
     let checkY = y.map(function (e) {
         if (e === undefined || Number.isNaN(e)) {
@@ -22,7 +22,7 @@ export function weekGraph() {
             return e;
         }
     });
-    // console.log(checkY)
+    console.log(checkY)
     let maxValue = Math.max(...checkY);
 
     let col = Math.floor(maxValue);
@@ -130,5 +130,4 @@ function daygraph() {
 filterBtn.addEventListener("click", () => {
     currentDate = filterInput.value
     weekGraph()
-    activeTask(currentDate)
 })
