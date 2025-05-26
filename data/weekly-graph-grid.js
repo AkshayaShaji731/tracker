@@ -23,7 +23,7 @@ export function weekGraph() {
     
     let col = Math.floor(maxValue);
     
-    console.log(col);
+    // console.log(col);
 
     let x = [0, 1, 2, 3, 4, 5, 6]
     // let dateEl = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"]
@@ -58,6 +58,7 @@ export function weekGraph() {
     for (let j = 0; j < y.length; j++) {
         let num=Math.floor(y[j])
         let decimal=Math.abs(y[j]-num)
+        //console.log(decimal)
         for (let i = num- 1; i >= 0; i--) {
             let column = root.querySelectorAll(".col")
             let pointCol = column[i]

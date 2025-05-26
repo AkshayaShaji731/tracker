@@ -17,7 +17,7 @@ else{
      dataArray=userInfo[userIndex+1].dataArray
 }
 
-// let completedArray = JSON.parse(localStorage.getItem('status')) || [];
+let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 // console.log(completedArray)
 
 export function createlist(getDate, getTag, getDescription, getName, sNum, i, getTime, getEndDate, getStatus) {

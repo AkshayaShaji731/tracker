@@ -9,7 +9,7 @@ const signUp = document.getElementById("sign-up")
 
 signUp.innerHTML = `
 <h3>Welcome to UseTracker</h3>
-<h4>Log in</h4>
+<h4>Sign Up</h4>
 <input type="text" placeholder="Full Name" id="name">
 <input type="text" placeholder="Email" id="email">
 <input type="password" placeholder="Password" id="password">

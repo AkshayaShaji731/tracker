@@ -9,8 +9,8 @@
 }
 
 #root {
-    /* background-color: rgb(70, 46, 94); */
-    background-image: url("https://img.freepik.com/premium-photo/man-standing-clock-silhouette-dark-background_776894-6582.jpg");
+    background-color: #070606;
+    /* background-image: url("https://img.freepik.com/premium-photo/man-standing-clock-silhouette-dark-background_776894-6582.jpg"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

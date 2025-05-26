@@ -4,8 +4,9 @@ import { activeTask } from "../scripts/summary.js";
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
-let dataArray = userInfo[userIndex].dataArray
-let completedArray=userInfo[userIndex].completedArray
+let dataArray = [...userInfo[userIndex].dataArray, ...userInfo[userIndex].completedArray]
+// console.log(dataArray)
+// let completedArray = userInfo[userIndex].completedArray
 
 const filterInput = document.querySelector(".filter-input")
 const filterBtn = document.querySelector(".filter-btn")
@@ -14,19 +15,20 @@ const outerCon = document.querySelector(".outer-con")
 
 export function weekGraph() {
     let y = daygraph()
-    let checkY = y.map(function(e) {
+    let checkY = y.map(function (e) {
         if (e === undefined || Number.isNaN(e)) {
-          return 0;
+            return 0;
         } else {
-          return e; 
+            return e;
         }
-      });
-      
-      let maxValue = Math.max(...checkY);
-      
-      let col = Math.floor(maxValue);
+    });
+    // console.log(checkY)
+    let maxValue = Math.max(...checkY);
+
+    let col = Math.floor(maxValue);
+    // console.log(maxValue)
     let x = [0, 1, 2, 3, 4, 5, 6]
-    let dateEl =day()
+    let dateEl = day()
     // <div class="index-container"></div>
     outerCon.innerHTML = `
     <p id="index"> hours<p>
@@ -46,6 +48,8 @@ export function weekGraph() {
     for (let i = 0; i < col + 3; i++) {
         let col = document.createElement("div")
         col.classList.add("col")
+        col.style.display = 'grid';
+        col.style.gridTemplateColumns = `repeat(${dateEl.length}, 1fr)`
         for (let j = 1; j <= dateEl.length; j++) {
             let row = document.createElement("div")
             row.classList.add("row")
@@ -54,20 +58,20 @@ export function weekGraph() {
         container.appendChild(col)
     }
     for (let j = 0; j < y.length; j++) {
-        let num=Math.floor(y[j])
-        let decimal=Math.abs(y[j]-num)
-        for (let i = num- 1; i >= 0; i--) {
+        let num = Math.floor(y[j])
+        let decimal = Math.abs(y[j] - num)
+        for (let i = num - 1; i >= 0; i--) {
             let column = root.querySelectorAll(".col")
             let pointCol = column[i]
             let row = pointCol.querySelectorAll(".row")
             let pointRow = row[x[j]]
             pointRow.style.backgroundColor = "blue"
         }
-        if(decimal>0){
+        if (decimal > 0) {
             let column = root.querySelectorAll(".col")
             let pointCol = column[num]
             let row = pointCol.querySelectorAll(".row")[x[j]]
-    
+
             const fill = document.createElement("div")
             fill.style.position = "absolute"
             fill.style.bottom = "0"
@@ -75,7 +79,7 @@ export function weekGraph() {
             fill.style.width = "100%"
             fill.style.height = `${decimal * 100}%`
             fill.style.backgroundColor = "blue"
-    
+
             row.style.position = "relative"
             row.appendChild(fill)
         }
@@ -84,6 +88,8 @@ export function weekGraph() {
     for (let i = 0; i < dateEl.length; i++) {
         const date = document.createElement("div")
         date.classList.add("date")
+        date.style.display = 'grid';
+        date.style.gridTemplateColumns = `repeat(${dateEl.length}, 1fr)`
         date.innerText = dateEl[i]
         dateCon.appendChild(date)
     }

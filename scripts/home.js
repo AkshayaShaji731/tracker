@@ -19,11 +19,11 @@ let userInfo=JSON.parse(localStorage.getItem("user")) || []
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let dataArray
-if (userIndex>-1){
-     dataArray=userInfo[userIndex].dataArray
+if (userIndex > -1) {
+    dataArray = userInfo[userIndex].dataArray
 }
-else{
-     dataArray=userInfo[userIndex+1].dataArray
+else {
+    dataArray = userInfo[userIndex + 1].dataArray
 }
 
 
@@ -60,7 +60,7 @@ export function createTask() {
         active = "inactive"
 
         let getDate =new Date().toISOString().split('T')[0]
-        console.log(getDate)
+        // console.log(getDate)
 
         const createBtn = document.querySelector('.task-create-btn')
         const getName = document.getElementById('name')

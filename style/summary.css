@@ -35,6 +35,8 @@ body {
 
 .nav-container-mob header {
     display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
 }
 
 .nav-container-mob header a {
@@ -74,7 +76,7 @@ body {
 .nav-container {
     display: none;
     padding: 2rem;
-    border: 1px solid rgb(87, 82, 82);
+    /* border: 1px solid rgb(87, 82, 82); */
     height: 100vh;
 }
 
@@ -189,11 +191,12 @@ display: flex;
 
 .root {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     width: 100%;
     padding-bottom: 30px;
     box-sizing: border-box;
+    margin-top: 15px;
   }
   
   .outer-con {
@@ -264,21 +267,25 @@ display: flex;
   
   .col {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    /* grid-template-columns: repeat(7, 1fr); */
     gap: 8px;
   }
   
   .row {
-    width: 100%;
+    width: 80%;
     aspect-ratio: 1 / 1.8;
     aspect-ratio: 19/11;
+    aspect-ratio: 6/2;
     background-color: brown;
     border: 1px solid black;
   }
   
   .date-container {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
+    display: grid;
+    grid-auto-flow: column;
+    gap: 10px;
     position: absolute;
     left: 46px;
     bottom: -16px;
@@ -297,8 +304,8 @@ display: flex;
   
   @media (min-width: 444px) {
     .date-container {
-      left: 64px;
-      width: calc(100% - 90px);
+      left: 70px;
+      /* width: calc(100% - 90px); */
     }
   }
   
@@ -335,7 +342,7 @@ display: flex;
     }
   
     .date-container {
-      gap: 8px;
+      gap: 12px;
     }
   
     .container {

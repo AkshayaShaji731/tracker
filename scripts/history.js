@@ -7,7 +7,7 @@ navBarMob()
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
-let dataArray = userInfo[userIndex].dataArray
+let dataArray = [...userInfo[userIndex].dataArray,...userInfo[userIndex].completedArray]
 let historyArray=userInfo[userIndex].historyArray
 
 
@@ -120,12 +120,12 @@ function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, get
         
     })
     detailsBtn.addEventListener("click",()=>{
-        console.log("hlo")
+        // console.log("hlo")
         document.querySelector(".display-pending-con").style.display = "block"
         let array=dataArray[sNum-1]
         displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime,endDate,getStatus,time)
         timercloseData(array)
-        getNumDays(array)
+        // getNumDays(array)
        
     })
 }
@@ -176,7 +176,7 @@ function createHistory(getDate, getTag, getDescription, getName, sNum, i, getTim
         let array=dataArray[sNum-1]
         displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime,endDate,getStatus,time)
         timercloseData(array)
-        getNumDays(array)
+        // getNumDays(array)
     })
 }
 function reload(){
@@ -261,33 +261,33 @@ function timercloseData(index){
         timeslist.appendChild(times)   
     }
 }
- function getNumDays(data){
-    let num=0;
-    let count
-    let days=data.currentDate
-    for(let i=0;i<days.length;i++){
-        count=1
-        let day=days[num]
-        if(day==days[i]){
-            continue
-        }
-        else{
-            count++
-        }
-    }
-    numberOfDays(count)
-}
+//  function getNumDays(data){
+//     let num=0;
+//     let count
+//     let days=data.currentDate
+//     for(let i=0;i<days.length;i++){
+//         count=1
+//         let day=days[num]
+//         if(day==days[i]){
+//             continue
+//         }
+//         else{
+//             count++
+//         }
+//     }
+//     numberOfDays(count)
+// }
 
-function numberOfDays(numDays) {
-    if (numDays == "") {
-        days.innerHTML = `
-        <h3>0</h3>
-        <p>Number of days</p>`
-    }
-    else {
-        days.innerHTML = `
-        <h3>${numDays}</h3>
-        <p>Number of days</p>`
-    }
+// function numberOfDays(numDays) {
+//     if (numDays == "") {
+//         days.innerHTML = `
+//         <h3>0</h3>
+//         <p>Number of days</p>`
+//     }
+//     else {
+//         days.innerHTML = `
+//         <h3>${numDays}</h3>
+//         <p>Number of days</p>`
+//     }
 
-}
+// }

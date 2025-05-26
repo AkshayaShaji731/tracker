@@ -41,7 +41,7 @@ function taskCreatedToady() {
             let time = "00:00:00"
             if (arrayLs[i].totalTaskTime == "") {
                 time = "00:00:00"
-                console.log(time);
+                // console.log(time);
             }
             else {
                 time = arrayLs[i].totalTaskTime.hour + ":" +arrayLs[i].totalTaskTime.min + ":" +arrayLs[i].totalTaskTime.sec
@@ -67,7 +67,7 @@ export function activeTask() {
                 let time = "00:00:00"
                 if (arrayLs[i].totalTaskTime == "") {
                     time = "00:00:00"
-                    console.log(time);
+                    // console.log(time);
                 }
                 else {
                     time = arrayLs[i].totalTaskTime.hour + ":" + arrayLs[i].totalTaskTime.min + ":" + arrayLs[i].totalTaskTime.sec

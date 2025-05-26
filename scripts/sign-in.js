@@ -16,10 +16,10 @@ loginContext.innerHTML = `
 
 loginIn.innerHTML = `
 <h3>Welcome to UseTracker</h3>
-<h4>Log in</h4>
+<h4>Sign In</h4>
 <input type="text" placeholder="Email" id="user-name">
 <input type="password" placeholder="Password" id="password">
-<button id="login-btn">Log In</button>
+<button id="login-btn">Sign In</button>
 <div id="forgot-con">
   <a href="">forgot password</a>
 </div>
