@@ -54,7 +54,7 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
         let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
         userInfo[userIndex].dataArray.splice(i, 1);
         localStorage.setItem("user", JSON.stringify(userInfo));
-        render(dataArray)
+        window.location.reload()
     }
 
     const deleteBtn = taskRow.querySelector('.delete-btn')
@@ -76,7 +76,7 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
         dataArray.splice(i, 1);
         localStorage.setItem("user", JSON.stringify(userInfo));
         
-        render(dataArray)
+        // render(dataArray)
     })
 
     editBtn.addEventListener("click", (e) => {
@@ -279,7 +279,7 @@ export function total(data) {
     return totalTaskTIme
 }
 createHistoryLs()
-function createHistoryLs() {
+export function createHistoryLs() {
     for (let i = 0; i < array.length; i++) {
         let check = false
         for (let j = 0; j < historyArray.length; j++) {

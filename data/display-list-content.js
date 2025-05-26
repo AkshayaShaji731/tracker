@@ -88,6 +88,7 @@ export function displayContent(time, name, desc, tag, date, index, enddate, stat
         // console.log(dataArray)
         // render(dataArray)
         localStorage.setItem("user", JSON.stringify(userInfo));
+        // setTimeout(location.reload,)
         window.location.reload()
 
     })

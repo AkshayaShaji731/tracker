@@ -10,27 +10,24 @@ let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let array = [...userInfo[userIndex].dataArray, ...userInfo[userIndex].completedArray]
 let historyArray = userInfo[userIndex].historyArray
 
+createHistoryLs()
+function createHistoryLs() {
+    for (let i = 0; i < array.length; i++) {
+        let check = false
+        for (let j = 0; j < historyArray.length; j++) {
+            if (historyArray[j].name == array[i].name && historyArray[j].date == array[i].date) {
+                check = true
+                break
+            }
 
-// let historyArray = JSON.parse(localStorage.getItem('history')) || [];
-// createHistoryLs()
-// function createHistoryLs() {
-//     for (let i = 0; i < array.length; i++) {
-//         let check = false
-//         for (let j = 0; j < historyArray.length; j++) {
-//             if (historyArray[j].name == array[i].name && historyArray[j].date == array[i].date) {
-//                 check = true
-//                 break
-//             }
-
-//         }
-//         if (check == false) {
-//             historyArray.push(array[i])
-//         }
-//     }
-//     localStorage.setItem("user", JSON.stringify(userInfo));
-//     // dataSort
-//     historyArray.sort(function (a, b) { return new Date(a.date) - new Date(b.date) })
-// }
+        }
+        if (check == false) {
+            historyArray.push(array[i])
+        }
+    }
+    localStorage.setItem("user", JSON.stringify(userInfo));
+    historyArray.sort(function (a, b) { return new Date(a.date) - new Date(b.date) })
+}
 
 historyDisplay()
 function historyDisplay() {
@@ -121,9 +118,9 @@ function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, get
     detailsBtn.addEventListener("click", () => {
         // console.log("hlo")
         document.querySelector(".display-pending-con").style.display = "block"
-        let array = dataArray[sNum - 1]
+        let arr = array[sNum - 1]
         displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
-        timercloseData(array)
+        timercloseData(arr)
         // getNumDays(array)
 
     })
@@ -260,6 +257,7 @@ function timercloseData(index) {
         timeslist.appendChild(times)
     }
 }
+
 //  function getNumDays(data){
 //     let num=0;
 //     let count
