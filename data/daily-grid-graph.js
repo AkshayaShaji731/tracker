@@ -92,7 +92,7 @@ export function dayGraph() {
         date.classList.add("date")
         date.style.display = 'grid';
         date.style.gridTemplateColumns = `repeat(${dateEl.length}, 1fr)`
-        date.innerText = dateEl[i]
+        date.innerText = `Task ${i+1}`
         dateCon.appendChild(date)
     }
 }
