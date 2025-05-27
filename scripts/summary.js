@@ -8,39 +8,56 @@ let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let dataArray = userInfo[userIndex].dataArray
-let completedArray=userInfo[userIndex].completedArray
+let completedArray = userInfo[userIndex].completedArray
 // let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 // let completedArray = JSON.parse(localStorage.getItem('status')) || [];
-let arrayLs=[...dataArray,...completedArray]
-if(arrayLs.length>0){
+let arrayLs = [...dataArray, ...completedArray]
+if (arrayLs.length > 0) {
     console.log("hlo")
-    document.querySelector(".emptyActive").style.display="none"
-    document.querySelector(".emptyList").style.display="none"
+    document.querySelector(".emptyActive").style.display = "none"
+    document.querySelector(".emptyList").style.display = "none"
 }
 // console.log(array)
 const mainCont = document.querySelector(".main-container")
 const dayTask = document.querySelector(".daily-task")
 const Active = document.querySelector(".active-task")
 const activeTime = document.querySelector(".active-hour")
+
+let currentDate = new Date().toISOString().split('T')[0]
+
 activeTimeFunction()
 
 taskCreatedToady()
-activeTask()
+activeTask(currentDate)
 // createDayGraph()
 dayGraph()
 
 function activeTimeFunction() {
     let dayActive = daily()
+    let hour = dayActive.hour
+    let min = dayActive.minute
+    let sec = dayActive.seconds
+    if (hour < 9) {
+        hour = "0" + hour
+    }
+    if (min < 9) {
+        min = "0" + min
+    }
 
-    activeTime.innerHTML = `Active Time : ${dayActive.hour}:${dayActive.minute}:${dayActive.seconds}`
+    if (sec < 9) {
+        sec = "0" + sec
+    }
+
+
+    activeTime.innerHTML = `Active Time : ${hour}:${min}:${sec}`
 }
 
 function taskCreatedToady() {
     const date = new Date().toISOString().split('T')[0]
 
-    for (let i = 0; i <arrayLs.length; i++) {
+    for (let i = 0; i < arrayLs.length; i++) {
 
-        if (date ==arrayLs[i].date) {
+        if (date == arrayLs[i].date) {
             let taskCon = document.createElement("div")
             taskCon.classList.add("task")
             let time = "00:00:00"
@@ -49,10 +66,10 @@ function taskCreatedToady() {
                 // console.log(time);
             }
             else {
-                time = arrayLs[i].totalTaskTime.hour + ":" +arrayLs[i].totalTaskTime.min + ":" +arrayLs[i].totalTaskTime.sec
+                time = arrayLs[i].totalTaskTime.hour + ":" + arrayLs[i].totalTaskTime.min + ":" + arrayLs[i].totalTaskTime.sec
             }
             taskCon.innerHTML = `
-      <h4>${i+1} . ${arrayLs[i].name}</h4>
+      <h4>${i + 1} . ${arrayLs[i].name}</h4>
       <p>${arrayLs[i].description}</p>
       <p>Total Time:${time}</p>
           `
@@ -60,8 +77,8 @@ function taskCreatedToady() {
         }
     }
 }
-export function activeTask() {
-    let currentDate = new Date().toISOString().split('T')[0]
+
+export function activeTask(currentDate) {
     let array = []
     for (let i = 0; i < arrayLs.length; i++) {
         let dateArray = arrayLs[i].dateTotal
@@ -78,13 +95,13 @@ export function activeTask() {
                     time = arrayLs[i].totalTaskTime.hour + ":" + arrayLs[i].totalTaskTime.min + ":" + arrayLs[i].totalTaskTime.sec
                 }
                 taskCon.innerHTML = `
-                  <h4>${i+1} . ${arrayLs[i].name}</h4>
+                  <h4>${i + 1} . ${arrayLs[i].name}</h4>
                   <p>${arrayLs[i].description}</p>
                   <p>Total Time:${time}</p>
                  `
                 Active.appendChild(taskCon)
             }
-        } 
+        }
     }
 
 

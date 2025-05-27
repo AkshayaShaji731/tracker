@@ -12,6 +12,7 @@ const filterInput = document.querySelector(".filter-input")
 const filterBtn = document.querySelector(".filter-btn")
 const root = document.querySelector(".root")
 const outerCon = document.querySelector(".outer-con")
+const Active = document.querySelector(".active-task")
 
 export function dayGraph() {
     let y = daygraph()
@@ -132,4 +133,7 @@ function daygraph() {
 filterBtn.addEventListener("click", () => {
     currentDate = filterInput.value
     dayGraph()
+    console.log(Active)
+    Active.innerHTML=""
+    activeTask(currentDate)
 })
