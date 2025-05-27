@@ -37,8 +37,7 @@ function signup() {
         password: password.value,
         dataArray: [],
         historyArray: [],
-        completedArray: [],
-        mergeArray: []
+        completedArray: []
     }
     if (username.value == " " || email.value == "" || password.value == "") {
         alert('Enter all the fileds')

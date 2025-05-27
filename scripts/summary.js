@@ -9,11 +9,13 @@ let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let dataArray = userInfo[userIndex].dataArray
 let completedArray = userInfo[userIndex].completedArray
+let historyArray=userInfo[userIndex].completedArray
 // let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 // let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 let arrayLs = [...dataArray, ...completedArray]
+
 if (arrayLs.length > 0) {
-    console.log("hlo")
+    // console.log("hlo")
     document.querySelector(".emptyActive").style.display = "none"
     document.querySelector(".emptyList").style.display = "none"
 }
@@ -33,7 +35,7 @@ activeTask(currentDate)
 dayGraph()
 
 function activeTimeFunction() {
-    let dayActive = daily()
+    let dayActive = daily(historyArray)
     let hour = dayActive.hour
     let min = dayActive.minute
     let sec = dayActive.seconds
@@ -107,7 +109,7 @@ export function activeTask(currentDate) {
 
 }
 
-function daily() {
+function daily(dataArray) {
     let array
     let date
     let time

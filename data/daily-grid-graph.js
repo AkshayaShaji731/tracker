@@ -16,7 +16,7 @@ const Active = document.querySelector(".active-task")
 
 export function dayGraph() {
     let y = daygraph()
-    console.log(y)
+    // console.log(y)
     let checkY = y.map(function (e) {
         if (e === undefined || Number.isNaN(e)) {
             return 0;
@@ -133,7 +133,7 @@ function daygraph() {
 filterBtn.addEventListener("click", () => {
     currentDate = filterInput.value
     dayGraph()
-    console.log(Active)
+    // console.log(Active)
     Active.innerHTML=""
     activeTask(currentDate)
 })
