@@ -68,6 +68,7 @@ function historyDisplay() {
         else {
             time = getTime.hour + ":" + getTime.min + ":" + getTime.sec
         }
+        console.log(time)
         createHistory(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
         createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
     }

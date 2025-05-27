@@ -171,51 +171,6 @@ export function displayList(dataArray) {
     }
 }
 
-// export function displayList(dataArray) {
-//     if (!Array.isArray(dataArray) || dataArray.length === 0) {
-//         document.querySelector(".display-con").style.display = "none";
-//         return;
-//     }
-
-//     let index = dataArray.length - 1;
-//     let time = "00:00:00";
-
-//     let timeobj = dataArray[index]?.totalTaskTime;
-//     if (typeof timeobj === "object" && timeobj !== null) {
-//         time = `${timeobj.hour || "00"}:${timeobj.min || "00"}:${timeobj.sec || "00"}`;
-//     }
-
-//     let name = dataArray[index].name;
-//     let desc = dataArray[index].description || "---";
-//     let tag = dataArray[index].tag || "--";
-//     let date = dataArray[index].date;
-//     let endDate = dataArray[index].endDate || "--";
-//     let status = dataArray[index].status;
-
-//     timer(index);
-//     displayContent(time, name, desc, tag, date, index, endDate, status);
-
-//     for (let i = 0; i < dataArray.length; i++) {
-//         const task = dataArray[i];
-//         if (!task) continue;
-
-//         let sNum = i + 1;
-//         let getDate = task.date;
-//         let getName = task.name;
-//         let getDescription = task.description || "---";
-//         let getTag = task.tag || "--";
-//         let getEndDate = task.endDate || "--";
-//         let getStatus = task.status;
-//         let getTime = task.totalTaskTime;
-//         let timeArray = task.time;
-
-//         listOfTime(index);
-//         createlist(getDate, getTag, getDescription, getName, sNum, i, getTime, getEndDate, getStatus);
-//         createlistMob(getDate, getDescription, getName, sNum, i, getTime);
-//     }
-// }
-
-
 searchTask()
 
 

@@ -22,15 +22,15 @@ const username = document.getElementById("name")
 const email = document.getElementById("email")
 const password = document.getElementById("password")
 
-document.addEventListener("keypress",(e)=>{
-    if(e.code=="Enter"){
-      e.preventDefault()
-      signup()
+document.addEventListener("keypress", (e) => {
+    if (e.code == "Enter") {
+        e.preventDefault()
+        signup()
     }
-  })
+})
 
-signUpBtn.addEventListener("click",signup)
-function signup(){
+signUpBtn.addEventListener("click", signup)
+function signup() {
     let user = {
         name: username.value,
         email: email.value,
@@ -41,26 +41,40 @@ function signup(){
         mergeArray: []
     }
     if (username.value == " " || email.value == "" || password.value == "") {
-        alert('enter all the fileds')
+        alert('Enter all the fileds')
     }
     else {
         let userInfo = JSON.parse(localStorage.getItem("user")) || [];
-        let verify=userInfo.find(user=>(user.email==email.value))
-        if(verify){
-            alert("Account already created")
-            window.location.href = "sign-in.html"
+        let inputVerify = isValidEmail(email.value)
+        if (inputVerify == true) {
+            let verify = userInfo.find(user => (user.email == email.value))
+            if (verify) {
+                alert("Account already created")
+                window.location.href = "sign-in.html"
+            }
+            else {
+                userInfo.push(user)
+                localStorage.setItem('user', JSON.stringify(userInfo));
+                localStorage.setItem("currentUser", email.value)
+                userInfo = JSON.parse(localStorage.getItem("user")) || [];
+                console.log(userInfo)
+                username.value = ""
+                email.value = ""
+                password.value = ""
+                window.location.href = "home.html"
+            }
         }
         else{
-            userInfo.push(user)
-            localStorage.setItem('user', JSON.stringify(userInfo));
-            localStorage.setItem("currentUser",email.value)
-            userInfo = JSON.parse(localStorage.getItem("user")) || [];
-            console.log(userInfo)
-            username.value=""
-            email.value=""
-            password.value=""
-            window.location.href = "home.html"
+            alert("Enter the valid email")
         }
     }
 
 }
+function isValidEmail(email) {
+    const pattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    return pattern.test(email);
+}
+function isStrongPassword(password) {
+    const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    return pattern.test(password);
+  }

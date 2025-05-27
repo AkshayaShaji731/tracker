@@ -15,6 +15,7 @@ const outerCon = document.querySelector(".outer-con")
 
 export function dayGraph() {
     let y = daygraph()
+    console.log(y)
     let checkY = y.map(function (e) {
         if (e === undefined || Number.isNaN(e)) {
             return 0;
@@ -22,8 +23,9 @@ export function dayGraph() {
             return e;
         }
     });
-    console.log(checkY)
+    // console.log(checkY)
     let maxValue = Math.max(...checkY);
+
 
     let col = Math.floor(maxValue);
     // console.log(maxValue)
@@ -129,5 +131,5 @@ function daygraph() {
 }
 filterBtn.addEventListener("click", () => {
     currentDate = filterInput.value
-    weekGraph()
+    dayGraph()
 })
