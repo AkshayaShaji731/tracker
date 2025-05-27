@@ -12,6 +12,11 @@ let completedArray=userInfo[userIndex].completedArray
 // let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 // let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 let arrayLs=[...dataArray,...completedArray]
+if(arrayLs.length>0){
+    console.log("hlo")
+    document.querySelector(".emptyActive").style.display="none"
+    document.querySelector(".emptyList").style.display="none"
+}
 // console.log(array)
 const mainCont = document.querySelector(".main-container")
 const dayTask = document.querySelector(".daily-task")

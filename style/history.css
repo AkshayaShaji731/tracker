@@ -1,10 +1,13 @@
+.main-container{
+    margin-top:50px;
+}
 .back-btn {
     width: fit-content;
-    padding: 10px;
+    padding: 10px 20px;
     font-size: 16px;
     position: absolute;
     /* bottom: -25px; */
-    right: 29px;
+    right: 5px;
     border: none;
     background-color: blue;
     border-radius: 4px;
@@ -20,3 +23,17 @@
  .time-list{
     display: block;
  } 
+ #clear-btn{
+    display: none;
+    padding: 10px;
+    position: absolute;
+    top:50px;
+    right: 0;
+    background-color: blue;
+    margin: 5px;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+   
+ }

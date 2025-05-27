@@ -1,14 +1,27 @@
 import { createNavBar, navBarMob } from "../data/navbar.js";
 const tableList = document.querySelector('.history-table')
 const taskList = document.querySelector('.display-task')
+const clearBtn=document.getElementById("clear-btn")
+
 
 createNavBar()
 navBarMob()
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
+console.log(userInfo)
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let array = [...userInfo[userIndex].dataArray, ...userInfo[userIndex].completedArray]
 let historyArray = userInfo[userIndex].historyArray
+
+clearBtn.addEventListener("click",()=>{
+    console.log("hello")
+    userInfo[userIndex].dataArray=[]
+    userInfo[userIndex].completedArray=[]
+    userInfo[userIndex].historyArray=[]
+    localStorage.setItem("user", JSON.stringify(userInfo));
+    window.location.reload()
+    console.log(userInfo)
+})
 
 createHistoryLs()
 function createHistoryLs() {
@@ -74,6 +87,7 @@ function historyDisplay() {
     }
 }
 function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time) {
+     document.getElementById("clear-btn").style.display="block"
     const taskDiv = document.createElement("div");
     taskDiv.classList.add('task-div')
     taskDiv.innerHTML = `

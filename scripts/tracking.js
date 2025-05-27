@@ -55,8 +55,11 @@ function displayTracking() {
         pendingTask(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
         trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
     }
-    for (let i = 0; i < completedArray.length; i++) {
-        let sNum = i + 1
+    let num=1
+    for (let i = completedArray.length-1; i >=0; i--) {
+        console.log()
+        let sNum =num
+        num++
         let getDate = completedArray[i].date
         let getName = completedArray[i].name
         let getTime = completedArray[i].totalTaskTime
