@@ -52,7 +52,7 @@ function taskCreatedToady() {
                 time = arrayLs[i].totalTaskTime.hour + ":" +arrayLs[i].totalTaskTime.min + ":" +arrayLs[i].totalTaskTime.sec
             }
             taskCon.innerHTML = `
-      <h4>${arrayLs[i].name}</h4>
+      <h4>${i+1} . ${arrayLs[i].name}</h4>
       <p>${arrayLs[i].description}</p>
       <p>Total Time:${time}</p>
           `
