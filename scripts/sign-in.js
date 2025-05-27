@@ -21,7 +21,7 @@ loginIn.innerHTML = `
 <input type="password" placeholder="Password" id="password">
 <button id="login-btn">Sign In</button>
 <div id="forgot-con">
-  <a href="">forgot password</a>
+  <a href="password.html">forgot password</a>
 </div>
 <p>Don't have an Account?<a href="sign-up.html" id="sign-in-btn">Create</a></p>`
 

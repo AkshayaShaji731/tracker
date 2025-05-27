@@ -315,7 +315,8 @@ display: flex;
   @media screen and (min-width:600px) {
     .date {
       writing-mode: horizontal-tb;
-      transform: rotate(0deg)
+      transform: rotate(0deg);
+      max-width: 100px;
     }
   }
   
