@@ -87,7 +87,7 @@ function historyDisplay() {
     }
 }
 function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time) {
-     document.getElementById("clear-btn").style.display="block"
+    
     const taskDiv = document.createElement("div");
     taskDiv.classList.add('task-div')
     taskDiv.innerHTML = `

@@ -8,8 +8,7 @@ root.innerHTML = `
 const signUp = document.getElementById("sign-up")
 
 signUp.innerHTML = `
-<h3>Welcome to UseTracker</h3>
-<h4>Sign Up</h4>
+<h3>Change the user Password</h3>
 <input type="text" placeholder="Email" id="email">
 <input type="password" placeholder="Password" id="password">
 <input type="password" placeholder="Confirm Password" id="con-password">
