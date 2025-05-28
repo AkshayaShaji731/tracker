@@ -1,12 +1,10 @@
 import { activeTask } from "../scripts/summary.js";
 
-// let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let dataArray = [...userInfo[userIndex].dataArray, ...userInfo[userIndex].completedArray]
-// console.log(dataArray)
-// let completedArray = userInfo[userIndex].completedArray
+// let dataArray=userInfo[userIndex].historyArray
 
 const filterInput = document.querySelector(".filter-input")
 const filterBtn = document.querySelector(".filter-btn")
@@ -16,7 +14,6 @@ const Active = document.querySelector(".active-task")
 
 export function dayGraph() {
     let y = daygraph()
-    // console.log(y)
     let checkY = y.map(function (e) {
         if (e === undefined || Number.isNaN(e)) {
             return 0;
@@ -24,21 +21,17 @@ export function dayGraph() {
             return e;
         }
     });
-    // console.log(checkY)
     let maxValue = Math.max(...checkY);
 
 
     let col = Math.floor(maxValue);
-    // console.log(maxValue)
     let x = [0, 1, 2, 3, 4, 5, 6]
     let dateEl = day()
-    // <div class="index-container"></div>
     outerCon.innerHTML = `
     <p id="index"> hours<p>
        <div class="container"></div>
        <div class="date-container"></div>
        `
-    // const indexCon = root.querySelector('.index-container')
     const container = root.querySelector('.container')
     const dateCon = root.querySelector(".date-container")
 
@@ -111,7 +104,6 @@ function day() {
             }
         }
     }
-    // console.log(array)
     return array
 }
 
@@ -133,7 +125,6 @@ function daygraph() {
 filterBtn.addEventListener("click", () => {
     currentDate = filterInput.value
     dayGraph()
-    // console.log(Active)
     Active.innerHTML=""
     activeTask(currentDate)
 })

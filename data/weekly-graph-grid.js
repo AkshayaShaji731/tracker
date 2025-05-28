@@ -1,7 +1,5 @@
 const root = document.querySelector(".root")
 const outerCon = document.querySelector(".outer-con")
-// let dataArray = JSON.parse(localStorage.getItem('task')) || [];
-// let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
@@ -20,13 +18,8 @@ export function weekGraph() {
     });
     
     let maxValue = Math.max(...checkY);
-    
     let col = Math.floor(maxValue);
-    
-    // console.log(col);
-
     let x = [0, 1, 2, 3, 4, 5, 6]
-    // let dateEl = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"]
     let dateEl=formatDateArray(data)
     // <div class="index-container"></div>
     outerCon.innerHTML = `
@@ -58,7 +51,6 @@ export function weekGraph() {
     for (let j = 0; j < y.length; j++) {
         let num=Math.floor(y[j])
         let decimal=Math.abs(y[j]-num)
-        //console.log(decimal)
         for (let i = num- 1; i >= 0; i--) {
             let column = root.querySelectorAll(".col")
             let pointCol = column[i]
@@ -84,17 +76,6 @@ export function weekGraph() {
         }
     }
 
-    // const columns = container.querySelectorAll(".col");
-    // for (let j = 0; j < y.length; j++) {
-    //     for (let i = 0; i < y[j]; i++) {
-    //         const colIndex = columns.length - 1 - i;
-    //         const pointCol = columns[colIndex];
-    //         const rows = pointCol.querySelectorAll(".row");
-    //         const pointRow = rows[j];
-    //         pointRow.style.backgroundColor = "blue";
-    //     }
-    // }
-
     for (let i = 0; i < 7; i++) {
         const date = document.createElement("div")
         date.classList.add("date")
@@ -115,13 +96,9 @@ function week() {
     return week
   }
 
-// let curr = new Date();
-
 const prevWeekBtn = document.querySelector(".prev-week")
-// console.log(prevWeekBtn)
 const currWeekBtn = document.querySelector(".current-week")
 
-// let curr = new Date();
 prevWeekBtn.addEventListener("click", () => {
   prevWeekBtn.style.backgroundColor = "darkblue"
   prevWeekBtn.style.color = "white"
@@ -140,6 +117,7 @@ currWeekBtn.addEventListener("click", () => {
   curr = new Date
   weekGraph() 
 })
+
 currWeekBtn.style.backgroundColor = "darkblue"
 currWeekBtn.style.color = "white"   
 
@@ -158,10 +136,7 @@ function graph() {
       seconds: 0
     }
     let graphData = []
-    // console.log(dataArray)
-
     let array= [...dataArray, ...completedArray]
-    // console.log(array)
   
     for (let i = 0; i < array.length; i++) {
       let demodate = array[i].currentDate
@@ -178,7 +153,6 @@ function graph() {
   
         for (let j = 0; j < dayTotal.length; j++) {
           let task = dayTotal[j];
-          // let demo = dayTotal[j]
           if (task.date == dateArray[d]) {
             hour = task.hour;
             min = task.minute;
@@ -213,13 +187,10 @@ function graph() {
     }
     let weekArray = week()
     let totalSec
-    // console.log(graphData)
     let graphPoints = []
     let pointedData = []
     for (let l = 0; l < weekArray.length; l++) {
       for (let m = 0; m < graphData.length; m++) {
-        // console.log(graphData)
-        // console.log(weekArray[l],graphData[m])
         if (weekArray[l] == graphData[m].date) {
           let points = graphData[m].time
           let hour = points.hour 

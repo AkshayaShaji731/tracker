@@ -6,9 +6,6 @@ navBarMob()
 weekGraph()
 // createWeekGraph()
 
-// let dataArray = JSON.parse(localStorage.getItem('task')) || [];
-// let completedArray = JSON.parse(localStorage.getItem('status')) || [];
-
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
@@ -56,7 +53,6 @@ function displayTracking() {
     }
     let num = 1
     for (let i = completedArray.length - 1; i >= 0; i--) {
-        console.log()
         let sNum = num
         num++
         let getDate = completedArray[i].date
@@ -217,16 +213,16 @@ function timercloseData(index, timeslist) {
 }
 
 function completedNumdays(data,days) {
-    console.log(data)
     let start=data.date
     let end=data.endDate
     let date1 = new Date(start);
     let date2 = new Date(end);
 
-    let diffInMilliseconds = date1 - date2; // returns the difference in milliseconds
-    let diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24); // convert to days
+    let diffInMilliseconds = date1 - date2; 
+    let diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
    numberOfDays(diffInDays,days)
 }
+
 function getNumDays(data, day) {
     let num = 0;
     let count

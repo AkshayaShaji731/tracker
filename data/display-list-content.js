@@ -1,4 +1,3 @@
-import { displayList } from "../scripts/home.js";
 import { render, total } from "./create-task-list-table.js";
 
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
@@ -18,12 +17,10 @@ else {
     historyArray = userInfo[userIndex + 1].historyArray
 }
 
-
 const displaylistCon = document.querySelector('.display-content')
 const days = document.querySelector('.days')
 const timerCon = document.querySelector(".display-timer")
 const timeslist = document.querySelector(".times")
-// let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 const searchInput = document.querySelector(".search")
 const searchBtn = document.getElementById("search-btn")
 
@@ -76,23 +73,16 @@ export function displayContent(time, name, desc, tag, date, index, enddate, stat
 
         document.querySelector(".status-text").innerText = "Completed"
         endDate = new Date().toISOString().split('T')[0];
-        // console.log(dataArray)
         dataArray[index].endDate = endDate
         dataArray[index].status = "completed"
-        // localStorage.setItem("user", JSON.stringify(userInfo));
         for (let i = 0; i < dataArray.length; i++) {
             let status = dataArray[i].status
             if (status == "completed") {
                 completedArray.push(dataArray[i])
-                // localStorage.setItem("user", JSON.stringify(userInfo));
             }
         }
-        // console.log(dataArray)
         render(dataArray)
         localStorage.setItem("user", JSON.stringify(userInfo));
-        // setTimeout(location.reload,)
-        // window.location.reload()
-
     })
     if (status == "completed") {
         document.querySelector('.submit').remove()
@@ -132,7 +122,6 @@ export function timer(index) {
     var interval;
     let startBtn = document.querySelector('#d-start-btn')
     startBtn.addEventListener("click", () => {
-        // console.log("hiii")
         timerStart()
     })
 
@@ -254,7 +243,6 @@ export function listOfTime(index) {
 
     if (dataArray.length >= 1 && dataArray[index]) {
         timeslist.innerHTML = " "
-        // console.log(dataArray[index].time)
         let list = dataArray[index].time
         let nowTime = dataArray[index].currentTime
         let today = dataArray[index].currentDate
@@ -308,7 +296,6 @@ export function daily() {
             let currentTask = dataArray[j].dateTotal;
             for (let k = 0; k < currentTask.length; k++) {
                 let task = currentTask[k];
-                // console.log(task.date)
                 if (task.date == currentDate) {
                     hour = currentTask[k].hour;
                     min = currentTask[k].minute;
@@ -331,7 +318,6 @@ export function daily() {
             }
         }
     }
-    // console.log(total)
     return total
 }
 
@@ -350,8 +336,7 @@ function dailyTask(dataArray, currentDate) {
         seconds: 0
     }
     date = dataArray.currentDate
-    time = dataArray.time
-    // console.log(time)    
+    time = dataArray.time    
     for (let j = 0; j < time.length; j++) {
 
         hour = time[j].hour
@@ -388,7 +373,6 @@ function dailyTask(dataArray, currentDate) {
     }
     array.push({ ...tasktotal });
     let demo = tasktotal.date
-    // console.log(array)
     return [array, demo]
 }
 export function searchTask() {
@@ -419,44 +403,3 @@ function search() {
     }
 }
 
-// export function displayContentTrack(index, date, name, enddate, time, desc, tag, status, displayHTML) {
-//     displayHTML.innerHTML = ` 
-//       <h3>Task details</h3>
-//        <table>
-//          <tr>
-//            <td>Start Date </td>
-//            <td>:</td>
-//            <td>${date}</td>
-//          </tr>
-//            <tr>
-//            <td>End Date </td>
-//            <td>:</td>
-//            <td>${enddate}</td>
-//          </tr>
-//            <tr>
-//            <td>Task Name </td>
-//            <td>:</td>
-//            <td>${name}</td>
-//          </tr>
-//            <tr>
-//            <td> Description </td>
-//            <td>:</td>
-//            <td>${desc}</td>
-//          </tr>
-//            <tr>
-//            <td>Tag </td>
-//            <td>:</td>
-//            <td>${tag}</td>
-//          </tr>
-//            <tr>
-//            <td>Total Time </td>
-//            <td>:</td>
-//            <td>${time}</td>
-//          </tr>
-//          <tr>
-//            <td>Status</td>
-//            <td>:</td>
-//            <td class="status-text">${status}</td>
-//          </tr>
-//        </table>`
-// }

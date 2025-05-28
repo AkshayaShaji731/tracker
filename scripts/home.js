@@ -13,8 +13,8 @@ let active = "active"
 getDate()
 createNavBar()
 navBarMob()
+
 let userInfo=JSON.parse(localStorage.getItem("user")) || []
-// console.log(userInfo)
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let dataArray
@@ -59,7 +59,6 @@ export function createTask() {
         active = "inactive"
 
         let getDate =new Date().toISOString().split('T')[0]
-        console.log(getDate)
 
         const createBtn = document.querySelector('.task-create-btn')
         const getName = document.getElementById('name')
@@ -91,7 +90,6 @@ export function createTask() {
     }
 }
 export function displayList(dataArray) {
-    // console.log(dataArray)
 
     if (dataArray=="") {
         document.querySelector(".display-con").style.display = "none"
@@ -125,7 +123,6 @@ export function displayList(dataArray) {
 
     const day = 24 * 60 * 60 * 1000;
     let today = new Date(endDate)
-    console.log(today)
     let taskdate = new Date(date)
     let numDays
     if (today == "Invalid Date") {
@@ -134,7 +131,6 @@ export function displayList(dataArray) {
     else {
         numDays = Math.round(Math.abs((today - taskdate) / day))
     }
-    // numberOfDays
     for (let i = 0; i < dataArray.length; i++) {
         let sNum = i + 1
         let getDate = dataArray[i].date

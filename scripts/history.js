@@ -7,7 +7,6 @@ const clearBtn=document.getElementById("clear-btn")
 createNavBar()
 navBarMob()
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
-// console.log(userInfo)
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let historyArray = userInfo[userIndex].historyArray
@@ -18,27 +17,7 @@ clearBtn.addEventListener("click",()=>{
     userInfo[userIndex].historyArray=[]
     localStorage.setItem("user", JSON.stringify(userInfo));
     window.location.reload()
-    console.log(userInfo)
 })
-
-// createHistoryLs()
-// function createHistoryLs() {
-//     for (let i = 0; i < array.length; i++) {
-//         let check = false
-//         for (let j = 0; j < historyArray.length; j++) {
-//             if (historyArray[j].name == array[i].name && historyArray[j].date == array[i].date) {
-//                 check = true
-//                 break
-//             }
-
-//         }
-//         if (check == false) {
-//             historyArray.push(array[i])
-//         }
-//     }
-//     localStorage.setItem("user", JSON.stringify(userInfo));
-//     historyArray.sort(function (a, b) { return new Date(a.date) - new Date(b.date) })
-// }
 
 historyDisplay()
 function historyDisplay() {
@@ -79,7 +58,6 @@ function historyDisplay() {
         else {
             time = getTime.hour + ":" + getTime.min + ":" + getTime.sec
         }
-        console.log(time)
         createHistory(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
         createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
     }
@@ -120,21 +98,16 @@ function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, get
     deleteBtn.addEventListener("click", (e) => {
         taskDiv.remove()
 
-        // let historyArray = JSON.parse(localStorage.getItem('history') )|| [];
-        console.log(historyArray)
         historyArray.splice(i, 1);
         localStorage.setItem("user", JSON.stringify(userInfo));
-        // localStorage.setItem('history', JSON.stringify(historyArray));
-        // reload()
 
     })
+
     detailsBtn.addEventListener("click", () => {
-        // console.log("hlo")
         document.querySelector(".display-pending-con").style.display = "block"
         let arr = historyArray[sNum - 1]
         displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
         timercloseData(arr)
-        // getNumDays(array)
 
     })
 }
@@ -169,13 +142,8 @@ function createHistory(getDate, getTag, getDescription, getName, sNum, i, getTim
 
     deleteBtn.addEventListener("click", (e) => {
         taskRow.remove()
-
-        // let historyArray = JSON.parse(localStorage.getItem('history') )|| [];
         historyArray.splice(i, 1);
         localStorage.setItem("user", JSON.stringify(userInfo));
-        // localStorage.setItem('history', JSON.stringify(historyArray));
-        // reload()
-
     })
 
     detailsBtn.addEventListener("click", () => {
@@ -184,23 +152,9 @@ function createHistory(getDate, getTag, getDescription, getName, sNum, i, getTim
         let array = historyArray[sNum - 1]
         displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
         timercloseData(array)
-        // getNumDays(array)
     })
 }
-function reload() {
-    tableList.innerHTML = `
-         <tr>
-                  <th id="t-num">s.no</th>
-                  <th id="t-date">Start Date</th>
-                  <th id="t-date">End Date</th>
-                  <th id="t-name">TaskName</th>
-                  <th id="t-des">Task Description</th>
-                  <th id="t-tag">Task Tag</th>
-                  <th id="t-time">Time<th>
-                  <th id="t-btn"></th>
-                </tr>`
-    historyDisplay()
-}
+
 const displayHTML = document.querySelector('.display-pending')
 const timeslist = document.querySelector(".times-pending")
 const days = document.querySelector('.days')

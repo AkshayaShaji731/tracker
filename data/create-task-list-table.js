@@ -3,9 +3,6 @@ import { displayContent, timer, listOfTime } from "./display-list-content.js";
 const tableList = document.querySelector('.task-table')
 const task = document.querySelector('.task-list-item')
 
-
-
-// let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 let userInfo = JSON.parse(localStorage.getItem("user")) || []
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
@@ -21,10 +18,8 @@ else {
     completedArray = userInfo[userIndex + 1].dataArray
 }
 
-// let completedArray = JSON.parse(localStorage.getItem('status')) || [];
 let array = [...userInfo[userIndex].dataArray, ...userInfo[userIndex].completedArray]
 let historyArray = userInfo[userIndex].historyArray
-// console.log(completedArray)
 
 export function createlist(getDate, getTag, getDescription, getName, sNum, i, getTime, getEndDate, getStatus) {
 
@@ -72,11 +67,9 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
     deleteBtn.addEventListener("click", (e) => {
         taskRow.remove()
 
-        console.log(dataArray)
         dataArray.splice(i, 1);
         localStorage.setItem("user", JSON.stringify(userInfo));
 
-        // render(dataArray)
     })
 
     editBtn.addEventListener("click", (e) => {
@@ -184,7 +177,6 @@ export function createLS(getName, getDescription, getTag, getDate) {
         userInfo[userIndex].historyArray.push(data)
     }
     localStorage.setItem("user", JSON.stringify(userInfo));
-    console.log(userInfo)
 
     getName.value = "";
     getDescription.value = "";
@@ -192,45 +184,6 @@ export function createLS(getName, getDescription, getTag, getDate) {
     window.location.reload();
 }
 
-
-// export function createLS(getName, getDescription, getTag, getDate) {
-//     if (getDate.value == '' || getName.value == '') {
-//         alert("Enter the Date and Name")
-//     }
-//     else {
-//         let data = {
-//             name: getName.value,
-//             description: getDescription.value,
-//             tag: getTag.value,
-//             date: getDate,
-//             endDate: "",
-//             time: [],
-//             currentTime: [],
-//             currentDate: [],
-//             totalTaskTime: "",
-//             dateTotal: [],
-//             dailyTotalTime: [],
-//             status: "Task Created"
-
-//         }
-//         // let dataArray = JSON.parse(localStorage.getItem('task')) || [];
-//         let userInfo=JSON.parse(localStorage.getItem("user")) || []
-//         let dataArray=userInfo.dataArray
-//         dataArray.push(data);
-
-//         // localStorage.setItem('task', JSON.stringify(dataArray));
-//         localStorage.setItem('user', JSON.stringify(userInfo));
-//         userInfo=JSON.parse(localStorage.getItem("user")) || [];
-//         console.log(userInfo)
-//         // dataArray = JSON.parse(localStorage.getItem('task') || [])
-//         // render(dataArray)
-//     }
-//     getName.value = ""
-//     getDescription.value = ""
-//     getTag.value = ""
-//     // getDate.value = ""
-//     window.location.reload()
-// }
 const taskTable = document.querySelector(".display-task")
 
 export function render(dataArray) {
@@ -294,24 +247,5 @@ export function total(data) {
     }
     return totalTaskTIme
 }
-// export function createHistoryLs() {
-//     console.log("hlo")
-//     for (let i = 0; i < array.length; i++) {
-//         let check = false
-//         for (let j = 0; j < historyArray.length; j++) {
-//             if (historyArray[j].name == array[i].name && historyArray[j].date == array[i].date) {
-//                 check = true
-//                 break
-//             }
-
-//         }
-//         if (check == false) {
-//             historyArray.push(array[i])
-//         }
-//     }
-//     localStorage.setItem("user", JSON.stringify(userInfo));
-//     // dataSort
-//     historyArray.sort(function (a, b) { return new Date(a.date) - new Date(b.date) })
-// }
 
 
