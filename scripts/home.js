@@ -125,6 +125,7 @@ export function displayList(dataArray) {
 
     const day = 24 * 60 * 60 * 1000;
     let today = new Date(endDate)
+    console.log(today)
     let taskdate = new Date(date)
     let numDays
     if (today == "Invalid Date") {

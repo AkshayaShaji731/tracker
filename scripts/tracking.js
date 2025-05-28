@@ -13,18 +13,17 @@ let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let dataArray = userInfo[userIndex].dataArray
-let completedArray=userInfo[userIndex].completedArray
+let completedArray = userInfo[userIndex].completedArray
 
-const pendindMobCon=document.querySelector(".display-task-pending")
-const completedMobCon=document.querySelector(".display-task-completed")
+const pendindMobCon = document.querySelector(".display-task-pending")
+const completedMobCon = document.querySelector(".display-task-completed")
 const tablePending = document.querySelector('.task-table-pending')
-const tableCompleted=document.querySelector('.task-table-completed')
+const tableCompleted = document.querySelector('.task-table-completed')
 const displayPendingCon = document.querySelector('.display-pending')
-const displayCompletedCon=document.querySelector('.display-completed')
-const days = document.querySelector('.days')
+const displayCompletedCon = document.querySelector('.display-completed')
 const timerCon = document.querySelector(".display-timer")
 const timespending = document.querySelector(".times-pending")
-const timescompleted=document.querySelector(".times-completed")
+const timescompleted = document.querySelector(".times-completed")
 const prevWeekBtn = document.querySelector(".prev-week")
 const currWeekBtn = document.querySelector(".current-week")
 displayTracking()
@@ -55,10 +54,10 @@ function displayTracking() {
         pendingTask(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
         trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time)
     }
-    let num=1
-    for (let i = completedArray.length-1; i >=0; i--) {
+    let num = 1
+    for (let i = completedArray.length - 1; i >= 0; i--) {
         console.log()
-        let sNum =num
+        let sNum = num
         num++
         let getDate = completedArray[i].date
         let getName = completedArray[i].name
@@ -109,16 +108,17 @@ function pendingTask(sNum, getDate, getName, endDate, getTime, getDescription, g
     taskRow.querySelector(".details").addEventListener("click", () => {
 
         document.querySelector(".display-pending-con").style.display = "block"
-        document.querySelector(".time-list").style.display="block"
-        let array=dataArray[sNum-1]
-        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus,displayPendingCon)
-        timercloseData(array,timespending)
-        getNumDays(array)
+        document.querySelector(".time-list").style.display = "block"
+        let array = dataArray[sNum - 1]
+        const days = document.querySelector('.days-pending')
+        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus, displayPendingCon)
+        timercloseData(array, timespending)
+        getNumDays(array, days)
     }
     )
 
 }
-function completedTask(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time){
+function completedTask(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time) {
     const taskRow = document.createElement("tr")
     taskRow.innerHTML = `
      <td id="s-no">${sNum}</td>
@@ -141,16 +141,17 @@ function completedTask(sNum, getDate, getName, endDate, getTime, getDescription,
     taskRow.querySelector(".details").addEventListener("click", () => {
 
         document.querySelector(".display-completed-con").style.display = "block"
-        let array=completedArray[sNum-1]
-        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus,displayCompletedCon)
-        timercloseData(array,timescompleted)
-        getNumDays(array)
+        let array = completedArray[sNum - 1]
+        const days = document.querySelector('.days-completed')
+        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus, displayCompletedCon)
+        timercloseData(array, timescompleted)
+        completedNumdays(array,days)
     }
     )
 
 }
 
-function displayContentTrack(index, date, name, enddate, time, desc, tag, status,displayHTML) {
+function displayContentTrack(index, date, name, enddate, time, desc, tag, status, displayHTML) {
     displayHTML.innerHTML = ` 
       <h3>Task details</h3>
        <table>
@@ -191,16 +192,16 @@ function displayContentTrack(index, date, name, enddate, time, desc, tag, status
          </tr>
        </table>`
 }
-function timercloseData(index,timeslist){
-    timeslist.innerHTML=""
-    let  time=index.time
-    let today=index.currentDate
-    let nowTime=index.currentTime
+function timercloseData(index, timeslist) {
+    timeslist.innerHTML = ""
+    let time = index.time
+    let today = index.currentDate
+    let nowTime = index.currentTime
     if (nowTime.length >= 1) {
         document.querySelector(".time-default").style.display = "none"
     }
     for (let i = 0; i < time.length; i++) {
-        let currentDate=today[i]
+        let currentDate = today[i]
         let currentTime = nowTime[i]
         let timeData = time[i].hour + ":" + time[i].min + ":" + time[i].second
         let times = document.createElement("tr")
@@ -211,27 +212,44 @@ function timercloseData(index,timeslist){
             <td>${timeData}</td>
            </tr>`
 
-        timeslist.appendChild(times)   
+        timeslist.appendChild(times)
     }
-}
- function getNumDays(data){
-    let num=0;
-    let count
-    let days=data.currentDate
-    for(let i=0;i<days.length;i++){
-        count=1
-        let day=days[num]
-        if(day==days[i]){
-            continue
-        }
-        else{
-            count++
-        }
-    }
-    numberOfDays(count)
 }
 
-function numberOfDays(numDays) {
+function completedNumdays(data,days) {
+    console.log(data)
+    let start=data.date
+    let end=data.endDate
+    let date1 = new Date(start);
+    let date2 = new Date(end);
+
+    let diffInMilliseconds = date1 - date2; // returns the difference in milliseconds
+    let diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24); // convert to days
+   numberOfDays(diffInDays,days)
+}
+function getNumDays(data, day) {
+    let num = 0;
+    let count
+    let days = data.currentDate
+    if (days.length > 0) {
+        for (let i = 0; i < days.length; i++) {
+            count = 1
+            let day = days[num]
+            if (day == days[i]) {
+                continue
+            }
+            else {
+                count++
+            }
+        }
+    }
+    else {
+        count = 0
+    }
+    numberOfDays(count, day)
+}
+
+function numberOfDays(numDays, days) {
     if (numDays == "") {
         days.innerHTML = `
         <h3>0</h3>
@@ -247,16 +265,16 @@ function numberOfDays(numDays) {
 
 
 // mobile view
-function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time){
-    if(dataArray.length==0){
-        document.querySelector('.emptypending').style.display="block"
+function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time) {
+    if (dataArray.length == 0) {
+        document.querySelector('.emptypending').style.display = "block"
     }
-    else{
-        document.querySelector('.emptypending').style.display="none"
+    else {
+        document.querySelector('.emptypending').style.display = "none"
     }
-    const taskDiv=document.createElement("div");
+    const taskDiv = document.createElement("div");
     taskDiv.classList.add('task-div')
-    taskDiv.innerHTML=`
+    taskDiv.innerHTML = `
     <div class="date-name">
       <h3>${sNum}.</h3> 
       <h3> ${getName}</h3>
@@ -268,7 +286,7 @@ function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescrip
      </div>
      <p id="timer"></p>
     </div> `
-    
+
     pendindMobCon.appendChild(taskDiv)
 
     const deleteBtn = taskDiv.querySelector('.details')
@@ -282,24 +300,24 @@ function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescrip
     taskDiv.querySelector(".details").addEventListener("click", () => {
 
         document.querySelector(".display-pending-con").style.display = "block"
-        let array=dataArray[sNum-1]
-        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus,displayPendingCon)
-        timercloseData(array,timespending)
+        let array = dataArray[sNum - 1]
+        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus, displayPendingCon)
+        timercloseData(array, timespending)
         getNumDays(array)
     }
     )
 }
-function trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time){
-    if(completedArray.length==0){
-        document.querySelector('.emptyCompleted').style.display="block"
-        document.querySelector('.display').style.display="none"
+function trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time) {
+    if (completedArray.length == 0) {
+        document.querySelector('.emptyCompleted').style.display = "block"
+        document.querySelector('.display').style.display = "none"
     }
-    else{
-        document.querySelector('.emptyCompleted').style.display="none"
+    else {
+        document.querySelector('.emptyCompleted').style.display = "none"
     }
-    const taskDiv=document.createElement("div");
+    const taskDiv = document.createElement("div");
     taskDiv.classList.add('task-div')
-    taskDiv.innerHTML=`
+    taskDiv.innerHTML = `
     <div class="date-name">
       <h3>${sNum}.</h3> 
       <h3> ${getName}</h3>
@@ -311,7 +329,7 @@ function trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescr
      </div>
      <p id="timer"></p>
     </div> `
-    
+
     completedMobCon.appendChild(taskDiv)
 
     const deleteBtn = taskDiv.querySelector('.details')
@@ -325,9 +343,9 @@ function trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescr
     taskDiv.querySelector(".details").addEventListener("click", () => {
 
         document.querySelector(".display-completed-con").style.display = "block"
-        let array=completedArray[sNum-1]
-        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus,displayCompletedCon)
-        timercloseData(array,timescompleted)
+        let array = completedArray[sNum - 1]
+        displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus, displayCompletedCon)
+        timercloseData(array, timescompleted)
         getNumDays(array)
     }
     )

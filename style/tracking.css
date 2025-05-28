@@ -61,6 +61,16 @@
 .time-list {
   display: block;
 }
+.days-pending , .days-completed{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.days-pending h3 ,.days-completed h3 {
+  font-size: 50px;
+}
 
 .root {
   display: flex;

@@ -10,7 +10,6 @@ let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 // console.log(userInfo)
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
-let array = [...userInfo[userIndex].dataArray, ...userInfo[userIndex].completedArray]
 let historyArray = userInfo[userIndex].historyArray
 
 clearBtn.addEventListener("click",()=>{
@@ -132,7 +131,7 @@ function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, get
     detailsBtn.addEventListener("click", () => {
         // console.log("hlo")
         document.querySelector(".display-pending-con").style.display = "block"
-        let arr = array[sNum - 1]
+        let arr = historyArray[sNum - 1]
         displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
         timercloseData(arr)
         // getNumDays(array)
@@ -180,10 +179,9 @@ function createHistory(getDate, getTag, getDescription, getName, sNum, i, getTim
     })
 
     detailsBtn.addEventListener("click", () => {
-        console.log("hlo")
         document.querySelector(".display-pending-con").style.display = "block"
         document.querySelector(".time-list").style.display = "block"
-        let array = dataArray[sNum - 1]
+        let array = historyArray[sNum - 1]
         displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
         timercloseData(array)
         // getNumDays(array)
