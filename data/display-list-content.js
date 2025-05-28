@@ -10,12 +10,12 @@ let historyArray
 if (userIndex > -1) {
     dataArray = userInfo[userIndex].dataArray
     completedArray = userInfo[userIndex].completedArray
-    historyArray=userInfo[userIndex].historyArray
+    historyArray = userInfo[userIndex].historyArray
 }
 else {
     dataArray = userInfo[userIndex + 1].dataArray
     completedArray = userInfo[userIndex + 1].completedArray
-    historyArray=userInfo[userIndex+1].historyArray
+    historyArray = userInfo[userIndex + 1].historyArray
 }
 
 
@@ -148,14 +148,16 @@ export function timer(index) {
         }
 
         let data = dataArray[index]
-        let hisData=historyArray.find(user=>user.name==data.name)
+        let hisData = historyArray.find(user => user.name == data.name)
 
         let taskTime = data.time
         taskTime.push(time);
+        let hisTaskTime=hisData.time
+        hisTaskTime.push(time)
 
         let totalTime = total(taskTime)
         data.totalTaskTime = totalTime
-        hisData.totalTaskTime=totalTime
+        hisData.totalTaskTime = totalTime
 
         localStorage.setItem("user", JSON.stringify(userInfo));
 
@@ -179,18 +181,24 @@ export function timer(index) {
         interval = setInterval(startTime, 1000)
 
         let data = dataArray[index]
+        let hisData = historyArray.find(user => user.name == data.name)
 
         data.status = "Pending"
+        hisData.status = "Pending"
 
         let nowTime = new Date().toLocaleTimeString();
         let currentTime = data.currentTime
+        let hiscurrTime = hisData.currentTime
         currentTime.push(nowTime)
+        hiscurrTime.push(nowTime)
 
         let dayArray = data.dateTotal
 
         let today = new Date().toISOString().split('T')[0];
         let currentDate = data.currentDate
+        let hisCurrDate = hisData.currentDate
         currentDate.push(today)
+        hisCurrDate.push(today)
         localStorage.setItem("user", JSON.stringify(userInfo));
         startBtn.removeEventListener("click", timerStart)
         startBtn.id = "d-pause-btn"
@@ -285,8 +293,13 @@ export function daily() {
     if (dataArray.length >= 1) {
         for (let i = 0; i < dataArray.length; i++) {
             date = dataArray[i].currentDate
+
             let [taskArray, taskArrayDate] = dailyTask(dataArray[i], currentDate);
             dataArray[i].dateTotal = taskArray
+
+            let hisData = historyArray.find(user => user.name == dataArray[i].name)
+            hisData.dateTotal = taskArray
+
             localStorage.setItem("user", JSON.stringify(userInfo));
             array = taskArrayDate
             taskArrayEl = taskArray
