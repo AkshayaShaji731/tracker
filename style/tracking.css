@@ -181,6 +181,7 @@
   transform: rotate(180deg);
   text-align: center;
   color: #fff;
+  cursor: pointer;
 }
 
 @media (min-width: 444px) {

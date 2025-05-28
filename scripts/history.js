@@ -75,7 +75,6 @@ function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, get
     <p>${getDescription}</p>
    <div class="btn-time">
     <div id="btn">
-    <button class="delete-btn">Delete</button>
      <button class="details-btn">Details</button>
      </div>
       <p id="timer"></p>
@@ -84,7 +83,9 @@ function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, get
     taskList.appendChild(taskDiv)
 
     const displayTimer = taskDiv.querySelector("#timer")
-    const deleteBtn = taskDiv.querySelector('.delete-btn')
+
+    // <button class="delete-btn">Delete</button>
+    // const deleteBtn = taskDiv.querySelector('.delete-btn')
     const detailsBtn = taskDiv.querySelector('.details-btn')
 
     if (getTime.hour == undefined || getTime.min == undefined || getTime.sec == undefined) {
@@ -95,13 +96,13 @@ function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, get
     }
 
 
-    deleteBtn.addEventListener("click", (e) => {
-        taskDiv.remove()
+    // deleteBtn.addEventListener("click", (e) => {
+    //     taskDiv.remove()
 
-        historyArray.splice(i, 1);
-        localStorage.setItem("user", JSON.stringify(userInfo));
+    //     historyArray.splice(i, 1);
+    //     localStorage.setItem("user", JSON.stringify(userInfo));
 
-    })
+    // })
 
     detailsBtn.addEventListener("click", () => {
         document.querySelector(".display-pending-con").style.display = "block"
@@ -225,7 +226,7 @@ function timercloseData(index) {
     }
 }
 
- function getNumDays(data){
+function getNumDays(data){
     let num=0;
     let count
     let days=data.currentDate
