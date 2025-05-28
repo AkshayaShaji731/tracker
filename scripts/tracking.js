@@ -297,9 +297,10 @@ function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescrip
 
         document.querySelector(".display-pending-con").style.display = "block"
         let array = dataArray[sNum - 1]
+        const days = document.querySelector('.days-pending')
         displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus, displayPendingCon)
         timercloseData(array, timespending)
-        getNumDays(array)
+        getNumDays(array, days)
     }
     )
 }
@@ -340,9 +341,10 @@ function trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescr
 
         document.querySelector(".display-completed-con").style.display = "block"
         let array = completedArray[sNum - 1]
+        const days = document.querySelector('.days-completed')
         displayContentTrack(sNum, getDate, getName, endDate, time, getDescription, getTag, getStatus, displayCompletedCon)
         timercloseData(array, timescompleted)
-        getNumDays(array)
+        completedNumdays(array,days)
     }
     )
 }
