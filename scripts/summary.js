@@ -123,18 +123,18 @@ export function daily() {
         seconds: 0
     }
     let taskArrayEl
-    if (historyArray.length >= 1) {
-        for (let i = 0; i < historyArray.length; i++) {
-            date = historyArray[i].currentDate
-            let [taskArray, taskArrayDate] = dailyTask(historyArray[i], currentDate);
-            historyArray[i].dateTotal = taskArray
+    if (dataArray.length >= 1) {
+        for (let i = 0; i < dataArray.length; i++) {
+            date = dataArray[i].currentDate
+            let [taskArray, taskArrayDate] = dailyTask(dataArray[i], currentDate);
+            dataArray[i].dateTotal = taskArray
             // console.log(taskArray)
             localStorage.setItem("user", JSON.stringify(userInfo));
             array = taskArrayDate
             taskArrayEl = taskArray
         }
-        for (let j = 0; j < historyArray.length; j++) {
-            let currentTask = historyArray[j].dateTotal;
+        for (let j = 0; j < arrayLs.length; j++) {
+            let currentTask = arrayLs[j].dateTotal;
             for (let k = 0; k < currentTask.length; k++) {
                 let task = currentTask[k];
                 if (task.date == currentDate) {

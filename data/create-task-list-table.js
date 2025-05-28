@@ -6,19 +6,19 @@ const task = document.querySelector('.task-list-item')
 
 
 // let dataArray = JSON.parse(localStorage.getItem('task')) || [];
-let userInfo=JSON.parse(localStorage.getItem("user")) || []
+let userInfo = JSON.parse(localStorage.getItem("user")) || []
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let dataArray
 let completedArray
-if (userIndex>-1){
-     dataArray=userInfo[userIndex].dataArray
-     completedArray=userInfo[userIndex].completedArray
+if (userIndex > -1) {
+    dataArray = userInfo[userIndex].dataArray
+    completedArray = userInfo[userIndex].completedArray
 
 }
-else{
-     dataArray=userInfo[userIndex+1].dataArray
-     completedArray=userInfo[userIndex+1].dataArray
+else {
+    dataArray = userInfo[userIndex + 1].dataArray
+    completedArray = userInfo[userIndex + 1].dataArray
 }
 
 // let completedArray = JSON.parse(localStorage.getItem('status')) || [];
@@ -75,7 +75,7 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
         console.log(dataArray)
         dataArray.splice(i, 1);
         localStorage.setItem("user", JSON.stringify(userInfo));
-        
+
         // render(dataArray)
     })
 
@@ -119,11 +119,11 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
         let date = dataArray[index].date
         let status = dataArray[index].status
         let endDate = dataArray[index].endDate
-        if(endDate==""){
-            endDate="--"
+        if (endDate == "") {
+            endDate = "--"
         }
-        else{
-            endDate=endDate
+        else {
+            endDate = endDate
         }
         displayContent(time, name, desc, tag, date, index, endDate, status)
 
@@ -132,7 +132,7 @@ export function createlist(getDate, getTag, getDescription, getName, sNum, i, ge
     })
 }
 export function createLS(getName, getDescription, getTag, getDate) {
-    
+
     if (getDate.value === '' || getName.value === '') {
         alert("Enter the Date and Name");
         return;
@@ -167,8 +167,24 @@ export function createLS(getName, getDescription, getTag, getDate) {
         status: "Task Created"
     };
 
-    userInfo[userIndex].dataArray.push(data);
+    let historyArray = userInfo[userIndex].historyArray
+    if (historyArray.length >= 1) {
+        let isPresent = historyArray.find(user => user.name == getName.value && user.date == getDate);
+        if(isPresent){
+            alert("TaskName already present.Enter another task Name")
+        }
+        else{
+            userInfo[userIndex].dataArray.push(data);
+            userInfo[userIndex].historyArray.push(data)
+        }
+    }
+    else {
+
+        userInfo[userIndex].dataArray.push(data);
+        userInfo[userIndex].historyArray.push(data)
+    }
     localStorage.setItem("user", JSON.stringify(userInfo));
+    console.log(userInfo)
 
     getName.value = "";
     getDescription.value = "";
@@ -278,24 +294,24 @@ export function total(data) {
     }
     return totalTaskTIme
 }
-createHistoryLs()
-export function createHistoryLs() {
-    for (let i = 0; i < array.length; i++) {
-        let check = false
-        for (let j = 0; j < historyArray.length; j++) {
-            if (historyArray[j].name == array[i].name && historyArray[j].date == array[i].date) {
-                check = true
-                break
-            }
+// export function createHistoryLs() {
+//     console.log("hlo")
+//     for (let i = 0; i < array.length; i++) {
+//         let check = false
+//         for (let j = 0; j < historyArray.length; j++) {
+//             if (historyArray[j].name == array[i].name && historyArray[j].date == array[i].date) {
+//                 check = true
+//                 break
+//             }
 
-        }
-        if (check == false) {
-            historyArray.push(array[i])
-        }
-    }
-    localStorage.setItem("user", JSON.stringify(userInfo));
-    // dataSort
-    historyArray.sort(function (a, b) { return new Date(a.date) - new Date(b.date) })
-}
+//         }
+//         if (check == false) {
+//             historyArray.push(array[i])
+//         }
+//     }
+//     localStorage.setItem("user", JSON.stringify(userInfo));
+//     // dataSort
+//     historyArray.sort(function (a, b) { return new Date(a.date) - new Date(b.date) })
+// }
 
 

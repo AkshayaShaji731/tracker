@@ -7,7 +7,7 @@ const clearBtn=document.getElementById("clear-btn")
 createNavBar()
 navBarMob()
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
-console.log(userInfo)
+// console.log(userInfo)
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let array = [...userInfo[userIndex].dataArray, ...userInfo[userIndex].completedArray]
@@ -22,24 +22,24 @@ clearBtn.addEventListener("click",()=>{
     console.log(userInfo)
 })
 
-createHistoryLs()
-function createHistoryLs() {
-    for (let i = 0; i < array.length; i++) {
-        let check = false
-        for (let j = 0; j < historyArray.length; j++) {
-            if (historyArray[j].name == array[i].name && historyArray[j].date == array[i].date) {
-                check = true
-                break
-            }
+// createHistoryLs()
+// function createHistoryLs() {
+//     for (let i = 0; i < array.length; i++) {
+//         let check = false
+//         for (let j = 0; j < historyArray.length; j++) {
+//             if (historyArray[j].name == array[i].name && historyArray[j].date == array[i].date) {
+//                 check = true
+//                 break
+//             }
 
-        }
-        if (check == false) {
-            historyArray.push(array[i])
-        }
-    }
-    localStorage.setItem("user", JSON.stringify(userInfo));
-    historyArray.sort(function (a, b) { return new Date(a.date) - new Date(b.date) })
-}
+//         }
+//         if (check == false) {
+//             historyArray.push(array[i])
+//         }
+//     }
+//     localStorage.setItem("user", JSON.stringify(userInfo));
+//     historyArray.sort(function (a, b) { return new Date(a.date) - new Date(b.date) })
+// }
 
 historyDisplay()
 function historyDisplay() {

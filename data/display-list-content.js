@@ -6,14 +6,16 @@ let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let dataArray
 let completedArray
-
+let historyArray
 if (userIndex > -1) {
     dataArray = userInfo[userIndex].dataArray
     completedArray = userInfo[userIndex].completedArray
+    historyArray=userInfo[userIndex].historyArray
 }
 else {
     dataArray = userInfo[userIndex + 1].dataArray
     completedArray = userInfo[userIndex + 1].completedArray
+    historyArray=userInfo[userIndex+1].historyArray
 }
 
 
@@ -146,12 +148,14 @@ export function timer(index) {
         }
 
         let data = dataArray[index]
+        let hisData=historyArray.find(user=>user.name==data.name)
 
         let taskTime = data.time
         taskTime.push(time);
 
         let totalTime = total(taskTime)
         data.totalTaskTime = totalTime
+        hisData.totalTaskTime=totalTime
 
         localStorage.setItem("user", JSON.stringify(userInfo));
 
