@@ -74,7 +74,7 @@
 .outer-con {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 20px;
   position: relative;
   width: 100%;
@@ -131,6 +131,7 @@
   display: flex;
   flex-direction: column-reverse;
   padding-left: 40px;
+  padding-right: 20px;
   box-sizing: border-box;
   width: 100%;
   overflow-x: auto;

@@ -14,7 +14,6 @@ let array = [...userInfo[userIndex].dataArray, ...userInfo[userIndex].completedA
 let historyArray = userInfo[userIndex].historyArray
 
 clearBtn.addEventListener("click",()=>{
-    console.log("hello")
     userInfo[userIndex].dataArray=[]
     userInfo[userIndex].completedArray=[]
     userInfo[userIndex].historyArray=[]
@@ -87,7 +86,7 @@ function historyDisplay() {
     }
 }
 function createHistoryMob(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time) {
-    
+    clearBtn.style.display="block"
     const taskDiv = document.createElement("div");
     taskDiv.classList.add('task-div')
     taskDiv.innerHTML = `

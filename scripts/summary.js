@@ -12,7 +12,7 @@ let completedArray = userInfo[userIndex].completedArray
 let historyArray=userInfo[userIndex].completedArray
 // let dataArray = JSON.parse(localStorage.getItem('task')) || [];
 // let completedArray = JSON.parse(localStorage.getItem('status')) || [];
-let arrayLs = [...dataArray, ...completedArray]
+let arrayLs = [...dataArray, ...completedArray] 
 
 if (arrayLs.length > 0) {
     // console.log("hlo")
@@ -35,7 +35,7 @@ activeTask(currentDate)
 dayGraph()
 
 function activeTimeFunction() {
-    let dayActive = daily(historyArray)
+    let dayActive = daily()
     let hour = dayActive.hour
     let min = dayActive.minute
     let sec = dayActive.seconds
@@ -109,7 +109,7 @@ export function activeTask(currentDate) {
 
 }
 
-function daily(dataArray) {
+export function daily() {
     let array
     let date
     let time
@@ -123,18 +123,18 @@ function daily(dataArray) {
         seconds: 0
     }
     let taskArrayEl
-    if (dataArray.length >= 1) {
-        for (let i = 0; i < dataArray.length; i++) {
-            date = dataArray[i].currentDate
-            let [taskArray, taskArrayDate] = dailyTask(dataArray[i], currentDate);
-            dataArray[i].dateTotal = taskArray
+    if (historyArray.length >= 1) {
+        for (let i = 0; i < historyArray.length; i++) {
+            date = historyArray[i].currentDate
+            let [taskArray, taskArrayDate] = dailyTask(historyArray[i], currentDate);
+            historyArray[i].dateTotal = taskArray
             // console.log(taskArray)
             localStorage.setItem("user", JSON.stringify(userInfo));
             array = taskArrayDate
             taskArrayEl = taskArray
         }
-        for (let j = 0; j < dataArray.length; j++) {
-            let currentTask = dataArray[j].dateTotal;
+        for (let j = 0; j < historyArray.length; j++) {
+            let currentTask = historyArray[j].dateTotal;
             for (let k = 0; k < currentTask.length; k++) {
                 let task = currentTask[k];
                 if (task.date == currentDate) {
