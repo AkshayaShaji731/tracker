@@ -2,10 +2,11 @@ import { displayContent, timer, listOfTime } from "./display-list-content.js";
 import { render } from "./create-task-list-table.js";
 
 const taskTable = document.querySelector(".display-task")
-// let dataArray = JSON.parse(localStorage.getItem('task')) || [];
+
 let userInfo=JSON.parse(localStorage.getItem("user")) || []
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
+
 let dataArray
 if (userIndex>-1){
      dataArray=userInfo[userIndex].dataArray

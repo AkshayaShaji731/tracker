@@ -147,118 +147,6 @@ function completedTask(sNum, getDate, getName, endDate, getTime, getDescription,
 
 }
 
-function displayContentTrack(index, date, name, enddate, time, desc, tag, status, displayHTML) {
-    displayHTML.innerHTML = ` 
-      <h3>Task details</h3>
-       <table>
-         <tr>
-           <td>Start Date </td>
-           <td>:</td>
-           <td>${date}</td>
-         </tr>
-           <tr>
-           <td>End Date </td>
-           <td>:</td>
-           <td>${enddate}</td>
-         </tr>
-           <tr>
-           <td>Task Name </td>
-           <td>:</td>
-           <td>${name}</td>
-         </tr>
-           <tr>
-           <td> Description </td>
-           <td>:</td>
-           <td>${desc}</td>
-         </tr>
-           <tr>
-           <td>Tag </td>
-           <td>:</td>
-           <td>${tag}</td>
-         </tr>
-           <tr>
-           <td>Total Time </td>
-           <td>:</td>
-           <td>${time}</td>
-         </tr>
-         <tr>
-           <td>Status</td>
-           <td>:</td>
-           <td class="status-text">${status}</td>
-         </tr>
-       </table>`
-}
-function timercloseData(index, timeslist) {
-    timeslist.innerHTML = ""
-    let time = index.time
-    let today = index.currentDate
-    let nowTime = index.currentTime
-    if (nowTime.length >= 1) {
-        document.querySelector(".time-default").style.display = "none"
-    }
-    for (let i = 0; i < time.length; i++) {
-        let currentDate = today[i]
-        let currentTime = nowTime[i]
-        let timeData = time[i].hour + ":" + time[i].min + ":" + time[i].second
-        let times = document.createElement("tr")
-        times.innerHTML = `
-           <tr>
-            <td>${currentDate}</td>
-            <td>${currentTime}</td>
-            <td>${timeData}</td>
-           </tr>`
-
-        timeslist.appendChild(times)
-    }
-}
-
-function completedNumdays(data,days) {
-    let start=data.date
-    let end=data.endDate
-    let date1 = new Date(start);
-    let date2 = new Date(end);
-
-    let diffInMilliseconds = date1 - date2; 
-    let diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
-   numberOfDays(diffInDays,days)
-}
-
-function getNumDays(data, day) {
-    let num = 0;
-    let count
-    let days = data.currentDate
-    if (days.length > 0) {
-        for (let i = 0; i < days.length; i++) {
-            count = 1
-            let day = days[num]
-            if (day == days[i]) {
-                continue
-            }
-            else {
-                count++
-            }
-        }
-    }
-    else {
-        count = 0
-    }
-    numberOfDays(count, day)
-}
-
-function numberOfDays(numDays, days) {
-    if (numDays == "") {
-        days.innerHTML = `
-        <h3>0</h3>
-        <p>Number of days</p>`
-    }
-    else {
-        days.innerHTML = `
-        <h3>${numDays}</h3>
-        <p>Number of days</p>`
-    }
-
-}
-
 
 // mobile view
 function trackingPendingMob(sNum, getDate, getName, endDate, getTime, getDescription, getTag, getStatus, time) {
@@ -347,6 +235,118 @@ function trackingCOmpletedMob(sNum, getDate, getName, endDate, getTime, getDescr
         completedNumdays(array,days)
     }
     )
+}
+
+function displayContentTrack(index, date, name, enddate, time, desc, tag, status, displayHTML) {
+    displayHTML.innerHTML = ` 
+      <h3>Task details</h3>
+       <table>
+         <tr>
+           <td>Start Date </td>
+           <td>:</td>
+           <td>${date}</td>
+         </tr>
+           <tr>
+           <td>End Date </td>
+           <td>:</td>
+           <td>${enddate}</td>
+         </tr>
+           <tr>
+           <td>Task Name </td>
+           <td>:</td>
+           <td>${name}</td>
+         </tr>
+           <tr>
+           <td> Description </td>
+           <td>:</td>
+           <td>${desc}</td>
+         </tr>
+           <tr>
+           <td>Tag </td>
+           <td>:</td>
+           <td>${tag}</td>
+         </tr>
+           <tr>
+           <td>Total Time </td>
+           <td>:</td>
+           <td>${time}</td>
+         </tr>
+         <tr>
+           <td>Status</td>
+           <td>:</td>
+           <td class="status-text">${status}</td>
+         </tr>
+       </table>`
+}
+function timercloseData(index, timeslist) {
+    timeslist.innerHTML = ""
+    let time = index.time
+    let today = index.currentDate
+    let nowTime = index.currentTime
+    if (nowTime.length >= 1) {
+        document.querySelector(".time-default").style.display = "none"
+    }
+    for (let i = 0; i < time.length; i++) {
+        let currentDate = today[i]
+        let currentTime = nowTime[i]
+        let timeData = time[i].hour + ":" + time[i].min + ":" + time[i].second
+        let times = document.createElement("tr")
+        times.innerHTML = `
+           <tr>
+            <td>${currentDate}</td>
+            <td>${currentTime}</td>
+            <td>${timeData}</td>
+           </tr>`
+
+        timeslist.appendChild(times)
+    }
+}
+
+function completedNumdays(data,days) {
+    let start=data.date
+    let end=data.endDate
+    let date1 = new Date(start);
+    let date2 = new Date(end);
+
+    let diffInMilliseconds = date1 - date2; 
+    let diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24)+1;
+   numberOfDays(diffInDays,days)
+}
+
+function getNumDays(data, day) {
+    let num = 0;
+    let count
+    let days = data.currentDate
+    if (days.length > 0) {
+        for (let i = 0; i < days.length; i++) {
+            count = 1
+            let day = days[num]
+            if (day == days[i]) {
+                continue
+            }
+            else {
+                count++
+            }
+        }
+    }
+    else {
+        count = 0
+    }
+    numberOfDays(count, day)
+}
+
+function numberOfDays(numDays, days) {
+    if (numDays == "") {
+        days.innerHTML = `
+        <h3>0</h3>
+        <p>Number of days</p>`
+    }
+    else {
+        days.innerHTML = `
+        <h3>${numDays}</h3>
+        <p>Number of days</p>`
+    }
+
 }
 
 

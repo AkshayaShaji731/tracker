@@ -47,7 +47,6 @@ function login(){
       localStorage.setItem("currentUser", userId.value)
       if (checkPassword) {
         window.location.href = "home.html"
-        // password.style.borderColor="red"
       }
       else {
         alert("Wrong password. Try again")

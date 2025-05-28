@@ -124,7 +124,7 @@ function daygraph() {
 }
 filterBtn.addEventListener("click", () => {
     currentDate = filterInput.value
-    dayGraph()
+    dayGraph()  
     Active.innerHTML=""
     activeTask(currentDate)
 })
