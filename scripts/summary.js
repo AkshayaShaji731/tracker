@@ -78,6 +78,7 @@ export function activeTask(currentDate) {
     let array = []
     for (let i = 0; i < historyArray.length; i++) {
         let dateArray = historyArray[i].dateTotal
+        console.log(dateArray)
         for (let j = 0; j < dateArray.length; j++) {
             if (dateArray[j].date == currentDate) {
                 let taskCon = document.createElement("div")

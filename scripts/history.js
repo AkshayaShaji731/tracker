@@ -151,6 +151,7 @@ function createHistory(getDate, getTag, getDescription, getName, sNum, i, getTim
         document.querySelector(".time-list").style.display = "block"
         let array = historyArray[sNum - 1]
         displayContentTrack(getDate, getTag, getDescription, getName, sNum, i, getTime, endDate, getStatus, time)
+        getNumDays(array)
         timercloseData(array)
     })
 }
@@ -224,33 +225,33 @@ function timercloseData(index) {
     }
 }
 
-//  function getNumDays(data){
-//     let num=0;
-//     let count
-//     let days=data.currentDate
-//     for(let i=0;i<days.length;i++){
-//         count=1
-//         let day=days[num]
-//         if(day==days[i]){
-//             continue
-//         }
-//         else{
-//             count++
-//         }
-//     }
-//     numberOfDays(count)
-// }
+ function getNumDays(data){
+    let num=0;
+    let count
+    let days=data.currentDate
+    for(let i=0;i<days.length;i++){
+        count=1
+        let day=days[num]
+        if(day==days[i]){
+            continue
+        }
+        else{
+            count++
+        }
+    }
+    numberOfDays(count)
+}
 
-// function numberOfDays(numDays) {
-//     if (numDays == "") {
-//         days.innerHTML = `
-//         <h3>0</h3>
-//         <p>Number of days</p>`
-//     }
-//     else {
-//         days.innerHTML = `
-//         <h3>${numDays}</h3>
-//         <p>Number of days</p>`
-//     }
+function numberOfDays(numDays) {
+    if (numDays == "") {
+        days.innerHTML = `
+        <h3>0</h3>
+        <p>Number of days</p>`
+    }
+    else {
+        days.innerHTML = `
+        <h3>${numDays}</h3>
+        <p>Number of days</p>`
+    }
 
-// }
+}
