@@ -79,6 +79,7 @@ export function dayGraph() {
             row.style.position = "relative"
             row.appendChild(fill)
         }
+        
     }
 
     for (let i = 0; i < dateEl.length; i++) {

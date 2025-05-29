@@ -1,4 +1,5 @@
 import { createNavBar, navBarMob } from "../data/navbar.js";
+import { graph } from "../data/yearly-grid-graph.js";
 const tableList = document.querySelector('.history-table')
 const taskList = document.querySelector('.display-task')
 const clearBtn=document.getElementById("clear-btn")
@@ -6,6 +7,7 @@ const clearBtn=document.getElementById("clear-btn")
 
 createNavBar()
 navBarMob()
+graph()
 let userInfo = JSON.parse(localStorage.getItem("user")) || [];
 let currentUserEmail = localStorage.getItem("currentUser");
 let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
