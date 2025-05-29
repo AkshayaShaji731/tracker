@@ -89,16 +89,16 @@ export function weekGraph() {
   array.forEach(e => {
     e.addEventListener("mouseover", () => {
       let index=array.indexOf(e)
-      let sec=y[index]*360*60 
+      let sec=y[index]*3600
       let min=0
       let hour=0
       if(sec>59){
        min +=Math.floor(sec/60)
-       sec=sec%60
+       sec=Math.floor(sec%60)
       }
       if(min>59){
         hour +=Math.floor(min/60)
-        min=min%60
+        min=Math.floor(min%60)
        }
       e.title=`${hour}hr ${min} min ${sec}sec`
     });
@@ -216,7 +216,7 @@ function graph() {
         let points = graphData[m].time
         let hour = points.hour
         let min = points.minute / 60
-        let sec = points.seconds / 360
+        let sec = points.seconds / 3600
         totalSec = hour + min + sec
         break
       }
