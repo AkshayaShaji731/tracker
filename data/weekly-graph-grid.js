@@ -81,17 +81,7 @@ export function weekGraph() {
     date.classList.add("date")
     date.innerText = dateEl[i]
     dateCon.appendChild(date)
-    // date.addEventListener("mouseover",(e)=>{
-    //   let value=e
-    //   console.log(value)
-    // })
   }
-  // const date =document.querySelectorAll(".date")
-  // date.forEach(e => {
-  //   e.addEventListener("mouseover",()=>{
-  //     console.log(indexOf(e))
-  //   })
-  // });
 
   const date = document.querySelectorAll(".date");
   const array = Array.from(date); 
@@ -99,18 +89,18 @@ export function weekGraph() {
   array.forEach(e => {
     e.addEventListener("mouseover", () => {
       let index=array.indexOf(e)
-      let sec=y[index]*360
+      let sec=y[index]*360*60 
       let min=0
       let hour=0
       if(sec>59){
-       min +=sec/60
+       min +=Math.floor(sec/60)
        sec=sec%60
       }
       if(min>59){
-        hour +=min/60
+        hour +=Math.floor(min/60)
         min=min%60
        }
-      e.title=`${hour}hr ${min}min ${sec}sec`
+      e.title=`${hour}hr ${min} min ${sec}sec`
     });
   });
 }
@@ -245,3 +235,5 @@ function formatDateArray(inputDates) {
     return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
   });
 }
+
+

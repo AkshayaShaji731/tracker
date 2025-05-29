@@ -86,13 +86,20 @@ export function dayGraph() {
         date.classList.add("date")
         date.style.display = 'grid';
         date.style.gridTemplateColumns = `repeat(${dateEl.length}, 1fr)`
-        date.innerText = `Task ${i + 1}`
+        date.innerText = `Task ${i+1}`
         dateCon.appendChild(date)
     }
-    const date = document.querySelectorAll(".date")
-    console.log(date)
+    const date = document.querySelectorAll(".date");
+  const array = Array.from(date); 
 
+  array.forEach(e => {
+    e.addEventListener("mouseover", () => {
+      let index=array.indexOf(e)
+      console.log(y[index])
+  })
+  });
 }
+
 let currentDate = new Date().toISOString().split('T')[0];
 
 function day() {
@@ -116,7 +123,7 @@ function daygraph() {
         for (let j = 0; j < dateArray.length; j++) {
             if (dateArray[j].date == date) {
                 let arrayEl = dateArray[j]
-                let points = arrayEl.hour + arrayEl.minute / 60 + arrayEl.seconds / 360
+                let points = arrayEl.hour  + arrayEl.minute/60 + arrayEl.seconds / 360
                 array.push(points)
             }
         }
@@ -125,7 +132,7 @@ function daygraph() {
 }
 filterBtn.addEventListener("click", () => {
     currentDate = filterInput.value
-    dayGraph()
-    Active.innerHTML = ""
+    dayGraph()  
+    Active.innerHTML=""
     activeTask(currentDate)
 })

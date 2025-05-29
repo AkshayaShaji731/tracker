@@ -10,6 +10,8 @@ let userIndex = userInfo.findIndex(user => user.email === currentUserEmail);
 let dataArray = userInfo[userIndex].dataArray
 let completedArray = userInfo[userIndex].completedArray
 let historyArray=userInfo[userIndex].historyArray
+let arrayLs=[...dataArray,...completedArray]
+// console.log(arrayLs)
 
 if (historyArray.length > 0) {
     document.querySelector(".emptyActive").style.display = "none"
@@ -76,9 +78,10 @@ function taskCreatedToady() {
 
 export function activeTask(currentDate) {
     let array = []
-    for (let i = 0; i < historyArray.length; i++) {
-        let dateArray = historyArray[i].dateTotal
-        console.log(dateArray)
+    let num=1
+    for (let i = 0; i <arrayLs.length; i++) {
+        let dateArray = arrayLs[i].dateTotal
+        // console.log(dateArray)
         for (let j = 0; j < dateArray.length; j++) {
             if (dateArray[j].date == currentDate) {
                 let taskCon = document.createElement("div")
@@ -88,14 +91,15 @@ export function activeTask(currentDate) {
                     time = "00:00:00"
                 }
                 else {
-                    time = historyArray[i].totalTaskTime.hour + ":" + historyArray[i].totalTaskTime.min + ":" +historyArray[i].totalTaskTime.sec
+                    time = arrayLs[i].totalTaskTime.hour + ":" + arrayLs[i].totalTaskTime.min + ":" +arrayLs[i].totalTaskTime.sec
                 }
                 taskCon.innerHTML = `
-                  <h4>${i + 1} . ${historyArray[i].name}</h4>
-                  <p>${historyArray[i].description}</p>
+                  <h4>${num} . ${arrayLs[i].name}</h4>
+                  <p>${arrayLs[i].description}</p>
                   <p>Total Time:${time}</p>
                  `
                 Active.appendChild(taskCon)
+                num++
             }
         }
     }
