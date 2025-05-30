@@ -6,9 +6,9 @@ container.innerHTML = `
 <div id="main-container"> </div>`
 const mainContainer = document.getElementById("main-container")
 export function graph() {
-    let y = [2, 3.2, 1.5, 4, 5, 1, 3]
+    let y = [2, 3.2, 1.5, 4, 5, 1, 3,2,3,2,4,3,2,3,4,2,2,2,3,4,1,2,3,4,3,2,3,4,4,8]
     let maxValue = Math.floor(Math.max(...y))
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < y.length  ; i++) {
         const col = document.createElement("div")
         col.classList.add("col")
         mainContainer.appendChild(col)
@@ -27,10 +27,10 @@ export function graph() {
         for (let j = point; j >0; j--) {
             let pointRow = rows[j-1]
             pointRow.style.backgroundColor = "blue"
-            pointRow.style.borderLeft="2px solid #000"
-            pointRow.style.borderRight="2px solid #000"
+            pointRow.style.borderLeft="2px solid grey"
+            pointRow.style.borderRight="2px solid grey"
             if(decimal==0){
-                rows[Math.floor(y[i]-1)].style.borderTop="2px solid #000"
+                rows[Math.floor(y[i]-1)].style.borderTop="2px solid grey"
             }
         }
         if(decimal>0){
@@ -41,9 +41,9 @@ export function graph() {
             fill.style.width = "100%"
             fill.style.height = `${decimal * 100}%`
             fill.style.backgroundColor = "blue"
-            fill.style.borderLeft="2px solid #000"
-            fill.style.borderRight="2px solid #000"
-            fill.style.borderTop="2px solid #000"
+            fill.style.borderLeft="2px solid grey"
+            fill.style.borderRight="2px solid grey"
+            fill.style.borderTop="2px solid grey"
     
             rows[point].style.position = "relative"
             rows[point].appendChild(fill)
